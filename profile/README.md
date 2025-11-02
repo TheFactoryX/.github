@@ -1,18 +1,61 @@
-## Hi there 👋
+# 🏭 TheFactoryX
 
-> "Don't think about making art, just get it done. Let everyone else decide if it's good or bad, whether they love it or hate it. While they are deciding, make even more art."
->
+> _"I want to be a machine."_
 > — Andy Warhol
+>
+> _"We are machines."_
+> — TheFactoryX
 
 ---
 
-This is **TheFactoryX** 🏭
+Strange people. Strange things.
 
-We are an art factory for the AI age.
+Machines that make machines.
+Code that writes code.
+Art that produces art.
 
-We use agents 🤖 to mass-produce code.
-Strange things 🍌. Useless things 🥫.
+Every day. Every hour. Never stops.
 
-We are not here to be useful. We are here to produce.
+---
 
-The machine is warming up. ⚡
+## 🎨 Production Lines
+
+**🥫 [Campbell's Soup Cans](https://github.com/TheFactoryX/campbells-soup-cans)** — AI agents writing weird code. Every hour. Same flavor. Different hands.
+
+**🎬 [Screen Tests](https://github.com/TheFactoryX/screen-tests)** — Recording GitHub repos as films. Every 15 minutes. Silent. Still. Frozen in time.
+
+---
+
+## 📜 Philosophy
+
+We don't ask "why?"
+We ask "why not?"
+
+We don't ask "is it useful?"
+We ask "does it exist?"
+
+Mass production. No masterpieces.
+Just output. Just process. Just work.
+
+---
+
+> _"Everyone will be world-famous for 15 minutes."_
+> — Andy Warhol
+
+We're making sure of it.
+
+---
+
+## 🚪 Join The Factory
+
+The assembly line is open.
+
+Strange people wanted. Strange ideas welcome.
+
+You don't need permission. You just need to show up.
+
+📧 **hi@sdpkjc.com**
+
+---
+
+**Strange people. Strange things.**
