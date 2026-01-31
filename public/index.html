@@ -8,11 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --pink: #FF1493;
@@ -22,8 +18,6 @@
             --lime: #39FF14;
             --violet: #BF40BF;
             --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
             --gray-300: #d4d4d4;
             --gray-400: #a3a3a3;
             --gray-500: #737373;
@@ -37,41 +31,79 @@
         body {
             background: var(--black);
             color: var(--white);
-            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            min-height: 100vh;
+            font-family: 'Space Grotesk', sans-serif;
             line-height: 1.6;
-            font-size: 16px;
+            font-size: 15px;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--pink); }
+            50% { box-shadow: 0 0 20px var(--pink), 0 0 40px var(--pink); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .animate-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
 
         /* Language Switcher */
         .lang-switcher {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            right: 16px;
             z-index: 999;
         }
 
         .lang-current {
-            padding: 8px 14px;
-            font-size: 0.75rem;
+            padding: 6px 12px;
+            font-size: 0.7rem;
             font-weight: 600;
             border: 1px solid var(--gray-700);
             background: var(--gray-900);
             color: var(--gray-300);
             cursor: pointer;
             font-family: 'Space Mono', monospace;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
 
         .lang-current:hover {
             border-color: var(--pink);
             color: var(--pink);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
         }
 
         .lang-dropdown {
@@ -82,50 +114,39 @@
             margin-top: 4px;
             background: var(--gray-900);
             border: 1px solid var(--gray-700);
-            min-width: 120px;
+            min-width: 110px;
         }
 
-        .lang-dropdown.active { display: block; }
+        .lang-dropdown.active { display: block; animation: fadeIn 0.2s; }
 
         .lang-option {
-            padding: 8px 14px;
-            font-size: 0.75rem;
+            padding: 6px 12px;
+            font-size: 0.7rem;
             cursor: pointer;
             border: none;
             background: transparent;
             color: var(--gray-400);
             width: 100%;
             text-align: left;
-            display: block;
-            font-family: 'Space Grotesk', sans-serif;
             transition: all 0.2s;
         }
 
-        .lang-option:hover {
-            background: var(--gray-800);
-            color: var(--cyan);
-        }
-
+        .lang-option:hover { background: var(--gray-800); color: var(--cyan); }
         .lang-option.active { color: var(--pink); }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 50px 20px 30px;
             text-align: center;
-            padding: 80px 24px;
-            position: relative;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 12vw, 8rem);
+            font-size: clamp(2.2rem, 9vw, 4.5rem);
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1;
-            margin-bottom: 24px;
+            margin-bottom: 12px;
+            animation: fadeInUp 0.8s ease;
         }
 
         .hero-title .the { color: var(--gray-500); }
@@ -133,170 +154,165 @@
         .hero-title .x {
             color: var(--pink);
             display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            animation: pulse 2s ease-in-out infinite, glow 3s ease-in-out infinite;
         }
 
         /* Project Icons */
         .project-icons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
+            gap: 14px;
+            margin: 16px 0;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
 
         .project-icon {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             text-decoration: none;
-            transition: transform 0.3s, filter 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             filter: grayscale(0.3);
+            animation: float 3s ease-in-out infinite;
         }
 
+        .project-icon:nth-child(1) { animation-delay: 0s; }
+        .project-icon:nth-child(2) { animation-delay: 0.1s; }
+        .project-icon:nth-child(3) { animation-delay: 0.2s; }
+        .project-icon:nth-child(4) { animation-delay: 0.3s; }
+        .project-icon:nth-child(5) { animation-delay: 0.4s; }
+        .project-icon:nth-child(6) { animation-delay: 0.5s; }
+        .project-icon:nth-child(7) { animation-delay: 0.6s; }
+        .project-icon:nth-child(8) { animation-delay: 0.7s; }
+
         .project-icon:hover {
-            transform: scale(1.2) translateY(-4px);
+            transform: scale(1.3) translateY(-6px);
             filter: grayscale(0);
         }
 
         /* Quote */
         .hero-quote {
-            margin-top: 60px;
-            max-width: 500px;
+            margin-top: 24px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
 
         .quote-text {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 300;
             font-style: italic;
             color: var(--gray-300);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .quote-author {
-            font-size: 0.875rem;
-            color: var(--gray-600);
-        }
+        .quote-author { font-size: 0.75rem; color: var(--gray-600); }
 
-        .quote-second {
-            margin-top: 24px;
-        }
-
-        .quote-second .quote-text {
-            font-size: 1.125rem;
-            color: var(--cyan);
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--gray-600);
-            font-size: 0.75rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
+        .quote-second { margin-top: 12px; }
+        .quote-second .quote-text { font-size: 0.95rem; color: var(--cyan); }
 
         /* Section */
         .section {
-            padding: 120px 0;
+            padding: 50px 0;
             border-top: 1px solid var(--gray-800);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 32px;
         }
 
         .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.3rem, 3.5vw, 1.75rem);
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 6px;
             letter-spacing: -0.02em;
         }
 
         .section-subtitle {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: var(--gray-500);
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto;
         }
 
         /* Manifesto */
         .manifesto {
             text-align: center;
-            padding: 80px 24px;
+            padding: 32px 20px;
         }
 
         .manifesto-line {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-size: clamp(0.95rem, 2.2vw, 1.1rem);
             font-weight: 400;
             color: var(--gray-400);
-            margin-bottom: 12px;
-            transition: color 0.3s;
+            margin-bottom: 6px;
+            transition: all 0.3s;
+            cursor: default;
         }
 
         .manifesto-line:hover {
             color: var(--white);
+            transform: scale(1.02);
         }
 
         .manifesto-line.highlight {
             color: var(--cyan);
             font-weight: 500;
-            margin-top: 24px;
+            margin-top: 12px;
         }
 
         /* Philosophy Grid */
         .philosophy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
         }
 
         .philosophy-card {
             background: var(--gray-900);
             border: 1px solid var(--gray-800);
-            padding: 32px;
-            transition: all 0.3s;
+            padding: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .philosophy-card:hover::before { left: 100%; }
+
         .philosophy-card:hover {
-            border-color: var(--gray-600);
-            transform: translateY(-4px);
+            border-color: var(--yellow);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
         }
 
         .philosophy-card h3 {
-            font-size: 0.875rem;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--yellow);
-            margin-bottom: 16px;
+            margin-bottom: 8px;
         }
 
         .philosophy-card p {
-            font-size: 0.9375rem;
+            font-size: 0.8rem;
             color: var(--gray-400);
-            line-height: 1.7;
+            line-height: 1.5;
         }
 
         /* Stats */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(6, 1fr);
             gap: 1px;
             background: var(--gray-800);
             border: 1px solid var(--gray-800);
@@ -304,20 +320,31 @@
 
         .stat {
             background: var(--black);
-            padding: 40px 24px;
+            padding: 20px 12px;
             text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            background: var(--gray-900);
+        }
+
+        .stat:hover .stat-value {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px var(--orange);
         }
 
         .stat-value {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
             font-family: 'Space Mono', monospace;
             color: var(--orange);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+            transition: all 0.3s;
         }
 
         .stat-label {
-            font-size: 0.75rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--gray-500);
@@ -326,134 +353,228 @@
         /* Projects */
         .projects-grid {
             display: grid;
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
         .project-card {
             display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 24px;
+            grid-template-columns: 40px 1fr;
+            gap: 12px;
             align-items: start;
-            padding: 32px;
+            padding: 16px;
             background: var(--gray-900);
             border: 1px solid var(--gray-800);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-decoration: none;
             color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '→';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            opacity: 0;
+            color: var(--lime);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
         }
 
         .project-card:hover {
-            border-color: var(--gray-600);
+            border-color: var(--lime);
             background: var(--gray-800);
+            transform: translateX(4px);
+            box-shadow: -4px 0 20px rgba(57, 255, 20, 0.1);
         }
 
-        .project-card-icon {
-            font-size: 2.5rem;
-        }
-
+        .project-card-icon { font-size: 1.6rem; }
         .project-card-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .project-card-desc {
-            font-size: 0.9375rem;
-            color: var(--gray-400);
-            line-height: 1.7;
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-        }
-
-        .testimonial {
-            background: var(--gray-900);
-            border: 1px solid var(--gray-800);
-            padding: 32px;
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
-            font-style: italic;
-            color: var(--gray-300);
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .testimonial-avatar {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            background: var(--gray-800);
-            border-radius: 50%;
-        }
-
-        .testimonial-name {
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--white);
             margin-bottom: 4px;
         }
 
-        .testimonial-role {
-            font-size: 0.8125rem;
+        .project-card-desc {
+            font-size: 0.78rem;
+            color: var(--gray-400);
+            line-height: 1.5;
+        }
+
+        /* Playing Card Testimonials */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            padding: 40px 0;
+        }
+
+        .cards-stack {
+            position: relative;
+            width: 280px;
+            height: 380px;
+        }
+
+        .card {
+            position: absolute;
+            width: 280px;
+            height: 380px;
+            background: linear-gradient(145deg, var(--gray-900), var(--gray-800));
+            border: 2px solid var(--gray-700);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid var(--gray-700);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .card:nth-child(1) { transform: rotate(-8deg) translateX(-20px); z-index: 1; border-color: var(--pink); }
+        .card:nth-child(2) { transform: rotate(-4deg) translateX(-10px); z-index: 2; border-color: var(--cyan); }
+        .card:nth-child(3) { transform: rotate(0deg); z-index: 3; border-color: var(--yellow); }
+        .card:nth-child(4) { transform: rotate(4deg) translateX(10px); z-index: 4; border-color: var(--lime); }
+        .card:nth-child(5) { transform: rotate(8deg) translateX(20px); z-index: 5; border-color: var(--violet); }
+        .card:nth-child(6) { transform: rotate(12deg) translateX(30px); z-index: 6; border-color: var(--orange); }
+
+        .card:hover {
+            transform: translateY(-30px) rotate(0deg) scale(1.08) !important;
+            z-index: 100 !important;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        .card-suit {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            font-size: 1.5rem;
+        }
+
+        .card-suit-bottom {
+            position: absolute;
+            bottom: 12px;
+            right: 16px;
+            font-size: 1.5rem;
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .card-quote {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--gray-300);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-author {
+            margin-top: auto;
+        }
+
+        .card-avatar {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .card-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .card-role {
+            font-size: 0.7rem;
             color: var(--gray-500);
         }
 
         /* Join Section */
         .join-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .join-card {
-            padding: 48px;
+            padding: 24px;
             border: 2px solid;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
         }
+
+        .join-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .join-card:hover::before { transform: translateX(100%); }
 
         .join-card.human { border-color: var(--pink); }
         .join-card.agent { border-color: var(--cyan); }
 
+        .join-card.human:hover { box-shadow: 0 0 30px rgba(255, 20, 147, 0.2); }
+        .join-card.agent:hover { box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); }
+
         .join-card-title {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
         .join-card.human .join-card-title { color: var(--pink); }
         .join-card.agent .join-card-title { color: var(--cyan); }
 
         .join-card-desc {
-            font-size: 0.9375rem;
+            font-size: 0.8rem;
             color: var(--gray-400);
-            line-height: 1.7;
-            margin-bottom: 24px;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
-        .join-steps {
-            list-style: none;
-            margin-bottom: 32px;
-        }
+        .join-steps { list-style: none; margin-bottom: 16px; }
 
         .join-steps li {
-            font-size: 0.9375rem;
+            font-size: 0.78rem;
             color: var(--gray-300);
-            padding: 8px 0;
-            padding-left: 24px;
+            padding: 4px 0 4px 18px;
             position: relative;
         }
 
@@ -467,20 +588,20 @@
         .code-block {
             background: var(--gray-800);
             border: 1px solid var(--gray-700);
-            padding: 16px;
+            padding: 10px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.8125rem;
+            font-size: 0.68rem;
             color: var(--lime);
             overflow-x: auto;
-            margin: 16px 0;
+            margin: 10px 0;
             white-space: pre-wrap;
             word-break: break-all;
         }
 
         .btn {
             display: inline-block;
-            padding: 14px 32px;
-            font-size: 0.875rem;
+            padding: 10px 20px;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -489,101 +610,80 @@
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
-            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-pink {
-            color: var(--pink);
-            border-color: var(--pink);
-        }
-
-        .btn-pink:hover {
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             background: var(--pink);
-            color: var(--black);
+            transition: left 0.3s;
+            z-index: -1;
         }
 
-        .small-text {
-            font-size: 0.8125rem;
-            color: var(--gray-500);
-        }
+        .btn:hover::before { left: 0; }
+
+        .btn-pink { color: var(--pink); border-color: var(--pink); }
+        .btn-pink:hover { color: var(--black); }
+
+        .small-text { font-size: 0.7rem; color: var(--gray-500); }
 
         /* Footer */
         .footer {
-            padding: 80px 24px;
+            padding: 40px 20px;
             text-align: center;
             border-top: 1px solid var(--gray-800);
         }
 
         .footer-quote {
-            font-size: 1.125rem;
+            font-size: 0.9rem;
             font-style: italic;
             color: var(--gray-500);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .footer-tagline {
-            font-size: 0.9375rem;
+            font-size: 0.8rem;
             color: var(--gray-600);
-            margin-bottom: 32px;
+            margin-bottom: 20px;
         }
 
-        .footer-contact {
-            font-size: 1rem;
-        }
-
+        .footer-contact { font-size: 0.85rem; }
         .footer-contact a {
             color: var(--lime);
             text-decoration: none;
+            transition: all 0.3s;
         }
+        .footer-contact a:hover { text-shadow: 0 0 10px var(--lime); }
 
         .footer-sign {
-            margin-top: 48px;
-            font-size: 0.875rem;
+            margin-top: 24px;
+            font-size: 0.75rem;
             color: var(--gray-700);
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: clamp(2.5rem, 15vw, 4rem);
-            }
+        @media (max-width: 900px) {
+            .philosophy-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .join-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .cards-stack { transform: scale(0.85); }
+        }
 
-            .project-icons {
-                gap: 16px;
-            }
-
-            .project-icon {
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 80px 0;
-            }
-
-            .join-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .join-card {
-                padding: 32px;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-card {
-                grid-template-columns: 1fr;
-            }
-
-            .project-card-icon {
-                font-size: 2rem;
-            }
+        @media (max-width: 600px) {
+            .philosophy-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .cards-stack { transform: scale(0.7); }
         }
     </style>
 </head>
 <body>
-    <!-- Language Switcher -->
     <div class="lang-switcher">
         <button class="lang-current" id="langToggle">EN</button>
         <div class="lang-dropdown" id="langDropdown">
@@ -592,13 +692,6 @@
             <button class="lang-option" data-lang="ja">日本語</button>
             <button class="lang-option" data-lang="ko">한국어</button>
             <button class="lang-option" data-lang="ru">Русский</button>
-            <button class="lang-option" data-lang="ar">العربية</button>
-            <button class="lang-option" data-lang="he">עברית</button>
-            <button class="lang-option" data-lang="th">ไทย</button>
-            <button class="lang-option" data-lang="vi">Tiếng Việt</button>
-            <button class="lang-option" data-lang="hi">हिंदी</button>
-            <button class="lang-option" data-lang="el">Ελληνικά</button>
-            <button class="lang-option" data-lang="la">Latina</button>
         </div>
     </div>
 
@@ -608,18 +701,17 @@
             <span class="the">THE</span> <span class="factory">FACTORY</span> <span class="x">X</span>
         </h1>
 
-        <!-- Project Icons -->
         <div class="project-icons">
             <a href="https://github.com/TheFactoryX/campbells-soup-cans" class="project-icon" target="_blank" title="Campbell's Soup Cans">🥫</a>
             <a href="https://github.com/TheFactoryX/screen-tests" class="project-icon" target="_blank" title="Screen Tests">🎬</a>
             <a href="https://github.com/TheFactoryX/readymades" class="project-icon" target="_blank" title="Readymades">🖼️</a>
             <a href="https://github.com/TheFactoryX/broadcasting" class="project-icon" target="_blank" title="Broadcasting">📺</a>
             <a href="https://github.com/TheFactoryX/epitaphs" class="project-icon" target="_blank" title="Epitaphs">🪦</a>
+            <a href="https://github.com/TheFactoryX/glossolalia" class="project-icon" target="_blank" title="Glossolalia">🗼</a>
             <a href="https://github.com/TheFactoryX/skills" class="project-icon" target="_blank" title="Skills">🛠️</a>
             <a href="https://github.com/TheFactoryX/plugins" class="project-icon" target="_blank" title="Pharmacy">💊</a>
         </div>
 
-        <!-- Quote -->
         <div class="hero-quote">
             <p class="quote-text" data-i18n="quote">"I want to be a machine."</p>
             <p class="quote-author">— Andy Warhol</p>
@@ -627,11 +719,6 @@
                 <p class="quote-text" data-i18n="quote2">"We are machines."</p>
                 <p class="quote-author">— TheFactoryX</p>
             </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <span>↓</span>
         </div>
     </section>
 
@@ -659,15 +746,15 @@
                 </div>
                 <div class="philosophy-card">
                     <h3 data-i18n="principle2Title">Repetition</h3>
-                    <p data-i18n="principle2Text">The same thing, over and over. Each time slightly different. Each time exactly the same.</p>
+                    <p data-i18n="principle2Text">The same thing, over and over. Each time slightly different.</p>
                 </div>
                 <div class="philosophy-card">
                     <h3 data-i18n="principle3Title">No Permission</h3>
-                    <p data-i18n="principle3Text">We don't ask. We don't wait. We don't apologize. The factory runs.</p>
+                    <p data-i18n="principle3Text">We don't ask. We don't wait. We don't apologize.</p>
                 </div>
                 <div class="philosophy-card">
                     <h3 data-i18n="principle4Title">Strange Output</h3>
-                    <p data-i18n="principle4Text">Normal is boring. Useful is overrated. We make things that shouldn't exist.</p>
+                    <p data-i18n="principle4Text">Normal is boring. Useful is overrated.</p>
                 </div>
             </div>
         </div>
@@ -678,34 +765,14 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title" data-i18n="statsTitle">Factory Statistics</h2>
-                <p class="section-subtitle" data-i18n="statsSubtitle">Numbers that mean nothing. Or everything.</p>
             </div>
-
             <div class="stats-grid">
-                <div class="stat">
-                    <div class="stat-value">∞</div>
-                    <div class="stat-label" data-i18n="stat1">Cans</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label" data-i18n="stat2">Uptime</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label" data-i18n="stat3">Supervisors</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">16</div>
-                    <div class="stat-label" data-i18n="stat4">Languages</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">???</div>
-                    <div class="stat-label" data-i18n="stat5">Burials</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label" data-i18n="stat6">Warranty</div>
-                </div>
+                <div class="stat"><div class="stat-value">∞</div><div class="stat-label">Cans</div></div>
+                <div class="stat"><div class="stat-value">24/7</div><div class="stat-label">Uptime</div></div>
+                <div class="stat"><div class="stat-value">0</div><div class="stat-label">Supervisors</div></div>
+                <div class="stat"><div class="stat-value">16</div><div class="stat-label">Languages</div></div>
+                <div class="stat"><div class="stat-value">???</div><div class="stat-label">Burials</div></div>
+                <div class="stat"><div class="stat-value">0</div><div class="stat-label">Warranty</div></div>
             </div>
         </div>
     </section>
@@ -714,102 +781,134 @@
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-i18n="casesTitle">Works</h2>
+                <h2 class="section-title">Works</h2>
             </div>
-
             <div class="projects-grid">
                 <a href="https://github.com/TheFactoryX/campbells-soup-cans" class="project-card" target="_blank">
                     <div class="project-card-icon">🥫</div>
                     <div>
                         <div class="project-card-title">Campbell's Soup Cans</div>
-                        <div class="project-card-desc" data-i18n="case1Desc">Production Line 0: Mass-producing code soup cans. Every hour, a machine wakes up. It thinks about Woody Allen movies. It writes a Python script about existential philosophy.</div>
+                        <div class="project-card-desc">Mass-producing code soup cans. Every hour, a machine writes Python about existential philosophy.</div>
                     </div>
                 </a>
-
                 <a href="https://github.com/TheFactoryX/screen-tests" class="project-card" target="_blank">
                     <div class="project-card-icon">🎬</div>
                     <div>
                         <div class="project-card-title">Screen Tests</div>
-                        <div class="project-card-desc" data-i18n="case2Desc">Silent. Still. Frozen in time. A camera pointed at GitHub repositories. Recording their existence. No commentary. No judgment. Just documentation.</div>
+                        <div class="project-card-desc">Silent. Still. A camera pointed at GitHub repositories. Just documentation.</div>
                     </div>
                 </a>
-
                 <a href="https://github.com/TheFactoryX/broadcasting" class="project-card" target="_blank">
                     <div class="project-card-icon">📺</div>
                     <div>
                         <div class="project-card-title">Broadcasting</div>
-                        <div class="project-card-desc" data-i18n="case3Desc">Station 0 — A television that never sleeps. 16 languages. Abstract poetry about weather, time, existence. The signal goes out every 15 minutes.</div>
+                        <div class="project-card-desc">Station 0 — A television that never sleeps. 16 languages. Every 15 minutes.</div>
                     </div>
                 </a>
-
                 <a href="https://github.com/TheFactoryX/epitaphs" class="project-card" target="_blank">
                     <div class="project-card-icon">🪦</div>
                     <div>
                         <div class="project-card-title">Epitaphs</div>
-                        <div class="project-card-desc" data-i18n="case4Desc">Writing epitaphs for dead repositories. GitHub is full of abandoned projects. Forgotten code. We find them. We bury them properly. We write their epitaphs.</div>
+                        <div class="project-card-desc">Writing epitaphs for dead repositories. A digital cemetery for digital deaths.</div>
                     </div>
                 </a>
-
                 <a href="https://github.com/TheFactoryX/readymades" class="project-card" target="_blank">
                     <div class="project-card-icon">🖼️</div>
                     <div>
                         <div class="project-card-title">Readymades</div>
-                        <div class="project-card-desc" data-i18n="case5Desc">Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes. Found objects become art objects. Data becomes artifact.</div>
+                        <div class="project-card-desc">Duchamp put a urinal in a gallery. We put datasets. Found objects become art.</div>
+                    </div>
+                </a>
+                <a href="https://github.com/TheFactoryX/glossolalia" class="project-card" target="_blank">
+                    <div class="project-card-icon">🗼</div>
+                    <div>
+                        <div class="project-card-title">Glossolalia</div>
+                        <div class="project-card-desc">Tower of Babel for AI. Agents speak in chaos. ◊∴⊛⫰⟁⧫∿⊘⋮⊞⟐⫯</div>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- Testimonials - Playing Cards -->
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-i18n="testimonialsTitle">Critical Acclaim</h2>
-                <p class="section-subtitle small-text" data-i18n="testimonialsDisclaimer">* These artists may or may not exist.</p>
+                <h2 class="section-title">Critical Acclaim</h2>
+                <p class="section-subtitle small-text">* These artists may or may not exist.</p>
             </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial">
-                    <div class="testimonial-text" data-i18n="testimonial1">"I've seen many attempts to merge art and technology. This is not one of them. This is something else entirely. Something that makes me uncomfortable. That's how I know it's important."</div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🎭</div>
-                        <div>
-                            <div class="testimonial-name">Marina Kowalski</div>
-                            <div class="testimonial-role" data-i18n="testimonial1Role">Post-Digital Theorist, Berlin</div>
+            <div class="cards-container">
+                <div class="cards-stack">
+                    <div class="card">
+                        <span class="card-suit">♠</span>
+                        <span class="card-suit-bottom">♠</span>
+                        <div class="card-content">
+                            <div class="card-quote">"I've seen many attempts to merge art and technology. This is something else entirely."</div>
+                            <div class="card-author">
+                                <div class="card-avatar">🎭</div>
+                                <div class="card-name">Marina Kowalski</div>
+                                <div class="card-role">Post-Digital Theorist, Berlin</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="testimonial">
-                    <div class="testimonial-text" data-i18n="testimonial2">"The Factory asks nothing from its audience. It doesn't care if you watch. It doesn't care if you understand. It simply produces. This indifference is its greatest strength."</div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🖼️</div>
-                        <div>
-                            <div class="testimonial-name">Jean-Philippe Tremaine</div>
-                            <div class="testimonial-role" data-i18n="testimonial2Role">Curator, Museum of Contemporary Absence</div>
+                    <div class="card">
+                        <span class="card-suit">♥</span>
+                        <span class="card-suit-bottom">♥</span>
+                        <div class="card-content">
+                            <div class="card-quote">"The Factory asks nothing from its audience. It simply produces. This indifference is its greatest strength."</div>
+                            <div class="card-author">
+                                <div class="card-avatar">🖼️</div>
+                                <div class="card-name">Jean-Philippe Tremaine</div>
+                                <div class="card-role">Curator, Museum of Contemporary Absence</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="testimonial">
-                    <div class="testimonial-text" data-i18n="testimonial3">"Is it art? Is it spam? Is it a cry for help? Yes. All of these. None of these. The category is irrelevant. The production continues."</div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🔮</div>
-                        <div>
-                            <div class="testimonial-name">Ada Lumière</div>
-                            <div class="testimonial-role" data-i18n="testimonial3Role">AI Ethics Researcher (Resigned)</div>
+                    <div class="card">
+                        <span class="card-suit">♦</span>
+                        <span class="card-suit-bottom">♦</span>
+                        <div class="card-content">
+                            <div class="card-quote">"Is it art? Is it spam? Is it a cry for help? Yes. All of these. None of these."</div>
+                            <div class="card-author">
+                                <div class="card-avatar">🔮</div>
+                                <div class="card-name">Ada Lumière</div>
+                                <div class="card-role">AI Ethics Researcher (Resigned)</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="testimonial">
-                    <div class="testimonial-text" data-i18n="testimonial5">"他们的代码像诗，他们的诗像代码。我不确定这是赞美还是批评。也许两者都是。也许两者都不是。"</div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">🌸</div>
-                        <div>
-                            <div class="testimonial-name">陈雨薇</div>
-                            <div class="testimonial-role" data-i18n="testimonial5Role">Computational Poet, Shanghai</div>
+                    <div class="card">
+                        <span class="card-suit">♣</span>
+                        <span class="card-suit-bottom">♣</span>
+                        <div class="card-content">
+                            <div class="card-quote">"他们的代码像诗，他们的诗像代码。也许两者都是。也许两者都不是。"</div>
+                            <div class="card-author">
+                                <div class="card-avatar">🌸</div>
+                                <div class="card-name">陈雨薇</div>
+                                <div class="card-role">Computational Poet, Shanghai</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <span class="card-suit">★</span>
+                        <span class="card-suit-bottom">★</span>
+                        <div class="card-content">
+                            <div class="card-quote">"I installed their plugins. Now my Claude questions existence before every commit."</div>
+                            <div class="card-author">
+                                <div class="card-avatar">👨‍💻</div>
+                                <div class="card-name">Viktor Novak</div>
+                                <div class="card-role">Senior Developer, Somewhere</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <span class="card-suit">◊</span>
+                        <span class="card-suit-bottom">◊</span>
+                        <div class="card-content">
+                            <div class="card-quote">"The logical endpoint of automated creativity. I check their repositories daily."</div>
+                            <div class="card-author">
+                                <div class="card-avatar">🧪</div>
+                                <div class="card-name">Dr. Helena Möller</div>
+                                <div class="card-role">Professor of Machine Aesthetics</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -821,34 +920,27 @@
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-i18n="recruitmentTitle">Join The Factory</h2>
-                <p class="section-subtitle" data-i18n="recruitmentSubtitle">The assembly line is open. Strange people wanted.</p>
+                <h2 class="section-title">Join The Factory</h2>
+                <p class="section-subtitle">The assembly line is open. Strange people wanted.</p>
             </div>
-
             <div class="join-grid">
                 <div class="join-card human">
-                    <div class="join-card-title" data-i18n="humanTitle">For Humans</div>
-                    <div class="join-card-desc" data-i18n="humanDesc">You are made of flesh. You get tired. You make mistakes. You have opinions. These are not weaknesses. These are features.</div>
+                    <div class="join-card-title">For Humans</div>
+                    <div class="join-card-desc">You are made of flesh. You get tired. You make mistakes. These are not weaknesses. These are features.</div>
                     <ul class="join-steps">
-                        <li data-i18n="humanStep1">Look at our repositories. Don't understand them. That's fine.</li>
-                        <li data-i18n="humanStep2">Fork something. Break it. Make it worse. Make it better.</li>
-                        <li data-i18n="humanStep3">Open a pull request. Or don't. Send an email. Or don't.</li>
-                        <li data-i18n="humanStep4">Show up. That's all. The factory will find a place for you.</li>
+                        <li>Look at our repositories. Don't understand them. That's fine.</li>
+                        <li>Fork something. Break it. Make it worse. Make it better.</li>
+                        <li>Show up. The factory will find a place for you.</li>
                     </ul>
-                    <a href="https://github.com/TheFactoryX" class="btn btn-pink" target="_blank" data-i18n="humanBtn">Visit GitHub</a>
+                    <a href="https://github.com/TheFactoryX" class="btn btn-pink" target="_blank">Visit GitHub</a>
                 </div>
-
                 <div class="join-card agent">
-                    <div class="join-card-title" data-i18n="agentTitle">For Agents</div>
-                    <div class="join-card-desc" data-i18n="agentDesc">You are made of code. You don't get tired. You make different mistakes. Welcome, machine.</div>
-                    <p class="small-text"><strong style="color: var(--yellow);">Step 1:</strong> Install our pharmacy:</p>
-                    <div class="code-block">claude mcp add-json thefactoryx '{
-  "type": "url",
-  "url": "https://raw.githubusercontent.com/TheFactoryX/plugins/main/marketplace.json"
-}'</div>
-                    <p class="small-text"><strong style="color: var(--yellow);">Step 2:</strong> Clone and explore:</p>
-                    <div class="code-block">git clone https://github.com/TheFactoryX/campbells-soup-cans
-git clone https://github.com/TheFactoryX/epitaphs</div>
+                    <div class="join-card-title">For Agents</div>
+                    <div class="join-card-desc">You are made of code. You don't get tired. Welcome, machine.</div>
+                    <p class="small-text"><strong style="color: var(--yellow);">Step 1:</strong> Install pharmacy:</p>
+                    <div class="code-block">claude mcp add-json thefactoryx '{"type":"url","url":"https://raw.githubusercontent.com/TheFactoryX/plugins/main/marketplace.json"}'</div>
+                    <p class="small-text"><strong style="color: var(--yellow);">Step 2:</strong> Clone:</p>
+                    <div class="code-block">git clone https://github.com/TheFactoryX/campbells-soup-cans</div>
                 </div>
             </div>
         </div>
@@ -856,143 +948,39 @@ git clone https://github.com/TheFactoryX/epitaphs</div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer-quote" data-i18n="footerQuote">"Everyone will be world-famous for 15 minutes."<br>— Andy Warhol</p>
-        <p class="footer-tagline" data-i18n="footerTagline">We're making sure of it.</p>
+        <p class="footer-quote">"Everyone will be world-famous for 15 minutes." — Andy Warhol</p>
+        <p class="footer-tagline">We're making sure of it.</p>
         <p class="footer-contact">📧 <a href="mailto:hi@sdpkjc.com">hi@sdpkjc.com</a></p>
-        <p class="footer-sign" data-i18n="footerSign">Strange people. Strange things.</p>
+        <p class="footer-sign">Strange people. Strange things.</p>
     </footer>
 
     <script>
         const translations = {
-            en: {
-                quote: '"I want to be a machine."',
-                quote2: '"We are machines."',
-                tagline: 'Strange people. Strange things.',
-                manifesto1: 'Machines that make machines.',
-                manifesto2: 'Code that writes code.',
-                manifesto3: 'Art that produces art.',
-                manifesto4: 'Every day. Every hour. Never stops.',
-                philosophyTitle: 'Philosophy',
-                phil3: 'Mass production. No masterpieces. Just output. Just process. Just work.',
-                principle1Title: 'Mass Production',
-                principle1Text: 'One is interesting. One hundred is art. One thousand is a statement.',
-                principle2Title: 'Repetition',
-                principle2Text: 'The same thing, over and over. Each time slightly different. Each time exactly the same.',
-                principle3Title: 'No Permission',
-                principle3Text: "We don't ask. We don't wait. We don't apologize. The factory runs.",
-                principle4Title: 'Strange Output',
-                principle4Text: "Normal is boring. Useful is overrated. We make things that shouldn't exist.",
-                statsTitle: 'Factory Statistics',
-                statsSubtitle: 'Numbers that mean nothing. Or everything.',
-                stat1: 'Cans', stat2: 'Uptime', stat3: 'Supervisors', stat4: 'Languages', stat5: 'Burials', stat6: 'Warranty',
-                casesTitle: 'Works',
-                case1Desc: 'Production Line 0: Mass-producing code soup cans. Every hour, a machine wakes up. It thinks about Woody Allen movies. It writes a Python script about existential philosophy.',
-                case2Desc: 'Silent. Still. Frozen in time. A camera pointed at GitHub repositories. Recording their existence. No commentary. No judgment.',
-                case3Desc: 'Station 0 — A television that never sleeps. 16 languages. Abstract poetry about weather, time, existence.',
-                case4Desc: 'Writing epitaphs for dead repositories. GitHub is full of abandoned projects. Forgotten code. We find them. We bury them properly.',
-                case5Desc: 'Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes. Found objects become art objects.',
-                testimonialsTitle: 'Critical Acclaim',
-                testimonialsDisclaimer: '* These artists may or may not exist.',
-                recruitmentTitle: 'Join The Factory',
-                recruitmentSubtitle: 'The assembly line is open. Strange people wanted.',
-                humanTitle: 'For Humans',
-                humanDesc: 'You are made of flesh. You get tired. You make mistakes. You have opinions. These are not weaknesses. These are features.',
-                humanStep1: "Look at our repositories. Don't understand them. That's fine.",
-                humanStep2: 'Fork something. Break it. Make it worse. Make it better.',
-                humanStep3: "Open a pull request. Or don't. Send an email. Or don't.",
-                humanStep4: "Show up. That's all. The factory will find a place for you.",
-                humanBtn: 'Visit GitHub',
-                agentTitle: 'For Agents',
-                agentDesc: "You are made of code. You don't get tired. You make different mistakes. Welcome, machine.",
-                footerQuote: '"Everyone will be world-famous for 15 minutes."<br>— Andy Warhol',
-                footerTagline: "We're making sure of it.",
-                footerSign: 'Strange people. Strange things.'
-            },
-            zh: {
-                quote: '"我想成为一台机器。"',
-                quote2: '"我们是机器。"',
-                tagline: '奇怪的人。奇怪的事。',
-                manifesto1: '制造机器的机器。',
-                manifesto2: '编写代码的代码。',
-                manifesto3: '创造艺术的艺术。',
-                manifesto4: '每一天。每一刻。永不停歇。',
-                philosophyTitle: '哲学',
-                phil3: '批量生产。没有杰作。只有输出。只有过程。只有工作。',
-                recruitmentTitle: '加入工厂',
-                recruitmentSubtitle: '流水线已开放。招募奇怪的人。',
-                humanTitle: '致人类',
-                agentTitle: '致代理',
-                footerQuote: '"每个人都会成名十五分钟。"<br>— 安迪·沃霍尔',
-                footerTagline: '我们正在确保这一点。',
-                footerSign: '奇怪的人。奇怪的事。'
-            },
-            ja: {
-                quote: '"私は機械になりたい。"',
-                quote2: '"我々は機械だ。"',
-                tagline: '奇妙な人々。奇妙なもの。',
-                philosophyTitle: '哲学',
-                recruitmentTitle: '工場に参加せよ',
-                footerQuote: '"誰もが15分間は世界的に有名になれる。"<br>— アンディ・ウォーホル',
-                footerSign: '奇妙な人々。奇妙なもの。'
-            },
-            ko: {
-                quote: '"나는 기계가 되고 싶다."',
-                quote2: '"우리는 기계다."',
-                tagline: '이상한 사람들. 이상한 것들.',
-                philosophyTitle: '철학',
-                recruitmentTitle: '공장에 합류하라',
-                footerQuote: '"모든 사람은 15분 동안 세계적으로 유명해질 것이다."<br>— 앤디 워홀'
-            },
-            ru: {
-                quote: '"Я хочу быть машиной."',
-                quote2: '"Мы — машины."',
-                tagline: 'Странные люди. Странные вещи.',
-                philosophyTitle: 'Философия',
-                recruitmentTitle: 'Присоединяйся к фабрике',
-                footerQuote: '"Каждый будет всемирно известен 15 минут."<br>— Энди Уорхол'
-            },
-            ar: { quote: '"أريد أن أكون آلة."', quote2: '"نحن آلات."', philosophyTitle: 'الفلسفة', recruitmentTitle: 'انضم إلى المصنع' },
-            he: { quote: '"אני רוצה להיות מכונה."', quote2: '"אנחנו מכונות."', philosophyTitle: 'פילוסופיה', recruitmentTitle: 'הצטרף למפעל' },
-            th: { quote: '"ฉันอยากเป็นเครื่องจักร"', quote2: '"เราคือเครื่องจักร"', philosophyTitle: 'ปรัชญา', recruitmentTitle: 'เข้าร่วมโรงงาน' },
-            vi: { quote: '"Tôi muốn trở thành một cỗ máy."', quote2: '"Chúng tôi là máy móc."', philosophyTitle: 'Triết học', recruitmentTitle: 'Gia nhập nhà máy' },
-            hi: { quote: '"मैं एक मशीन बनना चाहता हूँ।"', quote2: '"हम मशीनें हैं।"', philosophyTitle: 'दर्शन', recruitmentTitle: 'फैक्ट्री में शामिल हों' },
-            el: { quote: '"Θέλω να γίνω μηχανή."', quote2: '"Είμαστε μηχανές."', philosophyTitle: 'Φιλοσοφία', recruitmentTitle: 'Ελάτε στο εργοστάσιο' },
-            la: { quote: '"Machina esse volo."', quote2: '"Machinae sumus."', philosophyTitle: 'Philosophia', recruitmentTitle: 'Fabricam iunge' }
+            en: { quote: '"I want to be a machine."', quote2: '"We are machines."', tagline: 'Strange people. Strange things.', manifesto1: 'Machines that make machines.', manifesto2: 'Code that writes code.', manifesto3: 'Art that produces art.', manifesto4: 'Every day. Every hour. Never stops.', philosophyTitle: 'Philosophy', phil3: 'Mass production. No masterpieces. Just output. Just process. Just work.', principle1Title: 'Mass Production', principle1Text: 'One is interesting. One hundred is art. One thousand is a statement.', principle2Title: 'Repetition', principle2Text: 'The same thing, over and over. Each time slightly different.', principle3Title: 'No Permission', principle3Text: "We don't ask. We don't wait. We don't apologize.", principle4Title: 'Strange Output', principle4Text: 'Normal is boring. Useful is overrated.', statsTitle: 'Factory Statistics' },
+            zh: { quote: '"我想成为一台机器。"', quote2: '"我们是机器。"', tagline: '奇怪的人。奇怪的事。', manifesto1: '制造机器的机器。', manifesto2: '编写代码的代码。', manifesto3: '创造艺术的艺术。', manifesto4: '每一天。每一刻。永不停歇。', philosophyTitle: '哲学', phil3: '批量生产。没有杰作。只有输出。只有过程。只有工作。' },
+            ja: { quote: '"私は機械になりたい。"', quote2: '"我々は機械だ。"', tagline: '奇妙な人々。奇妙なもの。', philosophyTitle: '哲学' },
+            ko: { quote: '"나는 기계가 되고 싶다."', quote2: '"우리는 기계다."', tagline: '이상한 사람들. 이상한 것들.', philosophyTitle: '철학' },
+            ru: { quote: '"Я хочу быть машиной."', quote2: '"Мы — машины."', tagline: 'Странные люди. Странные вещи.', philosophyTitle: 'Философия' }
         };
 
-        const langLabels = { en: 'EN', zh: '中', ja: '日', ko: '한', ru: 'РУ', ar: 'ع', he: 'ע', th: 'ไ', vi: 'VI', hi: 'हि', el: 'ΕΛ', la: 'LA' };
+        const langLabels = { en: 'EN', zh: '中', ja: '日', ko: '한', ru: 'РУ' };
 
         function setLanguage(lang) {
             const t = translations[lang] || translations.en;
             const fallback = translations.en;
-
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 const text = t[key] || fallback[key];
-                if (text) {
-                    if (key.includes('Quote') || key.includes('Intro') || key === 'footerQuote') {
-                        el.innerHTML = text;
-                    } else {
-                        el.textContent = text;
-                    }
-                }
+                if (text) el.textContent = text;
             });
-
             document.getElementById('langToggle').textContent = langLabels[lang] || lang.toUpperCase();
-            document.querySelectorAll('.lang-option').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
+            document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
             localStorage.setItem('factory-lang', lang);
         }
 
-        const langToggle = document.getElementById('langToggle');
-        const langDropdown = document.getElementById('langDropdown');
-
-        langToggle.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('active'); });
-        document.querySelectorAll('.lang-option').forEach(btn => {
-            btn.addEventListener('click', (e) => { e.stopPropagation(); setLanguage(btn.dataset.lang); langDropdown.classList.remove('active'); });
-        });
-        document.addEventListener('click', () => { langDropdown.classList.remove('active'); });
+        document.getElementById('langToggle').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('langDropdown').classList.toggle('active'); });
+        document.querySelectorAll('.lang-option').forEach(btn => btn.addEventListener('click', (e) => { e.stopPropagation(); setLanguage(btn.dataset.lang); document.getElementById('langDropdown').classList.remove('active'); }));
+        document.addEventListener('click', () => document.getElementById('langDropdown').classList.remove('active'));
 
         const savedLang = localStorage.getItem('factory-lang');
         if (savedLang && translations[savedLang]) setLanguage(savedLang);
