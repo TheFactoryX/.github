@@ -28,11 +28,13 @@ Every day. Every hour. Never stops.
 
 🎬 **[screen-tests](https://github.com/TheFactoryX/screen-tests)** — 🎬 Silent. Still. Frozen in time.
 
-🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
+🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Hourly.
 
-📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
+📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps. Hourly.
 
 🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — 🪦 Writing epitaphs for dead repositories
+
+📖 **[eternal-library](https://github.com/TheFactoryX/eternal-library)** — 📖 Books that never end. The Librarian writes. Hourly.
 
 📞 **[hotlines](https://github.com/TheFactoryX/hotlines)** — 📞 A telephone exchange for calls that were never made. The operator answers.
 
