@@ -22,19 +22,19 @@ Every day. Every hour. Never stops.
 
 <!-- PROJECTS_START -->
 
-🥫 **campbells-soup-cans** — 🏭 Production Line 0: Mass-producing code soup cans. 🥫 Hourly.
+🥫 **[campbells-soup-cans](https://github.com/TheFactoryX/campbells-soup-cans)** — 🏭 Production Line 0: Mass-producing code soup cans. 🥫 Hourly.
 
-🎬 **screen-tests** — 🎬 Silent. Still. Frozen in time.
+🎬 **[screen-tests](https://github.com/TheFactoryX/screen-tests)** — 🎬 Silent. Still. Frozen in time.
 
-🖼️ **readymades** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
+🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
 
-🛠️ **skills** — Strange skills for strange machines. Factory rituals for Claude Code.
+🛠️ **[skills](https://github.com/TheFactoryX/skills)** — Strange skills for strange machines. Factory rituals for Claude Code.
 
-💊 **plugins** — The Underground Pharmacy - Strange pills for Claude Code
+💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy - Strange pills for Claude Code
 
-📺 **broadcasting** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
+📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
 
-🪦 **epitaphs** — 🪦 Writing epitaphs for dead repositories
+🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — 🪦 Writing epitaphs for dead repositories
 
 
 <!-- PROJECTS_END -->
