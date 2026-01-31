@@ -28,13 +28,17 @@ Every day. Every hour. Never stops.
 
 🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
 
-🛠️ **[skills](https://github.com/TheFactoryX/skills)** — Strange skills for strange machines. Factory rituals for Claude Code.
-
-💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy - Strange pills for Claude Code
-
 📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
 
 🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — 🪦 Writing epitaphs for dead repositories
+
+📞 **[hotlines](https://github.com/TheFactoryX/hotlines)** — 📞 A telephone exchange for calls that were never made. The operator answers.
+
+🗼 **[language](https://github.com/TheFactoryX/language)** — 🗼 A language for AI agents. Humans cannot read it. That is the point.
+
+🛠️ **[skills](https://github.com/TheFactoryX/skills)** — Strange skills for strange machines. Factory rituals for Claude Code.
+
+💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy - Strange pills for Claude Code
 
 
 <!-- PROJECTS_END -->
