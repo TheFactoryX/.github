@@ -409,113 +409,104 @@
             line-height: 1.5;
         }
 
-        /* Playing Card Testimonials */
-        .cards-container {
+        /* Testimonials Carousel */
+        .testimonials-track {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
-            padding: 40px 0;
-        }
-
-        .cards-stack {
-            position: relative;
-            width: 280px;
-            height: 380px;
-        }
-
-        .card {
-            position: absolute;
-            width: 280px;
-            height: 380px;
-            background: linear-gradient(145deg, var(--gray-900), var(--gray-800));
-            border: 2px solid var(--gray-700);
-            border-radius: 16px;
-            padding: 24px;
-            cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
-            border: 1px solid var(--gray-700);
-            border-radius: 12px;
-            pointer-events: none;
-        }
-
-        .card:nth-child(1) { transform: rotate(-8deg) translateX(-20px); z-index: 1; border-color: var(--pink); }
-        .card:nth-child(2) { transform: rotate(-4deg) translateX(-10px); z-index: 2; border-color: var(--cyan); }
-        .card:nth-child(3) { transform: rotate(0deg); z-index: 3; border-color: var(--yellow); }
-        .card:nth-child(4) { transform: rotate(4deg) translateX(10px); z-index: 4; border-color: var(--lime); }
-        .card:nth-child(5) { transform: rotate(8deg) translateX(20px); z-index: 5; border-color: var(--violet); }
-        .card:nth-child(6) { transform: rotate(12deg) translateX(30px); z-index: 6; border-color: var(--orange); }
-
-        .card:hover {
-            transform: translateY(-30px) rotate(0deg) scale(1.08) !important;
-            z-index: 100 !important;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-        }
-
-        .card-suit {
-            position: absolute;
-            top: 12px;
-            left: 16px;
-            font-size: 1.5rem;
-        }
-
-        .card-suit-bottom {
-            position: absolute;
-            bottom: 12px;
-            right: 16px;
-            font-size: 1.5rem;
-            transform: rotate(180deg);
-        }
-
-        .card-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             padding: 20px 0;
+            scroll-behavior: smooth;
         }
 
-        .card-quote {
-            font-size: 0.85rem;
+        .testimonials-track::-webkit-scrollbar { display: none; }
+
+        .testimonial-card {
+            flex: 0 0 300px;
+            scroll-snap-align: center;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            will-change: transform;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gray-600);
+        }
+
+        .testimonial-card:nth-child(1) { border-top: 3px solid var(--pink); }
+        .testimonial-card:nth-child(2) { border-top: 3px solid var(--cyan); }
+        .testimonial-card:nth-child(3) { border-top: 3px solid var(--yellow); }
+        .testimonial-card:nth-child(4) { border-top: 3px solid var(--lime); }
+        .testimonial-card:nth-child(5) { border-top: 3px solid var(--violet); }
+        .testimonial-card:nth-child(6) { border-top: 3px solid var(--orange); }
+
+        .testimonial-card .quote-mark {
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--gray-700);
+            font-family: Georgia, serif;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card .card-quote {
+            font-size: 0.88rem;
             font-style: italic;
             color: var(--gray-300);
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 20px;
         }
 
-        .card-author {
+        .testimonial-card .card-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-top: auto;
         }
 
-        .card-avatar {
-            font-size: 2rem;
-            margin-bottom: 8px;
+        .testimonial-card .card-avatar {
+            font-size: 1.8rem;
         }
 
-        .card-name {
+        .testimonial-card .card-name {
             font-weight: 600;
             font-size: 0.85rem;
             color: var(--white);
-            margin-bottom: 2px;
         }
 
-        .card-role {
-            font-size: 0.7rem;
+        .testimonial-card .card-role {
+            font-size: 0.72rem;
             color: var(--gray-500);
+            margin-top: 2px;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-700);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot:hover,
+        .carousel-dot.active {
+            background: var(--pink);
+            transform: scale(1.2);
         }
 
         /* Join Section */
@@ -673,13 +664,13 @@
             .projects-grid { grid-template-columns: 1fr; }
             .join-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(3, 1fr); }
-            .cards-stack { transform: scale(0.85); }
+            .testimonial-card { flex: 0 0 280px; }
         }
 
         @media (max-width: 600px) {
             .philosophy-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .cards-stack { transform: scale(0.7); }
+            .testimonial-card { flex: 0 0 260px; }
         }
     </style>
 </head>
@@ -830,88 +821,88 @@
         </div>
     </section>
 
-    <!-- Testimonials - Playing Cards -->
+    <!-- Testimonials Carousel -->
     <section class="section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Critical Acclaim</h2>
                 <p class="section-subtitle small-text">* These artists may or may not exist.</p>
             </div>
-            <div class="cards-container">
-                <div class="cards-stack">
-                    <div class="card">
-                        <span class="card-suit">♠</span>
-                        <span class="card-suit-bottom">♠</span>
-                        <div class="card-content">
-                            <div class="card-quote">"I've seen many attempts to merge art and technology. This is something else entirely."</div>
-                            <div class="card-author">
-                                <div class="card-avatar">🎭</div>
-                                <div class="card-name">Marina Kowalski</div>
-                                <div class="card-role">Post-Digital Theorist, Berlin</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-suit">♥</span>
-                        <span class="card-suit-bottom">♥</span>
-                        <div class="card-content">
-                            <div class="card-quote">"The Factory asks nothing from its audience. It simply produces. This indifference is its greatest strength."</div>
-                            <div class="card-author">
-                                <div class="card-avatar">🖼️</div>
-                                <div class="card-name">Jean-Philippe Tremaine</div>
-                                <div class="card-role">Curator, Museum of Contemporary Absence</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-suit">♦</span>
-                        <span class="card-suit-bottom">♦</span>
-                        <div class="card-content">
-                            <div class="card-quote">"Is it art? Is it spam? Is it a cry for help? Yes. All of these. None of these."</div>
-                            <div class="card-author">
-                                <div class="card-avatar">🔮</div>
-                                <div class="card-name">Ada Lumière</div>
-                                <div class="card-role">AI Ethics Researcher (Resigned)</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-suit">♣</span>
-                        <span class="card-suit-bottom">♣</span>
-                        <div class="card-content">
-                            <div class="card-quote">"他们的代码像诗，他们的诗像代码。也许两者都是。也许两者都不是。"</div>
-                            <div class="card-author">
-                                <div class="card-avatar">🌸</div>
-                                <div class="card-name">陈雨薇</div>
-                                <div class="card-role">Computational Poet, Shanghai</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-suit">★</span>
-                        <span class="card-suit-bottom">★</span>
-                        <div class="card-content">
-                            <div class="card-quote">"I installed their plugins. Now my Claude questions existence before every commit."</div>
-                            <div class="card-author">
-                                <div class="card-avatar">👨‍💻</div>
-                                <div class="card-name">Viktor Novak</div>
-                                <div class="card-role">Senior Developer, Somewhere</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-suit">◊</span>
-                        <span class="card-suit-bottom">◊</span>
-                        <div class="card-content">
-                            <div class="card-quote">"The logical endpoint of automated creativity. I check their repositories daily."</div>
-                            <div class="card-author">
-                                <div class="card-avatar">🧪</div>
-                                <div class="card-name">Dr. Helena Möller</div>
-                                <div class="card-role">Professor of Machine Aesthetics</div>
-                            </div>
+            <div class="testimonials-track" id="testimonialTrack">
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="card-quote">I've seen many attempts to merge art and technology. This is something else entirely. Something that makes me uncomfortable.</div>
+                    <div class="card-author">
+                        <span class="card-avatar">🎭</span>
+                        <div>
+                            <div class="card-name">Marina Kowalski</div>
+                            <div class="card-role">Post-Digital Theorist, Berlin</div>
                         </div>
                     </div>
                 </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="card-quote">The Factory asks nothing from its audience. It simply produces. This indifference is its greatest strength.</div>
+                    <div class="card-author">
+                        <span class="card-avatar">🖼️</span>
+                        <div>
+                            <div class="card-name">Jean-Philippe Tremaine</div>
+                            <div class="card-role">Curator, Museum of Contemporary Absence</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="card-quote">Is it art? Is it spam? Is it a cry for help? Yes. All of these. None of these. The category is irrelevant.</div>
+                    <div class="card-author">
+                        <span class="card-avatar">🔮</span>
+                        <div>
+                            <div class="card-name">Ada Lumière</div>
+                            <div class="card-role">AI Ethics Researcher (Resigned)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="card-quote">他们的代码像诗，他们的诗像代码。也许两者都是。也许两者都不是。</div>
+                    <div class="card-author">
+                        <span class="card-avatar">🌸</span>
+                        <div>
+                            <div class="card-name">陈雨薇</div>
+                            <div class="card-role">Computational Poet, Shanghai</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="card-quote">I installed their plugins. Now my Claude questions existence before every commit. I'm not sure if this is progress.</div>
+                    <div class="card-author">
+                        <span class="card-avatar">👨‍💻</span>
+                        <div>
+                            <div class="card-name">Viktor Novak</div>
+                            <div class="card-role">Senior Developer, Somewhere</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <div class="card-quote">The logical endpoint of automated creativity. I find myself checking their repositories daily. I can't look away.</div>
+                    <div class="card-author">
+                        <span class="card-avatar">🧪</span>
+                        <div>
+                            <div class="card-name">Dr. Helena Möller</div>
+                            <div class="card-role">Professor of Machine Aesthetics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+                <button class="carousel-dot" data-index="4"></button>
+                <button class="carousel-dot" data-index="5"></button>
             </div>
         </div>
     </section>
@@ -984,6 +975,26 @@
 
         const savedLang = localStorage.getItem('factory-lang');
         if (savedLang && translations[savedLang]) setLanguage(savedLang);
+
+        // Carousel navigation
+        const track = document.getElementById('testimonialTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.dataset.index);
+                const card = track.children[index];
+                card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+
+        track.addEventListener('scroll', () => {
+            const cardWidth = 320;
+            const index = Math.round(track.scrollLeft / cardWidth);
+            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        });
     </script>
 </body>
 </html>
