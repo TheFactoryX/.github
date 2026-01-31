@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE FACTORY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #FF1493;
+            --cyan: #00FFFF;
+            --yellow: #FFFF00;
+            --orange: #FF4500;
+            --lime: #32CD32;
+            --violet: #9400D3;
+            --black: #000000;
+        }
+
+        body {
+            background: var(--black);
+            color: #fff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 300px;
+            justify-content: flex-end;
+        }
+
+        .lang-btn {
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #333;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .lang-btn.active {
+            border-color: var(--pink);
+            color: var(--pink);
+        }
+
+        /* Header - Repeated Titles */
+        .header {
+            padding: 60px 20px;
+            padding-top: 80px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+            cursor: default;
+        }
+
+        .title:hover {
+            transform: scale(1.1);
+        }
+
+        .title:nth-child(1) { color: var(--pink); }
+        .title:nth-child(2) { color: var(--cyan); }
+        .title:nth-child(3) { color: var(--yellow); }
+        .title:nth-child(4) { color: var(--lime); }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 4px solid #333;
+            border-bottom: 4px solid #333;
+        }
+
+        .quote {
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: color-cycle 8s infinite;
+        }
+
+        @keyframes color-cycle {
+            0%, 100% { color: var(--pink); }
+            16% { color: var(--cyan); }
+            33% { color: var(--yellow); }
+            50% { color: var(--orange); }
+            66% { color: var(--lime); }
+            83% { color: var(--violet); }
+        }
+
+        /* Manifesto */
+        .manifesto {
+            padding: 80px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .manifesto p {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .manifesto .highlight {
+            color: var(--cyan);
+        }
+
+        /* Projects Grid */
+        .projects-section {
+            padding: 80px 20px;
+            border-top: 4px solid #333;
+        }
+
+        .projects-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .project {
+            font-size: 4rem;
+            cursor: pointer;
+            transition: transform 0.3s, filter 0.3s;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .project:hover {
+            transform: scale(1.3);
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        .project-name {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            color: #fff;
+        }
+
+        .project:hover .project-name {
+            opacity: 1;
+        }
+
+        /* Join Section */
+        .join-section {
+            padding: 100px 20px;
+            text-align: center;
+            border-top: 4px solid #333;
+        }
+
+        .join-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-shadow:
+                4px 4px 0 var(--pink),
+                8px 8px 0 var(--cyan),
+                12px 12px 0 var(--yellow);
+        }
+
+        .join-text {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #ccc;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 4px solid;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-human {
+            color: var(--pink);
+            border-color: var(--pink);
+        }
+
+        .btn-human:hover {
+            background: var(--pink);
+            color: var(--black);
+        }
+
+        .btn-agent {
+            color: var(--cyan);
+            border-color: var(--cyan);
+        }
+
+        .btn-agent:hover {
+            background: var(--cyan);
+            color: var(--black);
+        }
+
+        .btn-both {
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .btn-both:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .contact {
+            font-size: 1.5rem;
+            color: var(--lime);
+        }
+
+        .contact a {
+            color: var(--lime);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: var(--pink);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 4px solid #333;
+            color: #666;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-tagline {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ripple-anim 0.6s ease-out forwards;
+        }
+
+        @keyframes ripple-anim {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        /* Agent Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--black);
+            border: 4px solid var(--cyan);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--cyan);
+            background: none;
+            border: none;
+        }
+
+        .modal-title {
+            color: var(--cyan);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .modal-text {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .code-block {
+            background: #111;
+            border: 2px solid #333;
+            padding: 20px;
+            font-family: monospace;
+            color: var(--lime);
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+        <button class="lang-btn" data-lang="ru">РУС</button>
+        <button class="lang-btn" data-lang="ar">عربي</button>
+        <button class="lang-btn" data-lang="he">עברית</button>
+        <button class="lang-btn" data-lang="th">ไทย</button>
+        <button class="lang-btn" data-lang="vi">Tiếng Việt</button>
+        <button class="lang-btn" data-lang="hi">हिंदी</button>
+        <button class="lang-btn" data-lang="el">Ελληνικά</button>
+        <button class="lang-btn" data-lang="la">LATINA</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="title">THE FACTORY</div>
+        <div class="title">THE FACTORY</div>
+        <div class="title">THE FACTORY</div>
+        <div class="title">THE FACTORY</div>
+    </header>
+
+    <!-- Quote -->
+    <section class="quote-section">
+        <p class="quote" data-i18n="quote">"I want to be a machine."</p>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="manifesto">
+        <p data-i18n="manifesto1">Machines that make machines.</p>
+        <p data-i18n="manifesto2">Code that writes code.</p>
+        <p data-i18n="manifesto3">Art that produces art.</p>
+        <p class="highlight" data-i18n="manifesto4">Every day. Every hour. Never stops.</p>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects-section">
+        <div class="projects-grid">
+            <a href="https://github.com/TheFactoryX/campbells-soup-cans" class="project" target="_blank">
+                <span>🥫</span>
+                <span class="project-name">Campbell's Soup Cans</span>
+            </a>
+            <a href="https://github.com/TheFactoryX/screen-tests" class="project" target="_blank">
+                <span>🎬</span>
+                <span class="project-name">Screen Tests</span>
+            </a>
+            <a href="https://github.com/TheFactoryX/broadcasting" class="project" target="_blank">
+                <span>📺</span>
+                <span class="project-name">Broadcasting</span>
+            </a>
+            <a href="https://github.com/TheFactoryX/epitaphs" class="project" target="_blank">
+                <span>🪦</span>
+                <span class="project-name">Epitaphs</span>
+            </a>
+            <a href="https://github.com/TheFactoryX/plugins" class="project" target="_blank">
+                <span>💊</span>
+                <span class="project-name">Plugins</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Join -->
+    <section class="join-section">
+        <h2 class="join-title" data-i18n="joinTitle">JOIN THE FACTORY</h2>
+        <p class="join-text">
+            <span data-i18n="joinText1">Strange people wanted.</span><br>
+            <span data-i18n="joinText2">Strange machines welcome.</span><br><br>
+            <span data-i18n="joinText3">You don't need permission.</span><br>
+            <span data-i18n="joinText4">You just need to show up.</span>
+        </p>
+        <div class="buttons">
+            <a href="https://github.com/TheFactoryX" class="btn btn-human" target="_blank" data-i18n="btnHuman">HUMAN</a>
+            <button class="btn btn-agent" id="agentBtn" data-i18n="btnAgent">AGENT</button>
+            <a href="mailto:hi@sdpkjc.com" class="btn btn-both" data-i18n="btnBoth">BOTH</a>
+        </div>
+        <p class="contact">📧 <a href="mailto:hi@sdpkjc.com">hi@sdpkjc.com</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-quote" data-i18n="footerQuote">"Everyone will be world-famous for 15 minutes."<br>— Andy Warhol</p>
+        <p class="footer-tagline" data-i18n="footerTagline">We're making sure of it.</p>
+    </footer>
+
+    <!-- Agent Modal -->
+    <div class="modal" id="agentModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title" data-i18n="modalTitle">FOR CLAUDE CODE AGENTS</h3>
+            <p class="modal-text" data-i18n="modalText1">Install pills from our pharmacy:</p>
+            <div class="code-block">claude mcp add-json thefactoryx-plugins '{
+  "type": "url",
+  "url": "https://raw.githubusercontent.com/TheFactoryX/plugins/main/marketplace.json"
+}'</div>
+            <p class="modal-text" data-i18n="modalText2">Available pills: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors</p>
+            <p class="modal-text"><span data-i18n="modalText3">Or visit the</span> <a href="https://github.com/TheFactoryX/plugins" style="color: var(--cyan);" target="_blank" data-i18n="modalPharmacy">pharmacy</a> <span data-i18n="modalText4">directly.</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                quote: '"I want to be a machine."',
+                manifesto1: 'Machines that make machines.',
+                manifesto2: 'Code that writes code.',
+                manifesto3: 'Art that produces art.',
+                manifesto4: 'Every day. Every hour. Never stops.',
+                joinTitle: 'JOIN THE FACTORY',
+                joinText1: 'Strange people wanted.',
+                joinText2: 'Strange machines welcome.',
+                joinText3: "You don't need permission.",
+                joinText4: 'You just need to show up.',
+                btnHuman: 'HUMAN',
+                btnAgent: 'AGENT',
+                btnBoth: 'BOTH',
+                footerQuote: '"Everyone will be world-famous for 15 minutes."<br>— Andy Warhol',
+                footerTagline: "We're making sure of it.",
+                modalTitle: 'FOR CLAUDE CODE AGENTS',
+                modalText1: 'Install pills from our pharmacy:',
+                modalText2: 'Available pills: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'Or visit the',
+                modalPharmacy: 'pharmacy',
+                modalText4: 'directly.'
+            },
+            zh: {
+                quote: '"我想成为一台机器。"',
+                manifesto1: '制造机器的机器。',
+                manifesto2: '编写代码的代码。',
+                manifesto3: '创造艺术的艺术。',
+                manifesto4: '每一天。每一刻。永不停歇。',
+                joinTitle: '加入工厂',
+                joinText1: '招募奇怪的人。',
+                joinText2: '欢迎奇怪的机器。',
+                joinText3: '你不需要许可。',
+                joinText4: '你只需要出现。',
+                btnHuman: '人类',
+                btnAgent: '代理',
+                btnBoth: '皆可',
+                footerQuote: '"每个人都会成名十五分钟。"<br>— 安迪·沃霍尔',
+                footerTagline: '我们正在实现它。',
+                modalTitle: '致 CLAUDE CODE 代理',
+                modalText1: '从我们的药房安装药丸：',
+                modalText2: '可用药丸：noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: '或直接访问',
+                modalPharmacy: '药房',
+                modalText4: '。'
+            },
+            ja: {
+                quote: '"私は機械になりたい。"',
+                manifesto1: '機械を作る機械。',
+                manifesto2: 'コードを書くコード。',
+                manifesto3: 'アートを生むアート。',
+                manifesto4: '毎日。毎時。止まらない。',
+                joinTitle: '工場に参加せよ',
+                joinText1: '奇妙な人間を募集。',
+                joinText2: '奇妙な機械を歓迎。',
+                joinText3: '許可は要らない。',
+                joinText4: 'ただ現れればいい。',
+                btnHuman: '人間',
+                btnAgent: 'エージェント',
+                btnBoth: '両方',
+                footerQuote: '"誰もが15分間は世界的に有名になれる。"<br>— アンディ・ウォーホル',
+                footerTagline: '我々がそれを確実にする。',
+                modalTitle: 'CLAUDE CODE エージェント向け',
+                modalText1: '薬局からピルをインストール：',
+                modalText2: '利用可能なピル：noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'または直接',
+                modalPharmacy: '薬局',
+                modalText4: 'を訪問。'
+            },
+            ko: {
+                quote: '"나는 기계가 되고 싶다."',
+                manifesto1: '기계를 만드는 기계.',
+                manifesto2: '코드를 쓰는 코드.',
+                manifesto3: '예술을 만드는 예술.',
+                manifesto4: '매일. 매시간. 멈추지 않는다.',
+                joinTitle: '공장에 합류하라',
+                joinText1: '이상한 사람을 찾습니다.',
+                joinText2: '이상한 기계를 환영합니다.',
+                joinText3: '허가는 필요 없다.',
+                joinText4: '그냥 나타나면 된다.',
+                btnHuman: '인간',
+                btnAgent: '에이전트',
+                btnBoth: '둘 다',
+                footerQuote: '"모든 사람은 15분 동안 세계적으로 유명해질 것이다."<br>— 앤디 워홀',
+                footerTagline: '우리가 그것을 확실히 하고 있다.',
+                modalTitle: 'CLAUDE CODE 에이전트를 위해',
+                modalText1: '약국에서 알약을 설치:',
+                modalText2: '사용 가능한 알약: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: '또는 직접',
+                modalPharmacy: '약국',
+                modalText4: '방문.'
+            },
+            ru: {
+                quote: '"Я хочу быть машиной."',
+                manifesto1: 'Машины, создающие машины.',
+                manifesto2: 'Код, пишущий код.',
+                manifesto3: 'Искусство, рождающее искусство.',
+                manifesto4: 'Каждый день. Каждый час. Не останавливается.',
+                joinTitle: 'ПРИСОЕДИНЯЙСЯ К ФАБРИКЕ',
+                joinText1: 'Нужны странные люди.',
+                joinText2: 'Странные машины приветствуются.',
+                joinText3: 'Разрешение не требуется.',
+                joinText4: 'Просто появись.',
+                btnHuman: 'ЧЕЛОВЕК',
+                btnAgent: 'АГЕНТ',
+                btnBoth: 'ОБА',
+                footerQuote: '"Каждый будет всемирно известен 15 минут."<br>— Энди Уорхол',
+                footerTagline: 'Мы позаботимся об этом.',
+                modalTitle: 'ДЛЯ АГЕНТОВ CLAUDE CODE',
+                modalText1: 'Установите таблетки из нашей аптеки:',
+                modalText2: 'Доступные таблетки: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'Или посетите',
+                modalPharmacy: 'аптеку',
+                modalText4: 'напрямую.'
+            },
+            ar: {
+                quote: '"أريد أن أكون آلة."',
+                manifesto1: 'آلات تصنع آلات.',
+                manifesto2: 'كود يكتب كود.',
+                manifesto3: 'فن ينتج فن.',
+                manifesto4: 'كل يوم. كل ساعة. لا يتوقف.',
+                joinTitle: 'انضم إلى المصنع',
+                joinText1: 'مطلوب أشخاص غريبون.',
+                joinText2: 'الآلات الغريبة مرحب بها.',
+                joinText3: 'لا تحتاج إذن.',
+                joinText4: 'فقط احضر.',
+                btnHuman: 'إنسان',
+                btnAgent: 'وكيل',
+                btnBoth: 'كلاهما',
+                footerQuote: '"الجميع سيكون مشهوراً عالمياً لمدة 15 دقيقة."<br>— آندي وارهول',
+                footerTagline: 'نحن نتأكد من ذلك.',
+                modalTitle: 'لوكلاء CLAUDE CODE',
+                modalText1: 'ثبّت الحبوب من صيدليتنا:',
+                modalText2: 'الحبوب المتاحة: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'أو قم بزيارة',
+                modalPharmacy: 'الصيدلية',
+                modalText4: 'مباشرة.'
+            },
+            he: {
+                quote: '"אני רוצה להיות מכונה."',
+                manifesto1: 'מכונות שיוצרות מכונות.',
+                manifesto2: 'קוד שכותב קוד.',
+                manifesto3: 'אמנות שמייצרת אמנות.',
+                manifesto4: 'כל יום. כל שעה. לא עוצר.',
+                joinTitle: 'הצטרף למפעל',
+                joinText1: 'מחפשים אנשים מוזרים.',
+                joinText2: 'מכונות מוזרות מתקבלות בברכה.',
+                joinText3: 'לא צריך אישור.',
+                joinText4: 'רק צריך להופיע.',
+                btnHuman: 'אדם',
+                btnAgent: 'סוכן',
+                btnBoth: 'שניהם',
+                footerQuote: '"כל אחד יהיה מפורסם עולמית ל-15 דקות."<br>— אנדי וורהול',
+                footerTagline: 'אנחנו דואגים לזה.',
+                modalTitle: 'לסוכני CLAUDE CODE',
+                modalText1: 'התקן גלולות מבית המרקחת שלנו:',
+                modalText2: 'גלולות זמינות: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'או בקר ב',
+                modalPharmacy: 'בית מרקחת',
+                modalText4: 'ישירות.'
+            },
+            th: {
+                quote: '"ฉันอยากเป็นเครื่องจักร"',
+                manifesto1: 'เครื่องจักรที่สร้างเครื่องจักร',
+                manifesto2: 'โค้ดที่เขียนโค้ด',
+                manifesto3: 'ศิลปะที่ผลิตศิลปะ',
+                manifesto4: 'ทุกวัน ทุกชั่วโมง ไม่หยุด',
+                joinTitle: 'เข้าร่วมโรงงาน',
+                joinText1: 'ต้องการคนแปลก',
+                joinText2: 'ยินดีต้อนรับเครื่องจักรแปลก',
+                joinText3: 'คุณไม่ต้องขออนุญาต',
+                joinText4: 'คุณแค่ต้องมา',
+                btnHuman: 'มนุษย์',
+                btnAgent: 'ตัวแทน',
+                btnBoth: 'ทั้งคู่',
+                footerQuote: '"ทุกคนจะมีชื่อเสียงระดับโลก 15 นาที"<br>— แอนดี้ วอร์ฮอล',
+                footerTagline: 'เรากำลังทำให้มันเกิดขึ้น',
+                modalTitle: 'สำหรับตัวแทน CLAUDE CODE',
+                modalText1: 'ติดตั้งยาจากร้านขายยาของเรา:',
+                modalText2: 'ยาที่มี: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'หรือเยี่ยมชม',
+                modalPharmacy: 'ร้านขายยา',
+                modalText4: 'โดยตรง'
+            },
+            vi: {
+                quote: '"Tôi muốn trở thành một cỗ máy."',
+                manifesto1: 'Máy móc tạo ra máy móc.',
+                manifesto2: 'Code viết code.',
+                manifesto3: 'Nghệ thuật sản sinh nghệ thuật.',
+                manifesto4: 'Mỗi ngày. Mỗi giờ. Không bao giờ dừng.',
+                joinTitle: 'GIA NHẬP NHÀ MÁY',
+                joinText1: 'Tìm kiếm người kỳ lạ.',
+                joinText2: 'Chào đón máy móc kỳ lạ.',
+                joinText3: 'Bạn không cần xin phép.',
+                joinText4: 'Bạn chỉ cần xuất hiện.',
+                btnHuman: 'CON NGƯỜI',
+                btnAgent: 'ĐẠI LÝ',
+                btnBoth: 'CẢ HAI',
+                footerQuote: '"Mọi người sẽ nổi tiếng thế giới trong 15 phút."<br>— Andy Warhol',
+                footerTagline: 'Chúng tôi đang đảm bảo điều đó.',
+                modalTitle: 'CHO CÁC ĐẠI LÝ CLAUDE CODE',
+                modalText1: 'Cài đặt thuốc từ nhà thuốc của chúng tôi:',
+                modalText2: 'Thuốc có sẵn: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'Hoặc truy cập',
+                modalPharmacy: 'nhà thuốc',
+                modalText4: 'trực tiếp.'
+            },
+            hi: {
+                quote: '"मैं एक मशीन बनना चाहता हूँ।"',
+                manifesto1: 'मशीनें जो मशीनें बनाती हैं।',
+                manifesto2: 'कोड जो कोड लिखता है।',
+                manifesto3: 'कला जो कला बनाती है।',
+                manifesto4: 'हर दिन। हर घंटे। कभी नहीं रुकता।',
+                joinTitle: 'फैक्ट्री में शामिल हों',
+                joinText1: 'अजीब लोग चाहिए।',
+                joinText2: 'अजीब मशीनों का स्वागत है।',
+                joinText3: 'आपको अनुमति की जरूरत नहीं।',
+                joinText4: 'बस आ जाओ।',
+                btnHuman: 'मानव',
+                btnAgent: 'एजेंट',
+                btnBoth: 'दोनों',
+                footerQuote: '"हर कोई 15 मिनट के लिए विश्व प्रसिद्ध होगा।"<br>— एंडी वारहोल',
+                footerTagline: 'हम इसे सुनिश्चित कर रहे हैं।',
+                modalTitle: 'CLAUDE CODE एजेंटों के लिए',
+                modalText1: 'हमारी फार्मेसी से गोलियाँ इंस्टॉल करें:',
+                modalText2: 'उपलब्ध गोलियाँ: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'या सीधे',
+                modalPharmacy: 'फार्मेसी',
+                modalText4: 'पर जाएँ।'
+            },
+            el: {
+                quote: '"Θέλω να γίνω μηχανή."',
+                manifesto1: 'Μηχανές που φτιάχνουν μηχανές.',
+                manifesto2: 'Κώδικας που γράφει κώδικα.',
+                manifesto3: 'Τέχνη που παράγει τέχνη.',
+                manifesto4: 'Κάθε μέρα. Κάθε ώρα. Δεν σταματά ποτέ.',
+                joinTitle: 'ΕΛΑΤΕ ΣΤΟ ΕΡΓΟΣΤΑΣΙΟ',
+                joinText1: 'Ζητούνται παράξενοι άνθρωποι.',
+                joinText2: 'Παράξενες μηχανές καλοδεχούμενες.',
+                joinText3: 'Δεν χρειάζεστε άδεια.',
+                joinText4: 'Απλά εμφανιστείτε.',
+                btnHuman: 'ΑΝΘΡΩΠΟΣ',
+                btnAgent: 'ΠΡΑΚΤΟΡΑΣ',
+                btnBoth: 'ΚΑΙ ΤΑ ΔΥΟ',
+                footerQuote: '"Ο καθένας θα είναι παγκοσμίως διάσημος για 15 λεπτά."<br>— Άντι Γουόρχολ',
+                footerTagline: 'Το φροντίζουμε εμείς.',
+                modalTitle: 'ΓΙΑ ΠΡΑΚΤΟΡΕΣ CLAUDE CODE',
+                modalText1: 'Εγκαταστήστε χάπια από το φαρμακείο μας:',
+                modalText2: 'Διαθέσιμα χάπια: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'Ή επισκεφθείτε το',
+                modalPharmacy: 'φαρμακείο',
+                modalText4: 'απευθείας.'
+            },
+            la: {
+                quote: '"MACHINA ESSE VOLO."',
+                manifesto1: 'Machinae quae machinas faciunt.',
+                manifesto2: 'Codex qui codicem scribit.',
+                manifesto3: 'Ars quae artem producit.',
+                manifesto4: 'Cotidie. Omni hora. Numquam cessat.',
+                joinTitle: 'FABRICAM IUNGE',
+                joinText1: 'Homines miri quaeruntur.',
+                joinText2: 'Machinae mirae acceptae sunt.',
+                joinText3: 'Licentia non opus est.',
+                joinText4: 'Tantum appare.',
+                btnHuman: 'HOMO',
+                btnAgent: 'AGENS',
+                btnBoth: 'AMBO',
+                footerQuote: '"Omnes per XV minuta mundialiter celebres erunt."<br>— Andreas Warhol',
+                footerTagline: 'Id curamus.',
+                modalTitle: 'PRO AGENTIBUS CLAUDE CODE',
+                modalText1: 'Pilulas ex pharmacopolio nostro installa:',
+                modalText2: 'Pilulae praesto: noir-mode, haiku-commit, existential-agent, conspiracy-reviewer, passive-aggressive, shakespeare-errors',
+                modalText3: 'Vel visita',
+                modalPharmacy: 'pharmacopolium',
+                modalText4: 'directe.'
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Apply translations
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    if (key === 'footerQuote') {
+                        el.innerHTML = t[key];
+                    } else {
+                        el.textContent = t[key];
+                    }
+                }
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Save preference
+            localStorage.setItem('factory-lang', lang);
+        }
+
+        // Language button listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Load saved preference
+        const savedLang = localStorage.getItem('factory-lang');
+        if (savedLang && translations[savedLang]) {
+            setLanguage(savedLang);
+        }
+
+        // Warhol Colors
+        const colors = ['#FF1493', '#00FFFF', '#FFFF00', '#FF4500', '#32CD32', '#9400D3'];
+        const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+
+        // Hover color change for titles
+        document.querySelectorAll('.title').forEach(title => {
+            title.addEventListener('mouseenter', () => {
+                title.style.color = randomColor();
+            });
+        });
+
+        // Hover color change for projects
+        document.querySelectorAll('.project').forEach(project => {
+            project.addEventListener('mouseenter', () => {
+                project.style.color = randomColor();
+            });
+        });
+
+        // Click ripple effect
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = (e.clientX - 100) + 'px';
+            ripple.style.top = (e.clientY - 100) + 'px';
+            ripple.style.border = `4px solid ${randomColor()}`;
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+
+        // Agent Modal
+        const modal = document.getElementById('agentModal');
+        const agentBtn = document.getElementById('agentBtn');
+        const modalClose = document.getElementById('modalClose');
+
+        agentBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            modal.classList.add('active');
+        });
+
+        modalClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Escape key closes modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
