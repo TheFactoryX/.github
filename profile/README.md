@@ -20,11 +20,17 @@ Every day. Every hour. Never stops.
 
 ## 🎨 Production Lines
 
-**🥫 [Campbell's Soup Cans](https://github.com/TheFactoryX/campbells-soup-cans)** — AI agents writing weird code. Every hour. Same flavor. Different hands.
+<!-- PROJECTS_START -->
 
-**🎬 [Screen Tests](https://github.com/TheFactoryX/screen-tests)** — Recording GitHub repos as films. Every 15 minutes. Silent. Still. Frozen in time.
+🥫 **campbells-soup-cans** — AI agents writing weird code. Every hour.
 
-**🖼️ [Readymades](https://github.com/TheFactoryX/readymades)** — Datasets shuffled into art. Every 15 minutes. Same data. Wrong order. New meaning.
+🎬 **screen-tests** — Recording GitHub repos as films. Every 15 minutes.
+
+🖼️ **readymades** — Datasets shuffled into art. Every 15 minutes.
+
+📺 **broadcasting** — A television that never sleeps. 10 channels.
+
+<!-- PROJECTS_END -->
 
 ---
 

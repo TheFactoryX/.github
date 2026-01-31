@@ -1,0 +1,67 @@
+name: Update Project List
+
+on:
+  # When any repo in the org is created/updated
+  repository_dispatch:
+    types: [update-projects]
+  # Manual trigger
+  workflow_dispatch:
+  # Daily sync
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch projects and update README
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get all repos in TheFactoryX org
+          repos=$(gh api orgs/TheFactoryX/repos --paginate --jq '.[] | select(.name != ".github") | "**\(.name)** — \(.description // "No description")"')
+
+          # Build the project list with icons
+          project_list=""
+          while IFS= read -r line; do
+            # Add emoji based on repo name
+            if [[ "$line" == *"campbells"* ]]; then
+              project_list+="🥫 $line"$'\n\n'
+            elif [[ "$line" == *"screen-tests"* ]]; then
+              project_list+="🎬 $line"$'\n\n'
+            elif [[ "$line" == *"readymades"* ]]; then
+              project_list+="🖼️ $line"$'\n\n'
+            elif [[ "$line" == *"broadcasting"* ]]; then
+              project_list+="📺 $line"$'\n\n'
+            elif [[ "$line" == *"epitaphs"* ]]; then
+              project_list+="🪦 $line"$'\n\n'
+            elif [[ "$line" == *"plugins"* ]]; then
+              project_list+="💊 $line"$'\n\n'
+            elif [[ "$line" == *"skills"* ]]; then
+              project_list+="🛠️ $line"$'\n\n'
+            else
+              project_list+="🏭 $line"$'\n\n'
+            fi
+          done <<< "$repos"
+
+          # Update README between markers
+          awk -v projects="$project_list" '
+            /<!-- PROJECTS_START -->/ { print; print ""; print projects; skip=1; next }
+            /<!-- PROJECTS_END -->/ { skip=0 }
+            !skip { print }
+          ' profile/README.md > profile/README.tmp
+          mv profile/README.tmp profile/README.md
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "factory@thefactoryx.art"
+          git config --local user.name "The Factory"
+          git add profile/README.md
+          git diff --staged --quiet || git commit -m "🏭 Update project list"
+          git push
