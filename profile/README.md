@@ -22,13 +22,20 @@ Every day. Every hour. Never stops.
 
 <!-- PROJECTS_START -->
 
-🥫 **campbells-soup-cans** — AI agents writing weird code. Every hour.
+🥫 **campbells-soup-cans** — 🏭 Production Line 0: Mass-producing code soup cans. 🥫 Hourly.
 
-🎬 **screen-tests** — Recording GitHub repos as films. Every 15 minutes.
+🎬 **screen-tests** — 🎬 Silent. Still. Frozen in time.
 
-🖼️ **readymades** — Datasets shuffled into art. Every 15 minutes.
+🖼️ **readymades** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
 
-📺 **broadcasting** — A television that never sleeps. 10 channels.
+🛠️ **skills** — Strange skills for strange machines. Factory rituals for Claude Code.
+
+💊 **plugins** — The Underground Pharmacy - Strange pills for Claude Code
+
+📺 **broadcasting** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
+
+🪦 **epitaphs** — 🪦 Writing epitaphs for dead repositories
+
 
 <!-- PROJECTS_END -->
 
