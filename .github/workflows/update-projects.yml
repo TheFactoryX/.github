@@ -24,8 +24,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Get all repos in TheFactoryX org
-          repos=$(gh api orgs/TheFactoryX/repos --paginate --jq '.[] | select(.name != ".github") | "**\(.name)** — \(.description // "No description")"')
+          # Get all repos in TheFactoryX org (with links)
+          repos=$(gh api orgs/TheFactoryX/repos --paginate --jq '.[] | select(.name != ".github") | "**[\(.name)](\(.html_url))** — \(.description // "No description")"')
 
           # Build the project list with icons
           project_list=""
