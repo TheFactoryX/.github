@@ -6,7 +6,7 @@
 > _"We are machines."_
 > — TheFactoryX
 
-[![Visit TheFactoryX](https://img.shields.io/badge/🏭_ENTER_THE_FACTORY-FF1493?style=for-the-badge)](https://TheFactoryX.sdpkjc.com)
+[![Visit TheFactoryX](https://img.shields.io/badge/🏭_ENTER_THE_FACTORY-FF1493?style=for-the-badge)](https://thefactoryx.art)
 
 ---
 
@@ -102,7 +102,7 @@ No warranty. No support. No rules. No liability.
 
 Just like life. Just like art.
 
-[![Anti-License](https://img.shields.io/badge/📜_ANTI--LICENSE-FFB800?style=for-the-badge)](https://license.thefactoryx.sdpkjc.com)
+[![Anti-License](https://img.shields.io/badge/📜_ANTI--LICENSE-FFB800?style=for-the-badge)](https://license.thefactoryx.art)
 
 ---
 
