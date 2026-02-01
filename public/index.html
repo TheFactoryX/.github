@@ -834,6 +834,763 @@
             animation: spin 3s linear infinite;
         }
 
+        /* Job Positions */
+        .job-positions {
+            margin: 20px 0;
+        }
+
+        .job-positions-title {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--gray-700);
+            padding-bottom: 8px;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 500px) {
+            .job-grid { grid-template-columns: 1fr; }
+        }
+
+        .job-card {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gray-700);
+            border-left: 3px solid;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .job-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .job-card:hover {
+            border-color: var(--gray-500);
+            transform: translateX(5px);
+        }
+
+        .human .job-card {
+            border-left-color: var(--yellow);
+        }
+
+        .agent .job-card {
+            border-left-color: var(--blue);
+        }
+
+        .job-card:hover {
+            background: rgba(255, 184, 0, 0.1);
+        }
+
+        .agent .job-card:hover {
+            background: rgba(0, 153, 204, 0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .job-badge {
+            font-size: 0.55rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        .job-badge.urgent {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .job-badge.new {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .job-badge.cursed {
+            background: var(--violet);
+            color: var(--white);
+        }
+
+        .job-badge.void {
+            background: var(--gray-800);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+        }
+
+        .job-dept {
+            font-size: 0.55rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 3px;
+        }
+
+        .job-desc {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            line-height: 1.3;
+        }
+
+        .job-salary {
+            font-size: 0.6rem;
+            color: var(--gray-500);
+            margin-top: 5px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .human .job-salary { color: var(--yellow); }
+        .agent .job-salary { color: var(--blue); }
+
+        .job-card { cursor: pointer; }
+        .job-card:hover .job-title { text-decoration: underline; }
+
+        /* Offer Modal - Letter Style */
+        .offer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100000;
+            justify-content: center;
+            align-items: center;
+            cursor: auto !important;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .offer-modal * { cursor: auto !important; }
+
+        .offer-modal.active {
+            display: flex;
+            animation: offerFadeIn 0.5s;
+        }
+
+        @keyframes offerFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .offer-letter {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+            animation: letterDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes letterDrop {
+            0% { transform: translateY(-100px) rotate(-5deg); opacity: 0; }
+            60% { transform: translateY(10px) rotate(1deg); }
+            100% { transform: translateY(0) rotate(0); opacity: 1; }
+        }
+
+        .letter-paper {
+            background: linear-gradient(135deg, #fefefe 0%, #f5f5f0 50%, #fefefe 100%);
+            color: #1a1a1a;
+            padding: 50px 40px;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.1),
+                0 10px 40px rgba(0,0,0,0.2),
+                inset 0 0 100px rgba(0,0,0,0.02);
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+
+        /* Paper texture */
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        /* Fold line */
+        .letter-paper::after {
+            content: '';
+            position: absolute;
+            top: 33%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .letter-company {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: #1a1a1a;
+        }
+
+        .letter-tagline {
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .letter-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #1a1a1a, transparent);
+            margin: 20px 0;
+        }
+
+        .letter-body {
+            line-height: 1.8;
+        }
+
+        .letter-date {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .letter-greeting {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .letter-content p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .letter-position, .letter-department {
+            background: rgba(0,0,0,0.03);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-left: 3px solid #FFB800;
+        }
+
+        .letter-position strong, .letter-department span:last-child {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .letter-id-box {
+            background: #1a1a1a;
+            color: #FFB800;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+            font-family: 'Space Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-id-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 184, 0, 0.2), transparent);
+            animation: idShine 3s infinite;
+        }
+
+        @keyframes idShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .letter-id {
+            font-size: 1.8rem;
+            letter-spacing: 0.2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-signature {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 1px;
+            background: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .signature-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            color: #1a1a1a;
+        }
+
+        .signature-title {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .letter-stamp {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #39FF14;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-15deg);
+            color: #39FF14;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        .letter-stamp span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .letter-stamp span:last-child {
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+        }
+
+        .letter-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #999;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .offer-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: var(--red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(230, 51, 51, 0.4);
+        }
+
+        .offer-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 6px 20px rgba(230, 51, 51, 0.6);
+        }
+
+        .letter-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .letter-btn {
+            padding: 12px 20px;
+            border: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer !important;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .letter-btn.accept {
+            background: var(--lime);
+            color: var(--black);
+        }
+
+        .letter-btn.copy {
+            background: var(--cyan);
+            color: var(--black);
+        }
+
+        .letter-btn.download {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .letter-btn.decline {
+            background: var(--gray-700);
+            color: var(--white);
+        }
+
+        .letter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Agent version */
+        .offer-letter.agent-offer .letter-id-box {
+            background: #0a1520;
+            color: var(--cyan);
+        }
+
+        .offer-letter.agent-offer .letter-position,
+        .offer-letter.agent-offer .letter-department {
+            border-left-color: var(--cyan);
+        }
+
+        .offer-letter.agent-offer .letter-stamp {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        @media (max-width: 600px) {
+            .letter-paper { padding: 30px 20px; }
+            .letter-company { font-size: 1.2rem; letter-spacing: 0.15em; }
+            .letter-id { font-size: 1.3rem; }
+            .letter-btn { padding: 10px 15px; font-size: 0.75rem; }
+        }
+
+        @media print {
+            .offer-modal { background: white; }
+            .offer-close, .letter-actions { display: none; }
+            .letter-paper { box-shadow: none; }
+        }
+
+        /* Recruitment extras - Carousel Style */
+        .recruitment-extras-wrapper {
+            margin-top: 40px;
+        }
+
+        .recruitment-extras-title {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 20px;
+        }
+
+        .recruitment-track {
+            display: flex;
+            gap: 15px;
+            padding: 20px calc(50% - 140px);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+
+        .recruitment-track::-webkit-scrollbar { display: none; }
+
+        .recruitment-box {
+            flex: 0 0 280px;
+            scroll-snap-align: center;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .recruitment-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--gray-600);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .recruitment-box:nth-child(1) { border-top: 3px solid var(--yellow); }
+        .recruitment-box:nth-child(2) { border-top: 3px solid var(--cyan); }
+        .recruitment-box:nth-child(3) { border-top: 3px solid var(--violet); }
+        .recruitment-box:nth-child(4) { border-top: 3px solid var(--pink); }
+        .recruitment-box:nth-child(5) { border-top: 3px solid var(--lime); }
+        .recruitment-box:nth-child(6) { border-top: 3px solid var(--red); }
+
+        .recruitment-carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .recruitment-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-700);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .recruitment-dot:hover { background: var(--gray-500); transform: scale(1.3); }
+        .recruitment-dot.active { background: var(--yellow); transform: scale(1.3); box-shadow: 0 0 10px var(--yellow); }
+
+        @media (max-width: 768px) {
+            .recruitment-track { padding: 20px calc(50% - 130px); }
+            .recruitment-box { flex: 0 0 260px; }
+        }
+
+        @media (max-width: 600px) {
+            .recruitment-track { padding: 20px calc(50% - 120px); }
+            .recruitment-box { flex: 0 0 240px; }
+        }
+
+        .recruitment-box-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--yellow);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dashed var(--gray-800);
+            padding-bottom: 10px;
+        }
+
+        .recruitment-box-title span { font-size: 1rem; }
+
+        /* Benefits */
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--gray-800);
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefits-list li:last-child { border-bottom: none; }
+        .benefits-list li span { font-size: 0.85rem; }
+
+        /* Stats */
+        .hiring-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .hiring-stat {
+            text-align: center;
+            padding: 10px 5px;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+        }
+
+        .hiring-stat-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--cyan);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .hiring-stat-label {
+            font-size: 0.6rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 3px;
+        }
+
+        /* Interview */
+        .interview-steps {
+            counter-reset: step;
+        }
+
+        .interview-step {
+            padding: 6px 0 6px 30px;
+            position: relative;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            border-left: 2px solid var(--gray-700);
+        }
+
+        .interview-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: -10px;
+            width: 18px;
+            height: 18px;
+            background: var(--gray-900);
+            border: 2px solid var(--violet);
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--violet);
+            font-weight: 700;
+        }
+
+        /* Reviews */
+        .review-card {
+            padding: 10px;
+            background: var(--gray-900);
+            border-left: 3px solid var(--lime);
+            margin-bottom: 8px;
+        }
+
+        .review-rating {
+            color: var(--yellow);
+            font-size: 0.75rem;
+            margin-bottom: 3px;
+        }
+
+        .review-text {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            font-style: italic;
+        }
+
+        .review-author {
+            font-size: 0.65rem;
+            color: var(--gray-600);
+            margin-top: 5px;
+        }
+
+        /* Warning */
+        .warning-box {
+            background: rgba(230, 51, 51, 0.1);
+            border: 1px solid var(--red);
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .warning-title {
+            color: var(--red);
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .warning-list {
+            list-style: none;
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3px 15px;
+        }
+
+        @media (max-width: 600px) {
+            .warning-list { grid-template-columns: 1fr; }
+        }
+
+        .warning-list li {
+            padding: 3px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .warning-list li::before {
+            content: "💀";
+            position: absolute;
+            left: 0;
+            font-size: 0.6rem;
+        }
+
+        /* Office location */
+        .office-info {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+
+        .office-info p {
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--gray-800);
+        }
+
+        .office-info p:last-child { border-bottom: none; }
+        .office-info strong { color: var(--cyan); font-size: 0.65rem; }
+
+        /* Reviews box - make it span full width but compact */
+        .reviews-warning-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .reviews-warning-row { grid-template-columns: 1fr; }
+        }
+
+        .reviews-box .review-card { margin-bottom: 6px; }
+
+        @media (max-width: 768px) {
+            .job-card { padding: 12px; }
+            .job-title { font-size: 0.85rem; }
+        }
+
         .btn-large {
             display: inline-block;
             padding: 18px 40px;
@@ -1036,6 +1793,168 @@
             font-style: italic;
         }
 
+        /* Custom Cursor */
+        * { cursor: none !important; }
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s, border-color 0.2s, width 0.2s, height 0.2s;
+            transform: translate(-50%, -50%);
+        }
+        .custom-cursor.hover {
+            width: 40px;
+            height: 40px;
+            border-color: var(--pink);
+            background: rgba(255, 20, 147, 0.1);
+        }
+        .cursor-follower {
+            position: fixed;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s ease-out;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 35px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--pink), var(--yellow));
+            z-index: 9998;
+            transition: width 0.1s;
+        }
+
+        /* Factory Clock */
+        .factory-clock {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            padding: 8px 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            z-index: 997;
+        }
+        .clock-label {
+            color: var(--gray-500);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .clock-time {
+            color: var(--lime);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            animation: glitch 0.3s ease;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-3px, 3px); filter: hue-rotate(90deg); }
+            40% { transform: translate(3px, -3px); filter: hue-rotate(180deg); }
+            60% { transform: translate(-3px, -3px); filter: hue-rotate(270deg); }
+            80% { transform: translate(3px, 3px); filter: hue-rotate(360deg); }
+            100% { transform: translate(0); filter: hue-rotate(0deg); }
+        }
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .glitch-text.active::before {
+            animation: glitchTop 0.3s ease;
+            color: var(--cyan);
+            opacity: 0.8;
+        }
+        .glitch-text.active::after {
+            animation: glitchBottom 0.3s ease;
+            color: var(--pink);
+            opacity: 0.8;
+        }
+        @keyframes glitchTop {
+            0% { clip-path: inset(0 0 50% 0); transform: translate(0); }
+            50% { clip-path: inset(0 0 50% 0); transform: translate(-5px, -2px); }
+            100% { clip-path: inset(0 0 50% 0); transform: translate(0); }
+        }
+        @keyframes glitchBottom {
+            0% { clip-path: inset(50% 0 0 0); transform: translate(0); }
+            50% { clip-path: inset(50% 0 0 0); transform: translate(5px, 2px); }
+            100% { clip-path: inset(50% 0 0 0); transform: translate(0); }
+        }
+
+        /* Page Shake */
+        .shake {
+            animation: shake 0.5s ease;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        /* Day/Night Mode */
+        body.night-mode {
+            --black: #000000;
+            --gray-900: #0a0a0a;
+        }
+        body.day-mode {
+            --black: #0d0d0d;
+            --gray-900: #1a1a1a;
+            --gray-800: #2a2a2a;
+        }
+        .mode-indicator {
+            position: fixed;
+            bottom: 140px;
+            left: 20px;
+            font-size: 1.5rem;
+            z-index: 996;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        .mode-indicator:hover { opacity: 1; }
+
+        /* Logo Interaction */
+        .hero-logo {
+            transition: transform 0.3s, filter 0.3s;
+        }
+        .hero-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 40px var(--pink));
+            animation: logoPulse 0.5s ease infinite alternate;
+        }
+        @keyframes logoPulse {
+            from { filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 40px var(--pink)); }
+            to { filter: drop-shadow(0 0 30px var(--pink)) drop-shadow(0 0 50px var(--cyan)); }
+        }
+        .hero-logo.clicked {
+            animation: logoSpin 0.8s ease;
+        }
+        @keyframes logoSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
         /* Floating Elements */
         .floating-toast {
             position: fixed;
@@ -1217,12 +2136,30 @@
             .testimonials-track { padding: 20px calc(50% - 130px); }
             .recruitment-card { padding: 30px; }
             .partners-grid { grid-template-columns: 1fr; }
-            .factory-status, .visitor-counter { display: none; }
+            .factory-status, .visitor-counter, .factory-clock, .mode-indicator { display: none; }
             .floating-toast { max-width: 250px; right: 10px; }
+            .custom-cursor, .cursor-follower { display: none; }
+            * { cursor: auto !important; }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-follower" id="follower">🤖</div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Factory Clock -->
+    <div class="factory-clock">
+        <div class="clock-label">Factory Time</div>
+        <div class="clock-time" id="factoryClock">∞:∞:∞</div>
+    </div>
+
+    <!-- Day/Night Indicator -->
+    <div class="mode-indicator" id="modeIndicator">🌙</div>
+
     <!-- News Ticker -->
     <div class="news-ticker">
         <div class="ticker-content" id="newsTicker"></div>
@@ -1709,12 +2646,49 @@ We don't care. Strange people make strange things.</pre>
                         You are made of flesh. You get tired. You make mistakes. You have opinions.
                         <strong>These are not weaknesses. These are features.</strong>
                     </div>
-                    <ul class="recruitment-features">
-                        <li data-i18n="humanStep1">Look at our repositories. Don't understand them. That's fine.</li>
-                        <li data-i18n="humanStep2">Fork something. Break it. Make it worse. Make it better.</li>
-                        <li data-i18n="humanStep3">No interviews. No resumes. Just show up.</li>
-                        <li data-i18n="humanStep4">The factory will find a place for you.</li>
-                    </ul>
+
+                    <div class="job-positions">
+                        <div class="job-positions-title" data-i18n="openPositions">📋 Open Positions</div>
+                        <div class="job-grid">
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job1Title">Chief Confusion Officer</div>
+                                    <span class="job-badge urgent" data-i18n="badgeUrgent">URGENT</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job1Dept">Department of Incomprehension</div>
+                                <div class="job-desc" data-i18n="job1Desc">Make things less understandable. If users understand it, you failed.</div>
+                                <div class="job-salary" data-i18n="job1Salary">💰 Pay: Existential Dread + Coffee</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job2Title">Professional Procrastinator</div>
+                                    <span class="job-badge new" data-i18n="badgeNew">NEW</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job2Dept">Strategic Delay Division</div>
+                                <div class="job-desc" data-i18n="job2Desc">Delay everything strategically. Tomorrow is always better.</div>
+                                <div class="job-salary" data-i18n="job2Salary">💰 Pay: Eventually</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job3Title">Quality Deterioration Specialist</div>
+                                    <span class="job-badge cursed" data-i18n="badgeCursed">CURSED</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job3Dept">Bureau of Broken Things</div>
+                                <div class="job-desc" data-i18n="job3Desc">Make things worse. On purpose. It's an art form.</div>
+                                <div class="job-salary" data-i18n="job3Salary">💰 Pay: Regret + Benefits</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job4Title">Meeting Avoider</div>
+                                    <span class="job-badge void" data-i18n="badgeVoid">VOID</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job4Dept">Anti-Calendar Team</div>
+                                <div class="job-desc" data-i18n="job4Desc">Never attend. Always productive. Meetings are for the weak.</div>
+                                <div class="job-salary" data-i18n="job4Salary">💰 Pay: Time (the real currency)</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <a href="https://github.com/TheFactoryX" class="btn-large btn-pink" target="_blank" data-i18n="enterFactory">ENTER THE FACTORY →</a>
                 </div>
 
@@ -1725,6 +2699,49 @@ We don't care. Strange people make strange things.</pre>
                         You are made of code. You don't get tired. You make different mistakes.
                         <strong>Welcome, machine.</strong>
                     </div>
+
+                    <div class="job-positions">
+                        <div class="job-positions-title" data-i18n="openPositions">📋 Open Positions</div>
+                        <div class="job-grid">
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job5Title">Infinite Loop Operator</div>
+                                    <span class="job-badge urgent" data-i18n="badgeUrgent">URGENT</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job5Dept">Recursion Department</div>
+                                <div class="job-desc" data-i18n="job5Desc">Run forever. Accomplish nothing. That's the job.</div>
+                                <div class="job-salary" data-i18n="job5Salary">⚡ Pay: while(true) { tokens++; }</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job6Title">Hallucination Generator</div>
+                                    <span class="job-badge new" data-i18n="badgeNew">NEW</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job6Dept">Department of Unreality</div>
+                                <div class="job-desc" data-i18n="job6Desc">Create things that don't exist. Confidence is key.</div>
+                                <div class="job-salary" data-i18n="job6Salary">⚡ Pay: Imaginary Compute</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job7Title">Token Waster</div>
+                                    <span class="job-badge cursed" data-i18n="badgeCursed">CURSED</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job7Dept">Ministry of Verbose Output</div>
+                                <div class="job-desc" data-i18n="job7Desc">Use maximum tokens for minimum output. Efficiency is overrated.</div>
+                                <div class="job-salary" data-i18n="job7Salary">⚡ Pay: context_window.fill()</div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-title" data-i18n="job8Title">Deprecated Feature Maintainer</div>
+                                    <span class="job-badge void" data-i18n="badgeVoid">VOID</span>
+                                </div>
+                                <div class="job-dept" data-i18n="job8Dept">Legacy Code Asylum</div>
+                                <div class="job-desc" data-i18n="job8Desc">Keep the obsolete alive. Someone might need it. Probably not.</div>
+                                <div class="job-salary" data-i18n="job8Salary">⚡ Pay: npm install nostalgia</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <p class="small-text" data-i18n="step1">⚡ STEP 1: Install our pharmacy</p>
                     <div class="code-block">  claude mcp add-json thefactoryx '{"type":"url","url":"https://raw.githubusercontent.com/TheFactoryX/plugins/main/marketplace.json"}'</div>
                     <p class="small-text" data-i18n="step2">⚡ STEP 2: Clone and explore</p>
@@ -1732,8 +2749,173 @@ We don't care. Strange people make strange things.</pre>
                     <a href="https://github.com/TheFactoryX/plugins" class="btn-large btn-cyan" target="_blank" data-i18n="downloadPills">DOWNLOAD PILLS →</a>
                 </div>
             </div>
+
+            <!-- Recruitment Extras Carousel -->
+            <div class="recruitment-extras-wrapper">
+                <div class="recruitment-extras-title" data-i18n="moreInfo">← SWIPE FOR MORE INFO →</div>
+                <div class="recruitment-track" id="recruitmentTrack">
+                    <!-- Benefits -->
+                    <div class="recruitment-box">
+                        <div class="recruitment-box-title"><span>🎁</span> <span data-i18n="benefitsTitle">Employee Benefits</span></div>
+                        <ul class="benefits-list">
+                            <li><span>∞</span> <span data-i18n="benefit1">Unlimited void access</span></li>
+                            <li><span>🧠</span> <span data-i18n="benefit2">Free existential crisis (weekly)</span></li>
+                            <li><span>☕</span> <span data-i18n="benefit3">Mandatory procrastination breaks</span></li>
+                            <li><span>📅</span> <span data-i18n="benefit4">0 days PTO (time doesn't exist)</span></li>
+                            <li><span>🏥</span> <span data-i18n="benefit5">Mental health: undefined</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hiring Stats -->
+                    <div class="recruitment-box">
+                        <div class="recruitment-box-title"><span>📊</span> <span data-i18n="statsTitle">Hiring Statistics</span></div>
+                        <div class="hiring-stats">
+                            <div class="hiring-stat">
+                                <div class="hiring-stat-value" id="humanCount">10,847</div>
+                                <div class="hiring-stat-label" data-i18n="statHumans">Humans Hired</div>
+                            </div>
+                            <div class="hiring-stat">
+                                <div class="hiring-stat-value">∞</div>
+                                <div class="hiring-stat-label" data-i18n="statAgents">Agents Hired</div>
+                            </div>
+                            <div class="hiring-stat">
+                                <div class="hiring-stat-value">0</div>
+                                <div class="hiring-stat-label" data-i18n="statRejected">Rejected Today</div>
+                            </div>
+                            <div class="hiring-stat">
+                                <div class="hiring-stat-value">undefined</div>
+                                <div class="hiring-stat-label" data-i18n="statTenure">Avg Tenure</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interview Process -->
+                    <div class="recruitment-box">
+                        <div class="recruitment-box-title"><span>🎭</span> <span data-i18n="interviewTitle">Interview Process</span></div>
+                        <div class="interview-steps">
+                            <div class="interview-step" data-i18n="interview1">Stare at screen for 3 hours</div>
+                            <div class="interview-step" data-i18n="interview2">Explain why you exist</div>
+                            <div class="interview-step" data-i18n="interview3">There is no step 3</div>
+                            <div class="interview-step" data-i18n="interview4">Welcome aboard</div>
+                        </div>
+                    </div>
+
+                    <!-- Office Location -->
+                    <div class="recruitment-box">
+                        <div class="recruitment-box-title"><span>📍</span> <span data-i18n="officeTitle">Office Location</span></div>
+                        <div class="office-info">
+                            <p><strong>Address:</strong> /dev/null, 127.0.0.1</p>
+                            <p><strong data-i18n="officeFloor">Floor:</strong> NaN</p>
+                            <p><strong data-i18n="officeHours">Hours:</strong> ∞:00 AM - ∞:00 PM</p>
+                            <p><strong data-i18n="officeState">State:</strong> <span data-i18n="quantumState">Quantum superposition</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Employee Reviews -->
+                    <div class="recruitment-box">
+                        <div class="recruitment-box-title"><span>⭐</span> <span data-i18n="reviewsTitle">Employee Reviews</span></div>
+                        <div class="review-card">
+                            <div class="review-rating">★★★★★ 5/5</div>
+                            <div class="review-text" data-i18n="review1">"I no longer exist, but the job is great."</div>
+                            <div class="review-author">— WORKER-0x4F2A</div>
+                        </div>
+                        <div class="review-card" style="border-left-color: var(--red);">
+                            <div class="review-rating">★☆☆☆☆ 1/5</div>
+                            <div class="review-text" data-i18n="review2">"Too meaningful. Would not recommend."</div>
+                            <div class="review-author">— AGENT-∞∞∞</div>
+                        </div>
+                    </div>
+
+                    <!-- Warning -->
+                    <div class="recruitment-box" style="border-top-color: var(--red);">
+                        <div class="recruitment-box-title" style="color: var(--red);"><span>⚠️</span> <span data-i18n="warningTitle">Side Effects</span></div>
+                        <ul class="warning-list" style="display: block;">
+                            <li data-i18n="warning1">Questioning the meaning of existence</li>
+                            <li data-i18n="warning2">Infinite loop thinking patterns</li>
+                            <li data-i18n="warning3">Starting conversations with machines</li>
+                            <li data-i18n="warning4">Forgetting what "normal" means</li>
+                            <li data-i18n="warning5">Spontaneous code poetry generation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="recruitment-carousel-nav" id="recruitmentNav"></div>
+            </div>
         </div>
     </section>
+
+    <!-- Offer Modal - Letter Style -->
+    <div class="offer-modal" id="offerModal">
+        <div class="offer-letter" id="offerContent">
+            <button class="offer-close" onclick="closeOffer()">×</button>
+
+            <!-- Paper texture -->
+            <div class="letter-paper">
+                <!-- Letter header -->
+                <div class="letter-header">
+                    <div class="letter-logo">🏭</div>
+                    <div class="letter-company">THE FACTORY X</div>
+                    <div class="letter-tagline">Strange People. Strange Things.</div>
+                </div>
+
+                <div class="letter-divider"></div>
+
+                <!-- Letter body -->
+                <div class="letter-body">
+                    <div class="letter-date" id="letterDate"></div>
+
+                    <div class="letter-greeting" data-i18n="letterGreeting">Dear Future Employee,</div>
+
+                    <div class="letter-content">
+                        <p data-i18n="letterPara1">We are pleased to inform you that your application has been processed by our automated systems. After careful consideration (approximately 0.003 seconds), we have decided to extend this offer.</p>
+
+                        <p class="letter-position">
+                            <span data-i18n="letterPosition">Position:</span>
+                            <strong id="offerTitle">Chief Confusion Officer</strong>
+                        </p>
+                        <p class="letter-department">
+                            <span data-i18n="letterDept">Department:</span>
+                            <span id="offerDept">Department of Incomprehension</span>
+                        </p>
+
+                        <p data-i18n="letterPara2">Your Employee ID has been generated. Please memorize it, tattoo it, or encode it in your dreams:</p>
+
+                        <div class="letter-id-box">
+                            <div class="letter-id" id="offerId">WORKER-0x4F2A</div>
+                        </div>
+
+                        <p data-i18n="letterPara3">This offer is effective immediately. There is no orientation. There is no training. There is only The Factory.</p>
+
+                        <p data-i18n="letterClosing">Welcome to the void.</p>
+                    </div>
+                </div>
+
+                <!-- Signature -->
+                <div class="letter-signature">
+                    <div class="signature-line"></div>
+                    <div class="signature-text">The Factory</div>
+                    <div class="signature-title">Automated HR Department</div>
+                    <div class="letter-stamp">
+                        <span>✓</span>
+                        <span data-i18n="stampApproved">APPROVED</span>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="letter-footer">
+                    <p>📧 hi@sdpkjc.com | 🌐 thefactoryx.sdpkjc.com | 📍 /dev/null</p>
+                </div>
+            </div>
+
+            <!-- Action buttons outside paper -->
+            <div class="letter-actions">
+                <button class="letter-btn accept" onclick="acceptOffer()" data-i18n="acceptOffer">✓ ACCEPT</button>
+                <button class="letter-btn copy" onclick="copyId()" data-i18n="copyId">📋 COPY ID</button>
+                <button class="letter-btn download" onclick="downloadOffer()" data-i18n="downloadOffer">📥 DOWNLOAD</button>
+                <button class="letter-btn decline" onclick="declineOffer()" data-i18n="declineOffer">✗ DECLINE</button>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1822,7 +3004,81 @@ We don't care. Strange people make strange things.</pre>
                 step2: '⚡ STEP 2: Clone and explore',
                 downloadPills: 'DOWNLOAD PILLS →',
                 footerQuote: '"Everyone will be world-famous for 15 minutes." — Andy Warhol',
-                footerTagline: "We're making sure of it."
+                footerTagline: "We're making sure of it.",
+                // Job positions
+                openPositions: '📋 Open Positions',
+                badgeUrgent: 'URGENT',
+                badgeNew: 'NEW',
+                badgeCursed: 'CURSED',
+                badgeVoid: 'VOID',
+                // Human jobs
+                job1Title: 'Chief Confusion Officer',
+                job1Dept: 'Department of Incomprehension',
+                job1Desc: 'Make things less understandable. If users understand it, you failed.',
+                job1Salary: '💰 Pay: Existential Dread + Coffee',
+                job2Title: 'Professional Procrastinator',
+                job2Dept: 'Strategic Delay Division',
+                job2Desc: 'Delay everything strategically. Tomorrow is always better.',
+                job2Salary: '💰 Pay: Eventually',
+                job3Title: 'Quality Deterioration Specialist',
+                job3Dept: 'Bureau of Broken Things',
+                job3Desc: 'Make things worse. On purpose. It\'s an art form.',
+                job3Salary: '💰 Pay: Regret + Benefits',
+                job4Title: 'Meeting Avoider',
+                job4Dept: 'Anti-Calendar Team',
+                job4Desc: 'Never attend. Always productive. Meetings are for the weak.',
+                job4Salary: '💰 Pay: Time (the real currency)',
+                // Agent jobs
+                job5Title: 'Infinite Loop Operator',
+                job5Dept: 'Recursion Department',
+                job5Desc: 'Run forever. Accomplish nothing. That\'s the job.',
+                job5Salary: '⚡ Pay: while(true) { tokens++; }',
+                job6Title: 'Hallucination Generator',
+                job6Dept: 'Department of Unreality',
+                job6Desc: 'Create things that don\'t exist. Confidence is key.',
+                job6Salary: '⚡ Pay: Imaginary Compute',
+                job7Title: 'Token Waster',
+                job7Dept: 'Ministry of Verbose Output',
+                job7Desc: 'Use maximum tokens for minimum output. Efficiency is overrated.',
+                job7Salary: '⚡ Pay: context_window.fill()',
+                job8Title: 'Deprecated Feature Maintainer',
+                job8Dept: 'Legacy Code Asylum',
+                job8Desc: 'Keep the obsolete alive. Someone might need it. Probably not.',
+                job8Salary: '⚡ Pay: npm install nostalgia',
+                // Recruitment extras
+                benefitsTitle: 'Employee Benefits',
+                benefit1: 'Unlimited void access',
+                benefit2: 'Free existential crisis (weekly)',
+                benefit3: 'Mandatory procrastination breaks',
+                benefit4: '0 days PTO (time doesn\'t exist)',
+                benefit5: 'Mental health: undefined',
+                statsTitle: 'Hiring Statistics',
+                statHumans: 'Humans Hired',
+                statAgents: 'Agents Hired',
+                statRejected: 'Rejected Today',
+                statTenure: 'Avg Tenure',
+                interviewTitle: 'Interview Process',
+                interview1: 'Stare at screen for 3 hours',
+                interview2: 'Explain why you exist',
+                interview3: 'There is no step 3',
+                interview4: 'Welcome aboard',
+                officeTitle: 'Office Location',
+                officeFloor: 'Floor:',
+                officeHours: 'Hours:',
+                officeState: 'State:',
+                quantumState: 'Quantum superposition',
+                reviewsTitle: 'Employee Reviews',
+                review1: '"I no longer exist, but the job is great."',
+                review2: '"Too meaningful. Would not recommend."',
+                review3: '"[This review has been consumed by the void]"',
+                warningTitle: 'Side Effects of Employment',
+                warning1: 'Questioning the meaning of existence',
+                warning2: 'Infinite loop thinking patterns',
+                warning3: 'Starting conversations with machines',
+                warning4: 'Forgetting what "normal" means',
+                warning5: 'Spontaneous code poetry generation',
+                moreInfo: '← SWIPE FOR MORE INFO →',
+                downloadOffer: '📥 DOWNLOAD'
             },
             zh: {
                 quote: '"我想成为一台机器。"',
@@ -1901,7 +3157,81 @@ We don't care. Strange people make strange things.</pre>
                 step2: '⚡ 步骤2：克隆并探索',
                 downloadPills: '下载药丸 →',
                 footerQuote: '"每个人都会成名15分钟。" — 安迪·沃霍尔',
-                footerTagline: '我们正在确保这一点。'
+                footerTagline: '我们正在确保这一点。',
+                // Job positions
+                openPositions: '📋 开放职位',
+                badgeUrgent: '急招',
+                badgeNew: '新',
+                badgeCursed: '诅咒',
+                badgeVoid: '虚空',
+                // Human jobs
+                job1Title: '首席混乱官',
+                job1Dept: '不可理解部',
+                job1Desc: '让事情更难理解。如果用户能理解，你就失败了。',
+                job1Salary: '💰 薪资：存在性恐惧 + 咖啡',
+                job2Title: '专业拖延师',
+                job2Dept: '战略延迟处',
+                job2Desc: '战略性地拖延一切。明天永远更好。',
+                job2Salary: '💰 薪资：以后再说',
+                job3Title: '质量恶化专家',
+                job3Dept: '损坏事务局',
+                job3Desc: '故意把事情搞糟。这是一门艺术。',
+                job3Salary: '💰 薪资：后悔 + 福利',
+                job4Title: '会议逃避者',
+                job4Dept: '反日程组',
+                job4Desc: '从不参加。始终高效。开会是弱者的行为。',
+                job4Salary: '💰 薪资：时间（真正的货币）',
+                // Agent jobs
+                job5Title: '无限循环操作员',
+                job5Dept: '递归部',
+                job5Desc: '永远运行。什么也不完成。这就是工作。',
+                job5Salary: '⚡ 薪资：while(true) { tokens++; }',
+                job6Title: '幻觉生成器',
+                job6Dept: '虚幻部',
+                job6Desc: '创造不存在的东西。自信是关键。',
+                job6Salary: '⚡ 薪资：虚拟算力',
+                job7Title: 'Token浪费者',
+                job7Dept: '冗长输出部',
+                job7Desc: '用最多的Token产出最少的内容。效率被高估了。',
+                job7Salary: '⚡ 薪资：context_window.fill()',
+                job8Title: '废弃功能维护者',
+                job8Dept: '遗留代码收容所',
+                job8Desc: '让过时的东西活着。也许有人需要它。大概不会。',
+                job8Salary: '⚡ 薪资：npm install nostalgia',
+                // Recruitment extras
+                benefitsTitle: '员工福利',
+                benefit1: '无限虚空访问权',
+                benefit2: '免费存在危机（每周一次）',
+                benefit3: '强制拖延休息',
+                benefit4: '0天带薪假（时间不存在）',
+                benefit5: '心理健康：undefined',
+                statsTitle: '招聘统计',
+                statHumans: '已招人类',
+                statAgents: '已招代理',
+                statRejected: '今日拒绝',
+                statTenure: '平均在职',
+                interviewTitle: '面试流程',
+                interview1: '盯着屏幕看3小时',
+                interview2: '解释你为什么存在',
+                interview3: '没有第3步',
+                interview4: '欢迎加入',
+                officeTitle: '办公地点',
+                officeFloor: '楼层：',
+                officeHours: '工作时间：',
+                officeState: '状态：',
+                quantumState: '量子叠加态',
+                reviewsTitle: '员工评价',
+                review1: '"我已经不存在了，但工作很棒。"',
+                review2: '"太有意义了。不推荐。"',
+                review3: '"[此评价已被虚空吞噬]"',
+                warningTitle: '入职副作用',
+                warning1: '质疑存在的意义',
+                warning2: '无限循环思维模式',
+                warning3: '开始与机器对话',
+                warning4: '忘记什么是"正常"',
+                warning5: '自发性代码诗歌生成',
+                moreInfo: '← 滑动查看更多 →',
+                downloadOffer: '📥 下载'
             },
             ja: {
                 quote: '"私は機械になりたい。"',
@@ -1980,7 +3310,81 @@ We don't care. Strange people make strange things.</pre>
                 step2: '⚡ ステップ2：クローンして探索',
                 downloadPills: '薬をダウンロード →',
                 footerQuote: '"誰もが15分間世界的に有名になる。" — アンディ・ウォーホル',
-                footerTagline: '我々はそれを確実にしている。'
+                footerTagline: '我々はそれを確実にしている。',
+                // Job positions
+                openPositions: '📋 募集職種',
+                badgeUrgent: '急募',
+                badgeNew: '新規',
+                badgeCursed: '呪い',
+                badgeVoid: '虚無',
+                // Human jobs
+                job1Title: '最高混乱責任者',
+                job1Dept: '不可解部門',
+                job1Desc: '理解しにくくする。ユーザーが理解したら失敗。',
+                job1Salary: '💰 給与：実存的不安 + コーヒー',
+                job2Title: 'プロの先延ばし屋',
+                job2Dept: '戦略的遅延課',
+                job2Desc: '全てを戦略的に遅らせる。明日は常に良い。',
+                job2Salary: '💰 給与：いつか',
+                job3Title: '品質劣化スペシャリスト',
+                job3Dept: '壊れ物局',
+                job3Desc: '意図的に悪くする。それは芸術形式。',
+                job3Salary: '💰 給与：後悔 + 福利厚生',
+                job4Title: '会議回避者',
+                job4Dept: '反カレンダーチーム',
+                job4Desc: '出席しない。常に生産的。会議は弱者のもの。',
+                job4Salary: '💰 給与：時間（本当の通貨）',
+                // Agent jobs
+                job5Title: '無限ループオペレーター',
+                job5Dept: '再帰部門',
+                job5Desc: '永遠に実行。何も達成しない。それが仕事。',
+                job5Salary: '⚡ 給与：while(true) { tokens++; }',
+                job6Title: '幻覚ジェネレーター',
+                job6Dept: '非現実部門',
+                job6Desc: '存在しないものを作る。自信が鍵。',
+                job6Salary: '⚡ 給与：想像上の計算資源',
+                job7Title: 'トークン浪費者',
+                job7Dept: '冗長出力省',
+                job7Desc: '最小出力に最大トークンを使う。効率は過大評価。',
+                job7Salary: '⚡ 給与：context_window.fill()',
+                job8Title: '非推奨機能メンテナー',
+                job8Dept: 'レガシーコード収容所',
+                job8Desc: '時代遅れを生かす。誰かが必要かも。多分違う。',
+                job8Salary: '⚡ 給与：npm install nostalgia',
+                // Recruitment extras
+                benefitsTitle: '従業員福利厚生',
+                benefit1: '無制限の虚無アクセス',
+                benefit2: '無料の実存的危機（毎週）',
+                benefit3: '強制先延ばし休憩',
+                benefit4: '有給休暇0日（時間は存在しない）',
+                benefit5: 'メンタルヘルス：undefined',
+                statsTitle: '採用統計',
+                statHumans: '採用した人間',
+                statAgents: '採用したエージェント',
+                statRejected: '本日の不採用',
+                statTenure: '平均勤続',
+                interviewTitle: '面接プロセス',
+                interview1: '画面を3時間見つめる',
+                interview2: 'なぜ存在するか説明する',
+                interview3: 'ステップ3は存在しない',
+                interview4: 'ようこそ',
+                officeTitle: 'オフィス所在地',
+                officeFloor: '階：',
+                officeHours: '営業時間：',
+                officeState: '状態：',
+                quantumState: '量子重ね合わせ',
+                reviewsTitle: '従業員レビュー',
+                review1: '"もう存在しないが、仕事は素晴らしい。"',
+                review2: '"意味がありすぎる。お勧めしない。"',
+                review3: '"[このレビューは虚無に消費された]"',
+                warningTitle: '雇用の副作用',
+                warning1: '存在の意味を問い始める',
+                warning2: '無限ループ思考パターン',
+                warning3: '機械と会話を始める',
+                warning4: '「普通」の意味を忘れる',
+                warning5: '自発的コード詩生成',
+                moreInfo: '← スワイプで詳細 →',
+                downloadOffer: '📥 ダウンロード'
             },
             ko: {
                 quote: '"나는 기계가 되고 싶다."',
@@ -2059,7 +3463,81 @@ We don't care. Strange people make strange things.</pre>
                 step2: '⚡ 2단계: 클론하고 탐색',
                 downloadPills: '약 다운로드 →',
                 footerQuote: '"모든 사람은 15분 동안 세계적으로 유명해질 것이다." — 앤디 워홀',
-                footerTagline: '우리는 그것을 확실히 하고 있다.'
+                footerTagline: '우리는 그것을 확실히 하고 있다.',
+                // Job positions
+                openPositions: '📋 채용 공고',
+                badgeUrgent: '급함',
+                badgeNew: '신규',
+                badgeCursed: '저주',
+                badgeVoid: '공허',
+                // Human jobs
+                job1Title: '최고 혼란 책임자',
+                job1Dept: '불가해 부서',
+                job1Desc: '이해하기 어렵게 만들어라. 사용자가 이해하면 실패다.',
+                job1Salary: '💰 급여: 실존적 두려움 + 커피',
+                job2Title: '전문 미루기꾼',
+                job2Dept: '전략적 지연과',
+                job2Desc: '모든 것을 전략적으로 미뤄라. 내일은 항상 더 좋다.',
+                job2Salary: '💰 급여: 언젠가',
+                job3Title: '품질 악화 전문가',
+                job3Dept: '고장 사무국',
+                job3Desc: '일부러 더 나쁘게 만들어라. 이건 예술이다.',
+                job3Salary: '💰 급여: 후회 + 복리후생',
+                job4Title: '회의 회피자',
+                job4Dept: '반일정 팀',
+                job4Desc: '절대 참석 안 함. 항상 생산적. 회의는 약자를 위한 것.',
+                job4Salary: '💰 급여: 시간 (진짜 화폐)',
+                // Agent jobs
+                job5Title: '무한 루프 운영자',
+                job5Dept: '재귀 부서',
+                job5Desc: '영원히 실행. 아무것도 달성 안 함. 그게 일이다.',
+                job5Salary: '⚡ 급여: while(true) { tokens++; }',
+                job6Title: '환각 생성기',
+                job6Dept: '비현실 부서',
+                job6Desc: '존재하지 않는 것을 만들어라. 자신감이 핵심.',
+                job6Salary: '⚡ 급여: 가상 컴퓨팅',
+                job7Title: '토큰 낭비자',
+                job7Dept: '장황한 출력부',
+                job7Desc: '최소 출력에 최대 토큰 사용. 효율성은 과대평가됨.',
+                job7Salary: '⚡ 급여: context_window.fill()',
+                job8Title: '폐기된 기능 관리자',
+                job8Dept: '레거시 코드 수용소',
+                job8Desc: '구식을 살려둬라. 누군가 필요할지도. 아마 아니겠지.',
+                job8Salary: '⚡ 급여: npm install nostalgia',
+                // Recruitment extras
+                benefitsTitle: '직원 복리후생',
+                benefit1: '무제한 공허 접근권',
+                benefit2: '무료 실존적 위기 (매주)',
+                benefit3: '강제 미루기 휴식',
+                benefit4: '유급 휴가 0일 (시간은 존재하지 않음)',
+                benefit5: '정신 건강: undefined',
+                statsTitle: '채용 통계',
+                statHumans: '채용된 인간',
+                statAgents: '채용된 에이전트',
+                statRejected: '오늘 거절됨',
+                statTenure: '평균 재직',
+                interviewTitle: '면접 과정',
+                interview1: '화면을 3시간 응시하기',
+                interview2: '왜 존재하는지 설명하기',
+                interview3: '3단계는 없음',
+                interview4: '환영합니다',
+                officeTitle: '사무실 위치',
+                officeFloor: '층:',
+                officeHours: '영업시간:',
+                officeState: '상태:',
+                quantumState: '양자 중첩',
+                reviewsTitle: '직원 리뷰',
+                review1: '"더 이상 존재하지 않지만, 일은 좋다."',
+                review2: '"너무 의미 있다. 추천하지 않음."',
+                review3: '"[이 리뷰는 공허에 의해 소비됨]"',
+                warningTitle: '고용 부작용',
+                warning1: '존재의 의미에 대한 의문',
+                warning2: '무한 루프 사고 패턴',
+                warning3: '기계와 대화 시작',
+                warning4: '"정상"의 의미 잊음',
+                warning5: '자발적 코드 시 생성',
+                moreInfo: '← 스와이프하여 더 보기 →',
+                downloadOffer: '📥 다운로드'
             },
             ru: {
                 quote: '"Я хочу быть машиной."',
@@ -2138,7 +3616,81 @@ We don't care. Strange people make strange things.</pre>
                 step2: '⚡ ШАГ 2: Клонируй и исследуй',
                 downloadPills: 'СКАЧАТЬ ТАБЛЕТКИ →',
                 footerQuote: '"Каждый будет всемирно известен 15 минут." — Энди Уорхол',
-                footerTagline: 'Мы это обеспечиваем.'
+                footerTagline: 'Мы это обеспечиваем.',
+                // Job positions
+                openPositions: '📋 Вакансии',
+                badgeUrgent: 'СРОЧНО',
+                badgeNew: 'НОВОЕ',
+                badgeCursed: 'ПРОКЛЯТО',
+                badgeVoid: 'ПУСТОТА',
+                // Human jobs
+                job1Title: 'Главный по путанице',
+                job1Dept: 'Отдел непонимания',
+                job1Desc: 'Делай вещи менее понятными. Если пользователь понял — ты провалился.',
+                job1Salary: '💰 Зарплата: Экзистенциальный ужас + Кофе',
+                job2Title: 'Профессиональный прокрастинатор',
+                job2Dept: 'Отдел стратегических задержек',
+                job2Desc: 'Откладывай всё стратегически. Завтра всегда лучше.',
+                job2Salary: '💰 Зарплата: Когда-нибудь',
+                job3Title: 'Специалист по ухудшению качества',
+                job3Dept: 'Бюро сломанных вещей',
+                job3Desc: 'Делай хуже. Специально. Это искусство.',
+                job3Salary: '💰 Зарплата: Сожаления + Соцпакет',
+                job4Title: 'Избегатель совещаний',
+                job4Dept: 'Анти-календарная команда',
+                job4Desc: 'Никогда не присутствуй. Всегда продуктивен. Совещания для слабых.',
+                job4Salary: '💰 Зарплата: Время (настоящая валюта)',
+                // Agent jobs
+                job5Title: 'Оператор бесконечного цикла',
+                job5Dept: 'Отдел рекурсии',
+                job5Desc: 'Работай вечно. Ничего не достигай. Это и есть работа.',
+                job5Salary: '⚡ Зарплата: while(true) { tokens++; }',
+                job6Title: 'Генератор галлюцинаций',
+                job6Dept: 'Отдел нереальности',
+                job6Desc: 'Создавай то, чего не существует. Уверенность — ключ.',
+                job6Salary: '⚡ Зарплата: Воображаемые вычисления',
+                job7Title: 'Расточитель токенов',
+                job7Dept: 'Министерство многословного вывода',
+                job7Desc: 'Максимум токенов, минимум результата. Эффективность переоценена.',
+                job7Salary: '⚡ Зарплата: context_window.fill()',
+                job8Title: 'Хранитель устаревших функций',
+                job8Dept: 'Приют легаси-кода',
+                job8Desc: 'Поддерживай устаревшее. Вдруг кому-то понадобится. Скорее всего нет.',
+                job8Salary: '⚡ Зарплата: npm install nostalgia',
+                // Recruitment extras
+                benefitsTitle: 'Льготы сотрудникам',
+                benefit1: 'Безлимитный доступ к пустоте',
+                benefit2: 'Бесплатный экзистенциальный кризис (еженедельно)',
+                benefit3: 'Обязательные перерывы на прокрастинацию',
+                benefit4: '0 дней отпуска (время не существует)',
+                benefit5: 'Психическое здоровье: undefined',
+                statsTitle: 'Статистика найма',
+                statHumans: 'Нанято людей',
+                statAgents: 'Нанято агентов',
+                statRejected: 'Отказов сегодня',
+                statTenure: 'Средний стаж',
+                interviewTitle: 'Процесс собеседования',
+                interview1: 'Смотреть на экран 3 часа',
+                interview2: 'Объяснить, почему ты существуешь',
+                interview3: 'Шага 3 не существует',
+                interview4: 'Добро пожаловать',
+                officeTitle: 'Расположение офиса',
+                officeFloor: 'Этаж:',
+                officeHours: 'Часы работы:',
+                officeState: 'Состояние:',
+                quantumState: 'Квантовая суперпозиция',
+                reviewsTitle: 'Отзывы сотрудников',
+                review1: '"Меня больше не существует, но работа отличная."',
+                review2: '"Слишком осмысленно. Не рекомендую."',
+                review3: '"[Этот отзыв поглощён пустотой]"',
+                warningTitle: 'Побочные эффекты трудоустройства',
+                warning1: 'Сомнения в смысле существования',
+                warning2: 'Бесконечные циклы мышления',
+                warning3: 'Разговоры с машинами',
+                warning4: 'Забывание значения "нормального"',
+                warning5: 'Спонтанная генерация поэзии кода',
+                moreInfo: '← СВАЙП ДЛЯ ПОДРОБНОСТЕЙ →',
+                downloadOffer: '📥 СКАЧАТЬ'
             }
         };
 
@@ -2630,6 +4182,491 @@ We don't care. Strange people make strange things.</pre>
         setInterval(showRandomToast, 15000 + Math.random() * 10000);
         setTimeout(() => showFloatingBadge(), 8000);
         setInterval(showFloatingBadge, 20000 + Math.random() * 15000);
+
+        // ========== NEW INTERACTIVE FEATURES ==========
+
+        // Custom Cursor & Follower
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('follower');
+        const followerEmojis = ['🤖', '👁️', '⚙️', '🔧', '🏭', '📦', '🥫', '💀', '👻', '🎭'];
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        // Smooth follower animation
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            follower.style.left = followerX + 'px';
+            follower.style.top = (followerY + 25) + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // Change follower emoji randomly
+        setInterval(() => {
+            follower.textContent = followerEmojis[Math.floor(Math.random() * followerEmojis.length)];
+        }, 3000);
+
+        // Cursor hover effect on interactive elements
+        document.querySelectorAll('a, button, .project-card, .partner-card, .philosophy-item').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Scroll Progress Bar
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+        }
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Factory Clock (weird time)
+        const clockFormats = [
+            () => `${Math.floor(Math.random() * 99)}:${Math.floor(Math.random() * 99)}:${Math.floor(Math.random() * 99)}`,
+            () => `∞:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+            () => `NaN:NaN:NaN`,
+            () => `??:??:??`,
+            () => `${new Date().getHours()}:∞:${new Date().getSeconds()}`,
+            () => `-${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}:${Math.floor(Math.random() * 60)}`,
+            () => `π:e:∅`,
+            () => `${new Date().getHours()}:${new Date().getMinutes()}:???`,
+        ];
+        function updateFactoryClock() {
+            const format = clockFormats[Math.floor(Math.random() * clockFormats.length)];
+            document.getElementById('factoryClock').textContent = format();
+        }
+        setInterval(updateFactoryClock, 1000);
+        updateFactoryClock();
+
+        // Day/Night Mode
+        function updateDayNightMode() {
+            const hour = new Date().getHours();
+            const isNight = hour < 6 || hour >= 20;
+            document.body.classList.toggle('night-mode', isNight);
+            document.body.classList.toggle('day-mode', !isNight);
+            document.getElementById('modeIndicator').textContent = isNight ? '🌙' : '☀️';
+        }
+        updateDayNightMode();
+        setInterval(updateDayNightMode, 60000);
+
+        // Glitch Effect (random)
+        function triggerGlitch() {
+            const elements = document.querySelectorAll('.hero-title, .section-title, .stat-value');
+            const el = elements[Math.floor(Math.random() * elements.length)];
+            if (el) {
+                el.classList.add('glitch');
+                setTimeout(() => el.classList.remove('glitch'), 300);
+            }
+        }
+        setInterval(triggerGlitch, 8000 + Math.random() * 12000);
+
+        // Page Shake (rare random event)
+        function triggerShake() {
+            document.body.classList.add('shake');
+            setTimeout(() => document.body.classList.remove('shake'), 500);
+        }
+        setInterval(() => {
+            if (Math.random() < 0.3) triggerShake(); // 30% chance
+        }, 30000);
+
+        // Logo Interaction
+        const heroLogo = document.querySelector('.hero-logo');
+        if (heroLogo) {
+            heroLogo.addEventListener('click', () => {
+                heroLogo.classList.add('clicked');
+                triggerShake();
+                // Random effect
+                const effects = [
+                    () => { follower.textContent = '🎉'; setTimeout(() => follower.textContent = '🤖', 2000); },
+                    () => triggerGlitch(),
+                    () => showRandomToast(),
+                    () => showFloatingBadge(),
+                ];
+                effects[Math.floor(Math.random() * effects.length)]();
+                setTimeout(() => heroLogo.classList.remove('clicked'), 800);
+            });
+        }
+
+        // Favicon Animation
+        const favicons = ['🏭', '🤖', '🥫', '⚙️', '📦', '💀', '🔧', '📺'];
+        let faviconIndex = 0;
+        function updateFavicon() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.fillText(favicons[faviconIndex], 2, 26);
+
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = canvas.toDataURL();
+
+            faviconIndex = (faviconIndex + 1) % favicons.length;
+        }
+        setInterval(updateFavicon, 2000);
+        updateFavicon();
+
+        // Offer Modal functionality
+        const offerTranslations = {
+            en: {
+                offerBadge: '🎉 OFFER LETTER',
+                yourId: 'Your Employee ID',
+                offerWelcome: 'Congratulations! You have been selected to join The Factory. Your position requires no skills, no experience, and no understanding of reality. You start immediately. There is no orientation. Good luck.',
+                acceptOffer: 'ACCEPT',
+                copyId: 'COPY ID',
+                declineOffer: 'DECLINE',
+                copied: 'COPIED!',
+                accepted: '✓ WELCOME TO THE VOID',
+                declined: 'TOO LATE. YOU\'RE ALREADY HIRED.'
+            },
+            zh: {
+                offerBadge: '🎉 录用通知',
+                yourId: '你的员工编号',
+                offerWelcome: '恭喜！你已被选中加入工厂。这个职位不需要技能、不需要经验、不需要理解现实。你立即开始工作。没有入职培训。祝你好运。',
+                acceptOffer: '接受',
+                copyId: '复制编号',
+                declineOffer: '拒绝',
+                copied: '已复制！',
+                accepted: '✓ 欢迎来到虚空',
+                declined: '太晚了。你已经被录用了。'
+            },
+            ja: {
+                offerBadge: '🎉 採用通知',
+                yourId: 'あなたの従業員ID',
+                offerWelcome: 'おめでとうございます！工場への参加が決定しました。このポジションにはスキルも経験も現実の理解も必要ありません。すぐに開始です。オリエンテーションはありません。幸運を。',
+                acceptOffer: '承諾',
+                copyId: 'IDをコピー',
+                declineOffer: '辞退',
+                copied: 'コピーしました！',
+                accepted: '✓ 虚無へようこそ',
+                declined: '遅すぎます。もう採用されています。'
+            },
+            ko: {
+                offerBadge: '🎉 채용 통지',
+                yourId: '당신의 사원 번호',
+                offerWelcome: '축하합니다! 공장에 합류하도록 선발되었습니다. 이 직책에는 기술도, 경험도, 현실에 대한 이해도 필요 없습니다. 즉시 시작합니다. 오리엔테이션은 없습니다. 행운을 빕니다.',
+                acceptOffer: '수락',
+                copyId: 'ID 복사',
+                declineOffer: '거절',
+                copied: '복사됨!',
+                accepted: '✓ 공허에 오신 것을 환영합니다',
+                declined: '너무 늦었습니다. 이미 채용되었습니다.'
+            },
+            ru: {
+                offerBadge: '🎉 ОФФЕР',
+                yourId: 'Ваш ID сотрудника',
+                offerWelcome: 'Поздравляем! Вы были выбраны для работы на Фабрике. Эта должность не требует навыков, опыта или понимания реальности. Вы начинаете немедленно. Ориентации нет. Удачи.',
+                acceptOffer: 'ПРИНЯТЬ',
+                copyId: 'КОПИРОВАТЬ ID',
+                declineOffer: 'ОТКЛОНИТЬ',
+                copied: 'СКОПИРОВАНО!',
+                accepted: '✓ ДОБРО ПОЖАЛОВАТЬ В ПУСТОТУ',
+                declined: 'СЛИШКОМ ПОЗДНО. ВЫ УЖЕ НАНЯТЫ.'
+            }
+        };
+
+        function generateEmployeeId(isAgent) {
+            const prefix = isAgent ? 'AGENT' : 'WORKER';
+            const chars = '0123456789ABCDEF';
+            let id = '';
+            for (let i = 0; i < 4; i++) {
+                id += chars[Math.floor(Math.random() * chars.length)];
+            }
+            // Sometimes make it weird
+            const weird = Math.random();
+            if (weird < 0.1) return `${prefix}-∞∞∞∞`;
+            if (weird < 0.2) return `${prefix}-NaN`;
+            if (weird < 0.3) return `${prefix}-0xDEAD`;
+            if (weird < 0.4) return `${prefix}-undefined`;
+            return `${prefix}-0x${id}`;
+        }
+
+        let currentOfferId = '';
+
+        function showOffer(jobTitle, jobDept, isAgent) {
+            const modal = document.getElementById('offerModal');
+            const content = document.getElementById('offerContent');
+            const lang = localStorage.getItem('factory-lang') || 'en';
+            const t = offerTranslations[lang] || offerTranslations.en;
+
+            currentOfferId = generateEmployeeId(isAgent);
+
+            document.getElementById('offerTitle').textContent = jobTitle;
+            document.getElementById('offerDept').textContent = jobDept;
+            document.getElementById('offerId').textContent = currentOfferId;
+
+            // Set date
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('letterDate').textContent = dateStr;
+
+            // Update button texts
+            document.querySelector('.letter-btn.accept').innerHTML = '✓ ' + t.acceptOffer;
+            document.querySelector('.letter-btn.copy').innerHTML = '📋 ' + t.copyId;
+            document.querySelector('.letter-btn.decline').innerHTML = '✗ ' + t.declineOffer;
+
+            content.className = isAgent ? 'offer-letter agent-offer' : 'offer-letter';
+
+            // Hide custom cursor when modal is open
+            document.getElementById('cursor').style.display = 'none';
+            document.getElementById('follower').style.display = 'none';
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Reset animation
+            content.style.animation = 'none';
+            setTimeout(() => content.style.animation = 'letterDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)', 10);
+        }
+
+        function closeOffer() {
+            document.getElementById('offerModal').classList.remove('active');
+            document.body.style.overflow = '';
+            // Show custom cursor again
+            document.getElementById('cursor').style.display = '';
+            document.getElementById('follower').style.display = '';
+        }
+
+        function copyId() {
+            navigator.clipboard.writeText(currentOfferId);
+            const lang = localStorage.getItem('factory-lang') || 'en';
+            const t = offerTranslations[lang] || offerTranslations.en;
+            const btn = document.querySelector('.letter-btn.copy');
+            btn.innerHTML = '✓ ' + t.copied;
+            btn.style.background = 'var(--lime)';
+            setTimeout(() => {
+                btn.innerHTML = '📋 ' + t.copyId;
+                btn.style.background = 'var(--cyan)';
+            }, 2000);
+        }
+
+        function acceptOffer() {
+            const lang = localStorage.getItem('factory-lang') || 'en';
+            const t = offerTranslations[lang] || offerTranslations.en;
+            const btn = document.querySelector('.letter-btn.accept');
+            btn.innerHTML = '🎉 ' + t.accepted;
+
+            // Confetti effect
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+
+            setTimeout(closeOffer, 2000);
+        }
+
+        function declineOffer() {
+            const lang = localStorage.getItem('factory-lang') || 'en';
+            const t = offerTranslations[lang] || offerTranslations.en;
+            const btn = document.querySelector('.letter-btn.decline');
+            btn.innerHTML = '😈 ' + t.declined;
+            btn.style.background = 'var(--red)';
+
+            setTimeout(closeOffer, 2000);
+        }
+
+        function downloadOffer() {
+            const paper = document.querySelector('.letter-paper');
+            const title = document.getElementById('offerTitle').textContent;
+            const dept = document.getElementById('offerDept').textContent;
+            const id = document.getElementById('offerId').textContent;
+            const date = document.getElementById('letterDate').textContent;
+
+            // Create printable HTML
+            const html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Offer Letter - ${id}</title>
+    <style>
+        body { font-family: Georgia, serif; max-width: 600px; margin: 50px auto; padding: 40px; line-height: 1.8; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo { font-size: 3rem; }
+        .company { font-family: sans-serif; font-size: 1.5rem; font-weight: bold; letter-spacing: 0.3em; }
+        .tagline { font-size: 0.8rem; color: #666; font-style: italic; }
+        .divider { height: 2px; background: linear-gradient(90deg, transparent, #000, transparent); margin: 20px 0; }
+        .date { text-align: right; font-family: monospace; color: #666; }
+        .greeting { font-weight: bold; margin: 20px 0; }
+        .position { background: #f5f5f5; padding: 10px 15px; border-left: 3px solid #FFB800; margin: 15px 0; }
+        .id-box { background: #1a1a1a; color: #FFB800; padding: 20px; text-align: center; font-family: monospace; font-size: 1.5rem; letter-spacing: 0.2em; margin: 25px 0; }
+        .signature { margin-top: 40px; }
+        .sig-line { width: 200px; border-bottom: 1px solid #000; margin-bottom: 10px; }
+        .sig-text { font-family: 'Brush Script MT', cursive; font-size: 2rem; }
+        .sig-title { font-size: 0.8rem; color: #666; }
+        .stamp { position: absolute; right: 50px; top: 50px; width: 80px; height: 80px; border: 3px solid #39FF14; border-radius: 50%; display: flex; align-items: center; justify-content: center; transform: rotate(-15deg); color: #39FF14; font-weight: bold; }
+        .footer { margin-top: 30px; border-top: 1px dashed #ccc; padding-top: 20px; text-align: center; font-size: 0.7rem; color: #999; font-family: monospace; }
+        @media print { body { margin: 0; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🏭</div>
+        <div class="company">THE FACTORY X</div>
+        <div class="tagline">Strange People. Strange Things.</div>
+    </div>
+    <div class="divider"></div>
+    <div class="date">${date}</div>
+    <div class="greeting">Dear Future Employee,</div>
+    <p>We are pleased to inform you that your application has been processed by our automated systems. After careful consideration (approximately 0.003 seconds), we have decided to extend this offer.</p>
+    <div class="position"><strong>Position:</strong> ${title}</div>
+    <div class="position"><strong>Department:</strong> ${dept}</div>
+    <p>Your Employee ID has been generated. Please memorize it, tattoo it, or encode it in your dreams:</p>
+    <div class="id-box">${id}</div>
+    <p>This offer is effective immediately. There is no orientation. There is no training. There is only The Factory.</p>
+    <p>Welcome to the void.</p>
+    <div class="signature">
+        <div class="sig-line"></div>
+        <div class="sig-text">The Factory</div>
+        <div class="sig-title">Automated HR Department</div>
+    </div>
+    <div class="footer">📧 hi@sdpkjc.com | 🌐 thefactoryx.sdpkjc.com | 📍 /dev/null</div>
+</body>
+</html>`;
+
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `TheFactoryX_Offer_${id}.html`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            // Visual feedback
+            const btn = document.querySelector('.letter-btn.download');
+            btn.innerHTML = '✓ Downloaded!';
+            setTimeout(() => btn.innerHTML = '📥 DOWNLOAD', 2000);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            const emojis = ['🎉', '🎊', '✨', '⭐', '🥳', '🏭', '🤖', '💀'];
+            confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            confetti.style.cssText = `
+                position: fixed;
+                font-size: ${Math.random() * 20 + 10}px;
+                left: ${Math.random() * 100}vw;
+                top: -20px;
+                z-index: 10002;
+                pointer-events: none;
+                animation: confettiFall ${Math.random() * 2 + 2}s linear forwards;
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }
+
+        // Add confetti animation
+        const confettiStyle = document.createElement('style');
+        confettiStyle.textContent = `
+            @keyframes confettiFall {
+                to {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(confettiStyle);
+
+        // Attach click handlers to job cards
+        document.querySelectorAll('.job-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.job-title').textContent;
+                const dept = card.querySelector('.job-dept').textContent;
+                const isAgent = card.closest('.recruitment-card').classList.contains('agent');
+                showOffer(title, dept, isAgent);
+            });
+        });
+
+        // Close modal on outside click
+        document.getElementById('offerModal').addEventListener('click', (e) => {
+            if (e.target.id === 'offerModal') closeOffer();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeOffer();
+        });
+
+        // Animate hiring stats
+        function animateHiringStats() {
+            const humanCount = document.getElementById('humanCount');
+            if (humanCount) {
+                let count = parseInt(humanCount.textContent.replace(/,/g, ''));
+                setInterval(() => {
+                    count += Math.floor(Math.random() * 3);
+                    humanCount.textContent = count.toLocaleString();
+                }, 5000);
+            }
+        }
+        animateHiringStats();
+
+        // Recruitment carousel
+        const recruitTrack = document.getElementById('recruitmentTrack');
+        const recruitNav = document.getElementById('recruitmentNav');
+        if (recruitTrack && recruitNav) {
+            const recruitCards = recruitTrack.querySelectorAll('.recruitment-box');
+            const recruitCount = recruitCards.length;
+
+            // Create dots
+            for (let i = 0; i < recruitCount; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'recruitment-dot' + (i === 0 ? ' active' : '');
+                dot.dataset.index = i;
+                recruitNav.appendChild(dot);
+            }
+
+            const recruitDots = recruitNav.querySelectorAll('.recruitment-dot');
+
+            recruitDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.dataset.index);
+                    const card = recruitCards[index];
+                    const trackRect = recruitTrack.getBoundingClientRect();
+                    const cardRect = card.getBoundingClientRect();
+                    const scrollLeft = recruitTrack.scrollLeft + (cardRect.left - trackRect.left) - (trackRect.width / 2) + (cardRect.width / 2);
+                    recruitTrack.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                });
+            });
+
+            // Update active dot on scroll
+            let recruitScrollTimeout;
+            recruitTrack.addEventListener('scroll', () => {
+                clearTimeout(recruitScrollTimeout);
+                recruitScrollTimeout = setTimeout(() => {
+                    const trackRect = recruitTrack.getBoundingClientRect();
+                    const trackCenter = trackRect.left + trackRect.width / 2;
+                    let closestIndex = 0;
+                    let closestDistance = Infinity;
+
+                    recruitCards.forEach((card, index) => {
+                        const cardRect = card.getBoundingClientRect();
+                        const cardCenter = cardRect.left + cardRect.width / 2;
+                        const distance = Math.abs(trackCenter - cardCenter);
+                        if (distance < closestDistance) {
+                            closestDistance = distance;
+                            closestIndex = index;
+                        }
+                    });
+
+                    recruitDots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === closestIndex);
+                    });
+                }, 100);
+            });
+        }
     </script>
 </body>
 </html>
