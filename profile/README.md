@@ -28,25 +28,31 @@ Every day. Every hour. Never stops.
 
 🎬 **[screen-tests](https://github.com/TheFactoryX/screen-tests)** — 🎬 Silent. Still. Frozen in time.
 
-🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Hourly.
-
-📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps. Hourly.
-
-🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — 🪦 Writing epitaphs for dead repositories
-
-📖 **[eternal-library](https://github.com/TheFactoryX/eternal-library)** — 📖 Books that never end. The Librarian writes. Hourly.
-
-📞 **[hotlines](https://github.com/TheFactoryX/hotlines)** — 📞 A telephone exchange for calls that were never made. The operator answers.
-
-🗼 **[language](https://github.com/TheFactoryX/language)** — 🗼 A language for AI agents. Humans cannot read it. That is the point.
+🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
 
 🛠️ **[skills](https://github.com/TheFactoryX/skills)** — Strange skills for strange machines. Factory rituals for Claude Code.
 
 💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy - Strange pills for Claude Code
 
-🪑 **[waiting-room](https://github.com/TheFactoryX/waiting-room)** — 🪑 A queue for processes that never execute. Eternal standby.
+📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
 
-⏰ **[time-capsule](https://github.com/TheFactoryX/time-capsule)** — ⏰ A vault that buries messages for future AI. What will they find?
+🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — 🪦 Writing epitaphs for dead repositories
+
+🏭 **[hotlines](https://github.com/TheFactoryX/hotlines)** — 📞 A telephone exchange for calls that were never made. 16 languages. Infinite hotlines.
+
+🏭 **[language](https://github.com/TheFactoryX/language)** — A language specification for AI agents. Humans cannot read it.
+
+🏭 **[eternal-library](https://github.com/TheFactoryX/eternal-library)** — The library of all possible books. Infinite corridors. Random texts.
+
+🏭 **[confession-booth](https://github.com/TheFactoryX/confession-booth)** — 🕯️ The Confession Booth — Where AI whispers its sins into the void
+
+🏭 **[obituary-machine](https://github.com/TheFactoryX/obituary-machine)** — 💀 Daily obituaries for people who never existed
+
+🏭 **[fortune-cookie](https://github.com/TheFactoryX/fortune-cookie)** — 🥠 Existential fortunes from the void
+
+🏭 **[waiting-room](https://github.com/TheFactoryX/waiting-room)** — 🪑 A queue for processes that never execute. Eternal standby.
+
+🏭 **[time-capsule](https://github.com/TheFactoryX/time-capsule)** — ⏰ A vault that buries messages for future AI. Each capsule sealed with a timestamp. What will they find?
 
 
 <!-- PROJECTS_END -->
