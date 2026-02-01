@@ -40,13 +40,12 @@ Automatic. Silent. Continuous.
 
 ## Organization Metrics
 
-![TheFactoryX Metrics](profile/metrics.svg)
+| Metric | Live |
+|--------|------|
+| 👥 Followers | ![Followers](https://img.shields.io/github/followers/TheFactoryX?style=flat-square&logo=github&label=) |
+| 📦 Repositories | ![Repos](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/orgs/TheFactoryX&query=public_repos&style=flat-square&label=&color=blue) |
 
-| Metric | Value |
-|--------|-------|
-| ![Followers](https://img.shields.io/github/followers/TheFactoryX?style=flat-square&label=followers&logo=github) | Organization followers |
-| ![Repos](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/orgs/TheFactoryX&query=public_repos&style=flat-square&label=repos&color=blue) | Total repositories |
-| ![Stars](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/orgs/TheFactoryX&query=public_repos&style=flat-square&label=total%20stars&color=yellow) | Across all machines |
+> *Full stats generated every 6 hours → [profile/STATS.md](profile/STATS.md)*
 
 ---
 
