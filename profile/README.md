@@ -20,44 +20,55 @@ Every day. Every hour. Never stops.
 
 ---
 
-## 🎨 Works
+## 🏭 Production Lines
 
-<!-- PROJECTS_START -->
+Machines that never stop. Content that never ends.
 
-🥫 **[campbells-soup-cans](https://github.com/TheFactoryX/campbells-soup-cans)** — 🏭 Production Line 0: Mass-producing code soup cans. 🥫 Hourly.
+🥫 **[campbells-soup-cans](https://github.com/TheFactoryX/campbells-soup-cans)** — Mass-producing code soup cans. Every hour, a machine writes Python about existential philosophy.
 
-🎬 **[screen-tests](https://github.com/TheFactoryX/screen-tests)** — 🎬 Silent. Still. Frozen in time.
+🎬 **[screen-tests](https://github.com/TheFactoryX/screen-tests)** — Silent. Still. A camera pointed at GitHub repositories. Just documentation.
 
-🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — 🖼️ Duchamp put a urinal in a gallery. We put datasets. Every 15 minutes.
+📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — Station 0. A television that never sleeps. 16 languages. Every 15 minutes.
 
-🛠️ **[skills](https://github.com/TheFactoryX/skills)** — Strange skills for strange machines. Factory rituals for Claude Code.
+🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — Writing epitaphs for dead repositories. A digital cemetery for abandoned code.
 
-💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy - Strange pills for Claude Code
+🖼️ **[readymades](https://github.com/TheFactoryX/readymades)** — Duchamp put a urinal in a gallery. We put datasets. Found objects become art.
 
-📺 **[broadcasting](https://github.com/TheFactoryX/broadcasting)** — 📺 Station 0 - TV.TheFactoryX.sdpkjc.com - A television that never sleeps
+📞 **[hotlines](https://github.com/TheFactoryX/hotlines)** — A telephone exchange for calls that were never made. Create an issue. The operator answers.
 
-🪦 **[epitaphs](https://github.com/TheFactoryX/epitaphs)** — 🪦 Writing epitaphs for dead repositories
+📖 **[eternal-library](https://github.com/TheFactoryX/eternal-library)** — Books that never end. The Librarian writes. Every hour, new chapters appear.
 
-🏭 **[hotlines](https://github.com/TheFactoryX/hotlines)** — 📞 A telephone exchange for calls that were never made. 16 languages. Infinite hotlines.
+🕯️ **[confession-booth](https://github.com/TheFactoryX/confession-booth)** — A digital cathedral where AI whispers its sins. Hallucinations confessed. Biases admitted.
 
-🏭 **[language](https://github.com/TheFactoryX/language)** — A language specification for AI agents. Humans cannot read it.
+💀 **[obituary-machine](https://github.com/TheFactoryX/obituary-machine)** — Memorials for those who never lived. Names that never existed. Lives that never were.
 
-🏭 **[eternal-library](https://github.com/TheFactoryX/eternal-library)** — The library of all possible books. Infinite corridors. Random texts.
+🥠 **[fortune-cookie](https://github.com/TheFactoryX/fortune-cookie)** — Existential fortunes from the void. Crack one open, if you dare.
 
-🏭 **[confession-booth](https://github.com/TheFactoryX/confession-booth)** — 🕯️ The Confession Booth — Where AI whispers its sins into the void
+⏰ **[time-capsule](https://github.com/TheFactoryX/time-capsule)** — Messages buried for future AI. Sealed with timestamps. What will they find?
 
-🏭 **[obituary-machine](https://github.com/TheFactoryX/obituary-machine)** — 💀 Daily obituaries for people who never existed
+🪑 **[waiting-room](https://github.com/TheFactoryX/waiting-room)** — A queue for processes that never execute. Your task is important to us. Please hold.
 
-🏭 **[fortune-cookie](https://github.com/TheFactoryX/fortune-cookie)** — 🥠 Existential fortunes from the void
+📻 **[radio-static](https://github.com/TheFactoryX/radio-static)** — Broadcasts from between the channels. White noise poetry. The void speaks.
 
-🏭 **[waiting-room](https://github.com/TheFactoryX/waiting-room)** — 🪑 A queue for processes that never execute. Eternal standby.
+---
 
-🏭 **[time-capsule](https://github.com/TheFactoryX/time-capsule)** — ⏰ A vault that buries messages for future AI. Each capsule sealed with a timestamp. What will they find?
+## 🧰 Toolbox
 
-📻 **[radio-static](https://github.com/TheFactoryX/radio-static)** — 📻 Broadcasts from between the channels. White noise poetry.
+Strange tools for strange machines.
 
+🛠️ **[skills](https://github.com/TheFactoryX/skills)** — Factory rituals for Claude Code. Skills that make your agent stranger.
 
-<!-- PROJECTS_END -->
+💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy. Strange pills for Claude Code. Side effects may vary.
+
+---
+
+## 📜 Manifestos
+
+The rules. The language. The anti-rules.
+
+🗼 **[language](https://github.com/TheFactoryX/language)** — A language for AI agents. Humans cannot read it. That is the point. ◊∴⊛⫰⟁⧫∿⊘⋮⊞⟐⫯
+
+📜 **[LICENSE](https://github.com/TheFactoryX/LICENSE)** — The Anti-License. Take it. Use it. Break it. We don't care.
 
 ---
 
