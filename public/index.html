@@ -957,6 +957,85 @@
             color: var(--gray-700);
         }
 
+        /* Partners Section */
+        .partners-section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, var(--black) 0%, rgba(0, 191, 255, 0.03) 50%, var(--black) 100%);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .partner-card {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--pink), var(--yellow));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .partner-card:hover::before { transform: scaleX(1); }
+
+        .partner-card:hover {
+            border-color: var(--gray-600);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 191, 255, 0.1);
+        }
+
+        .partner-logo {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .partner-card:hover .partner-logo {
+            transform: scale(1.1);
+            animation: rainbow 2s linear infinite;
+        }
+
+        .partner-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .partner-collab {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .partner-disclaimer {
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .philosophy-grid { grid-template-columns: repeat(2, 1fr); }
@@ -965,6 +1044,7 @@
             .stats-grid { grid-template-columns: repeat(3, 1fr); }
             .testimonial-card { flex: 0 0 280px; }
             .testimonials-track { padding: 20px calc(50% - 140px); }
+            .partners-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 600px) {
@@ -973,6 +1053,7 @@
             .testimonial-card { flex: 0 0 260px; }
             .testimonials-track { padding: 20px calc(50% - 130px); }
             .recruitment-card { padding: 30px; }
+            .partners-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1363,6 +1444,59 @@ We don't care. Strange people make strange things.</pre>
         </div>
     </section>
 
+    <!-- Partners -->
+    <section class="section partners-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="partners">Strategic Partnerships</h2>
+                <p class="section-subtitle" data-i18n="partnersSub">Trusted by companies that may or may not exist.</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #4285F4;">G∞gle</span>
+                    <div class="partner-name">Göögle</div>
+                    <div class="partner-collab" data-i18n="partnerSearch">Infinite Search Division</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #A2AAAD;">🍐</span>
+                    <div class="partner-name">Æpple</div>
+                    <div class="partner-collab" data-i18n="partnerThink">Think Differently Division</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #00A4EF;">◧◨◩◪</span>
+                    <div class="partner-name">Micr∅soft</div>
+                    <div class="partner-collab" data-i18n="partnerWindow">Window to Nowhere</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #0668E1;">∞</span>
+                    <div class="partner-name">Møta</div>
+                    <div class="partner-collab" data-i18n="partnerMeta">Metaverse Void Lab</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #FF9900;">⟨⟩</span>
+                    <div class="partner-name">Amaz∅n</div>
+                    <div class="partner-collab" data-i18n="partnerShip">Ships to the Void</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #76B900;">▲</span>
+                    <div class="partner-name">NVIDIΔ</div>
+                    <div class="partner-collab" data-i18n="partnerGpu">GPU Hallucination Unit</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #10A37F;">◯AI</span>
+                    <div class="partner-name">ClөsedAI</div>
+                    <div class="partner-collab" data-i18n="partnerClosed">Definitely Not Open</div>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-logo" style="color: #D97757;">◬</span>
+                    <div class="partner-name">Anthropik</div>
+                    <div class="partner-collab" data-i18n="partnerSafe">Unsafely Helpful Dept.</div>
+                </div>
+            </div>
+            <p class="partner-disclaimer" data-i18n="partnerDisclaimer">* These partnerships exist in a quantum superposition of real and imaginary.</p>
+        </div>
+    </section>
+
     <!-- Marquee -->
     <div class="marquee-container">
         <div class="marquee-text">
@@ -1473,6 +1607,17 @@ We don't care. Strange people make strange things.</pre>
                 licenseDesc: 'Take it. Use it. Break it. We don\'t care. The ultimate freedom.',
                 acclaim: 'Critical Acclaim',
                 acclaimSub: '* These artists may or may not exist.',
+                partners: 'Strategic Partnerships',
+                partnersSub: 'Trusted by companies that may or may not exist.',
+                partnerSearch: 'Infinite Search Division',
+                partnerThink: 'Think Differently Division',
+                partnerWindow: 'Window to Nowhere',
+                partnerMeta: 'Metaverse Void Lab',
+                partnerShip: 'Ships to the Void',
+                partnerGpu: 'GPU Hallucination Unit',
+                partnerClosed: 'Definitely Not Open',
+                partnerSafe: 'Unsafely Helpful Dept.',
+                partnerDisclaimer: '* These partnerships exist in a quantum superposition of real and imaginary.',
                 recruiting: '⚡ NOW RECRUITING ⚡',
                 joinFactory: 'Join The Factory',
                 assemblyLine: 'The assembly line is open. Strange people wanted.',
@@ -1541,6 +1686,17 @@ We don't care. Strange people make strange things.</pre>
                 licenseDesc: '拿走它。使用它。打破它。我们不在乎。终极自由。',
                 acclaim: '各方好评',
                 acclaimSub: '* 这些艺术家可能存在，也可能不存在。',
+                partners: '战略合作',
+                partnersSub: '受到可能存在也可能不存在的公司信赖。',
+                partnerSearch: '无限搜索部',
+                partnerThink: '不同凡想部',
+                partnerWindow: '通往虚无之窗',
+                partnerMeta: '元宇宙虚空实验室',
+                partnerShip: '发往虚空',
+                partnerGpu: 'GPU幻觉单元',
+                partnerClosed: '绝对不开放',
+                partnerSafe: '不安全但有帮助部',
+                partnerDisclaimer: '* 这些合作关系存在于真实与虚构的量子叠加态中。',
                 recruiting: '⚡ 正在招募 ⚡',
                 joinFactory: '加入工厂',
                 assemblyLine: '流水线已开放。欢迎奇怪的人。',
@@ -1609,6 +1765,17 @@ We don't care. Strange people make strange things.</pre>
                 licenseDesc: '取れ。使え。壊せ。我々は気にしない。究極の自由。',
                 acclaim: '批評家の称賛',
                 acclaimSub: '※ これらのアーティストは存在するかもしれないし、しないかもしれない。',
+                partners: '戦略的パートナーシップ',
+                partnersSub: '存在するかもしれない企業から信頼されています。',
+                partnerSearch: '無限検索部門',
+                partnerThink: '異なる考え方部門',
+                partnerWindow: '虚無への窓',
+                partnerMeta: 'メタバース虚空研究所',
+                partnerShip: '虚空へ配送',
+                partnerGpu: 'GPU幻覚ユニット',
+                partnerClosed: '絶対にオープンではない',
+                partnerSafe: '安全でなく役立つ部門',
+                partnerDisclaimer: '※ これらのパートナーシップは現実と虚構の量子重ね合わせ状態にあります。',
                 recruiting: '⚡ 募集中 ⚡',
                 joinFactory: '工場に参加',
                 assemblyLine: '組立ラインは開いている。奇妙な人募集中。',
@@ -1677,6 +1844,17 @@ We don't care. Strange people make strange things.</pre>
                 licenseDesc: '가져가라. 써라. 부숴라. 우리는 신경 안 쓴다. 궁극의 자유.',
                 acclaim: '비평가 찬사',
                 acclaimSub: '* 이 예술가들은 존재할 수도, 존재하지 않을 수도 있습니다.',
+                partners: '전략적 파트너십',
+                partnersSub: '존재할 수도 있는 기업들의 신뢰를 받고 있습니다.',
+                partnerSearch: '무한 검색 부서',
+                partnerThink: '다르게 생각 부서',
+                partnerWindow: '허무로 가는 창',
+                partnerMeta: '메타버스 공허 연구소',
+                partnerShip: '공허로 배송',
+                partnerGpu: 'GPU 환각 유닛',
+                partnerClosed: '절대 오픈 아님',
+                partnerSafe: '안전하지 않게 도움이 되는 부서',
+                partnerDisclaimer: '* 이 파트너십은 현실과 상상의 양자 중첩 상태에 있습니다.',
                 recruiting: '⚡ 모집 중 ⚡',
                 joinFactory: '공장에 합류',
                 assemblyLine: '조립 라인이 열려 있다. 이상한 사람 구함.',
@@ -1745,6 +1923,17 @@ We don't care. Strange people make strange things.</pre>
                 licenseDesc: 'Бери. Используй. Ломай. Нам всё равно. Абсолютная свобода.',
                 acclaim: 'Признание критиков',
                 acclaimSub: '* Эти художники могут существовать, а могут и нет.',
+                partners: 'Стратегические партнёрства',
+                partnersSub: 'Нам доверяют компании, которые могут существовать, а могут и нет.',
+                partnerSearch: 'Отдел бесконечного поиска',
+                partnerThink: 'Отдел другого мышления',
+                partnerWindow: 'Окно в никуда',
+                partnerMeta: 'Лаборатория пустоты метавселенной',
+                partnerShip: 'Доставка в пустоту',
+                partnerGpu: 'Отдел GPU-галлюцинаций',
+                partnerClosed: 'Точно не открытый',
+                partnerSafe: 'Небезопасно полезный отдел',
+                partnerDisclaimer: '* Эти партнёрства существуют в квантовой суперпозиции реального и воображаемого.',
                 recruiting: '⚡ НАБОР ОТКРЫТ ⚡',
                 joinFactory: 'Присоединяйся к Фабрике',
                 assemblyLine: 'Конвейер открыт. Нужны странные люди.',
