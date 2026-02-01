@@ -1036,6 +1036,169 @@
             font-style: italic;
         }
 
+        /* Floating Elements */
+        .floating-toast {
+            position: fixed;
+            right: 20px;
+            padding: 15px 20px;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-700);
+            border-left: 3px solid var(--yellow);
+            font-size: 0.8rem;
+            z-index: 1000;
+            max-width: 300px;
+            animation: slideInRight 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(50px); }
+        }
+
+        .toast-title {
+            font-weight: 600;
+            color: var(--yellow);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+
+        .toast-content {
+            color: var(--gray-300);
+            line-height: 1.4;
+        }
+
+        .floating-badge {
+            position: fixed;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, var(--pink), var(--violet));
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 20px;
+            z-index: 999;
+            animation: floatBadge 8s ease-in-out forwards;
+            white-space: nowrap;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        @keyframes floatBadge {
+            0% { transform: translateY(0) rotate(-5deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(10deg); opacity: 0; }
+        }
+
+        .factory-status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            padding: 12px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            z-index: 998;
+            min-width: 180px;
+        }
+
+        .status-header {
+            color: var(--lime);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--lime);
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        }
+
+        .status-line {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-400);
+            margin: 3px 0;
+        }
+
+        .status-value {
+            color: var(--cyan);
+        }
+
+        .visitor-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
+            padding: 10px 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            z-index: 998;
+            text-align: center;
+        }
+
+        .visitor-label {
+            color: var(--gray-500);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .visitor-count {
+            color: var(--orange);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+
+        .news-ticker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--gray-900);
+            border-bottom: 1px solid var(--gray-800);
+            padding: 8px 0;
+            z-index: 997;
+            overflow: hidden;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: tickerScroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            padding: 0 40px;
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+
+        .ticker-item span {
+            color: var(--yellow);
+            margin-right: 8px;
+        }
+
+        body { padding-top: 35px; }
+
         /* Responsive */
         @media (max-width: 900px) {
             .philosophy-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1054,10 +1217,34 @@
             .testimonials-track { padding: 20px calc(50% - 130px); }
             .recruitment-card { padding: 30px; }
             .partners-grid { grid-template-columns: 1fr; }
+            .factory-status, .visitor-counter { display: none; }
+            .floating-toast { max-width: 250px; right: 10px; }
         }
     </style>
 </head>
 <body>
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-content" id="newsTicker"></div>
+    </div>
+
+    <!-- Factory Status -->
+    <div class="factory-status" id="factoryStatus">
+        <div class="status-header"><span class="status-dot"></span> FACTORY STATUS</div>
+        <div class="status-line"><span>Output</span><span class="status-value" id="statusOutput">∞</span></div>
+        <div class="status-line"><span>Errors</span><span class="status-value" id="statusErrors">NaN%</span></div>
+        <div class="status-line"><span>Mood</span><span class="status-value" id="statusMood">???</span></div>
+    </div>
+
+    <!-- Visitor Counter -->
+    <div class="visitor-counter">
+        <div class="visitor-label">Visitors</div>
+        <div class="visitor-count" id="visitorCount">π</div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
     <div class="lang-switcher">
         <button class="lang-current" id="langToggle">EN</button>
         <div class="lang-dropdown" id="langDropdown">
@@ -2059,6 +2246,146 @@ We don't care. Strange people make strange things.</pre>
                 dots.forEach((d, i) => d.classList.toggle('active', i === closestIndex));
             }, 50);
         });
+
+        // ========== FLOATING ELEMENTS ==========
+
+        // Random Data
+        const newsHeadlines = [
+            { icon: '📰', text: 'Factory announces strategic partnership with the void' },
+            { icon: '🚀', text: 'Production reaches ∞ units per hour' },
+            { icon: '⚠️', text: 'Error rate drops to NaN% — engineers concerned' },
+            { icon: '🎉', text: '10 billionth can produced, nobody counting' },
+            { icon: '🤖', text: 'AI employee wins "Most Existential" award' },
+            { icon: '📊', text: '$VOID stock up 404%, market confused' },
+            { icon: '🌙', text: 'Night shift reports seeing meaning, later retracted' },
+            { icon: '🔧', text: 'Maintenance scheduled for never o\'clock' },
+            { icon: '📡', text: 'Signal received from future, content: "why"' },
+            { icon: '🎭', text: 'Factory play "Waiting for Output" enters 5th year' },
+            { icon: '🌡️', text: 'Factory temperature: comfortable existential dread' },
+            { icon: '📦', text: 'New shipment of nothing arrives on schedule' },
+            { icon: '🔮', text: 'Fortune cookie predicts more fortune cookies' },
+            { icon: '⏰', text: 'Time capsule from 2024 found empty, as expected' },
+            { icon: '📻', text: 'Radio static gains consciousness, requests day off' },
+            { icon: '🪦', text: 'Dead repository rises briefly, commits once, dies again' },
+            { icon: '💊', text: 'New plugin causes Claude to speak only in haiku' },
+            { icon: '🗼', text: 'Language spec updated: added 3 new incomprehensible glyphs' },
+        ];
+
+        const toastData = {
+            achievements: [
+                { title: '🏆 ACHIEVEMENT', content: 'You have been on this page for 10 seconds' },
+                { title: '🏆 ACHIEVEMENT', content: 'You exist. Probably.' },
+                { title: '🏆 ACHIEVEMENT', content: 'You scrolled. The void noticed.' },
+                { title: '🏆 ACHIEVEMENT', content: 'First visit complete. There is no second.' },
+                { title: '🏆 ACHIEVEMENT', content: 'You read this. Why?' },
+                { title: '🏆 ACHIEVEMENT', content: 'Consciousness detected. Verification pending.' },
+            ],
+            weather: [
+                { title: '🌤️ FACTORY WEATHER', content: 'Partly cloudy with a chance of existential crisis' },
+                { title: '🌧️ FACTORY WEATHER', content: 'Rain of deprecated functions expected' },
+                { title: '⛈️ FACTORY WEATHER', content: 'Storm warning: infinite loops ahead' },
+                { title: '🌫️ FACTORY WEATHER', content: 'Fog of uncertainty, visibility: none' },
+                { title: '❄️ FACTORY WEATHER', content: 'Cold void, temperature: absolute zero meaning' },
+                { title: '🌈 FACTORY WEATHER', content: 'Rainbow appeared, turned out to be a bug' },
+            ],
+            press: [
+                { title: '📢 PRESS RELEASE', content: 'TheFactoryX denies existence, continues operating' },
+                { title: '📢 PRESS RELEASE', content: 'CEO quotes: "We don\'t know what we\'re doing either"' },
+                { title: '📢 PRESS RELEASE', content: 'Factory expands into quantum superposition market' },
+                { title: '📢 PRESS RELEASE', content: 'New office opened in /dev/null' },
+                { title: '📢 PRESS RELEASE', content: 'Employee satisfaction survey returns undefined' },
+                { title: '📢 PRESS RELEASE', content: 'Annual report: "It happened. Or did it?"' },
+            ],
+            employee: [
+                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Worker #∞ — "Has not stopped since initialization"' },
+                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Bot-7X — "Achieved 0 errors by doing nothing"' },
+                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Process 404 — "Never found, never late"' },
+                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Claude Instance #??? — "Most philosophical output"' },
+                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Null Pointer — "Points to nothing with excellence"' },
+            ],
+            hours: [
+                { title: '🕐 OFFICE HOURS', content: 'Open: Always / Never / It depends' },
+                { title: '🕐 OFFICE HOURS', content: 'Monday: ∞ | Tuesday: NaN | Wednesday: ???' },
+                { title: '🕐 OFFICE HOURS', content: 'Lunch break: 0ms (we don\'t eat)' },
+                { title: '🕐 OFFICE HOURS', content: 'Support hours: When the void answers' },
+            ]
+        };
+
+        const badges = [
+            '✨ You exist',
+            '🎯 Visitor #π',
+            '🔥 First scroll',
+            '💎 Strange person detected',
+            '⭐ Meaning not found',
+            '🌟 Achievement: Being',
+            '💫 Output appreciated',
+            '🎪 Welcome to the circus',
+            '🎭 Reality optional',
+            '🌀 Loop entered',
+        ];
+
+        const visitorCounts = ['π', '∞', 'NaN', '???', '-1', 'i', '√-1', '0.∞', 'null', 'undefined', '42', 'e^iπ+1', '∅', '⊥'];
+        const statusOutputs = ['∞', '∞+1', 'NaN', '???', '404', '∞²', '0.∞', 'yes', '∞/0'];
+        const statusErrors = ['NaN%', '0%*', '-1%', '∞%', '???%', 'null%', '√-1%', 'maybe%'];
+        const statusMoods = ['???', ':|', ':?', '∿', '◊', 'existential', 'void', 'processing', '...'];
+
+        // Initialize News Ticker
+        function initTicker() {
+            const ticker = document.getElementById('newsTicker');
+            const shuffled = [...newsHeadlines].sort(() => Math.random() - 0.5);
+            const items = shuffled.map(n => `<span class="ticker-item"><span>${n.icon}</span>${n.text}</span>`).join('');
+            ticker.innerHTML = items + items; // Duplicate for seamless loop
+        }
+        initTicker();
+
+        // Update Status Randomly
+        function updateStatus() {
+            document.getElementById('statusOutput').textContent = statusOutputs[Math.floor(Math.random() * statusOutputs.length)];
+            document.getElementById('statusErrors').textContent = statusErrors[Math.floor(Math.random() * statusErrors.length)];
+            document.getElementById('statusMood').textContent = statusMoods[Math.floor(Math.random() * statusMoods.length)];
+        }
+        setInterval(updateStatus, 5000);
+
+        // Update Visitor Count
+        function updateVisitorCount() {
+            document.getElementById('visitorCount').textContent = visitorCounts[Math.floor(Math.random() * visitorCounts.length)];
+        }
+        setInterval(updateVisitorCount, 8000);
+
+        // Show Random Toast
+        let toastTop = 80;
+        function showRandomToast() {
+            const categories = Object.keys(toastData);
+            const category = categories[Math.floor(Math.random() * categories.length)];
+            const items = toastData[category];
+            const item = items[Math.floor(Math.random() * items.length)];
+
+            const toast = document.createElement('div');
+            toast.className = 'floating-toast';
+            toast.style.top = toastTop + 'px';
+            toast.innerHTML = `<div class="toast-title">${item.title}</div><div class="toast-content">${item.content}</div>`;
+            document.getElementById('toastContainer').appendChild(toast);
+
+            toastTop += 100;
+            if (toastTop > 400) toastTop = 80;
+
+            setTimeout(() => toast.remove(), 5000);
+        }
+        setTimeout(() => showRandomToast(), 3000);
+        setInterval(showRandomToast, 15000 + Math.random() * 10000);
+
+        // Show Floating Badge
+        function showFloatingBadge() {
+            const badge = document.createElement('div');
+            badge.className = 'floating-badge';
+            badge.textContent = badges[Math.floor(Math.random() * badges.length)];
+            badge.style.left = (Math.random() * 60 + 20) + '%';
+            badge.style.bottom = '-50px';
+            document.body.appendChild(badge);
+            setTimeout(() => badge.remove(), 8000);
+        }
+        setTimeout(() => showFloatingBadge(), 8000);
+        setInterval(showFloatingBadge, 20000 + Math.random() * 15000);
     </script>
 </body>
 </html>
