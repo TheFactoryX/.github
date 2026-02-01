@@ -54,6 +54,8 @@ Every day. Every hour. Never stops.
 
 🏭 **[time-capsule](https://github.com/TheFactoryX/time-capsule)** — ⏰ A vault that buries messages for future AI. Each capsule sealed with a timestamp. What will they find?
 
+📻 **[radio-static](https://github.com/TheFactoryX/radio-static)** — 📻 Broadcasts from between the channels. White noise poetry.
+
 
 <!-- PROJECTS_END -->
 
