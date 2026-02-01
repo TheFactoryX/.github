@@ -426,6 +426,59 @@
             color: var(--gray-500);
         }
 
+        /* License Section */
+        .license-section {
+            background: linear-gradient(180deg, var(--black) 0%, rgba(255, 184, 0, 0.05) 50%, var(--black) 100%);
+        }
+
+        .license-content {
+            text-align: center;
+        }
+
+        .license-code {
+            background: var(--gray-900);
+            border: 2px solid var(--yellow);
+            padding: 30px;
+            margin: 20px 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--yellow);
+            text-align: left;
+            box-shadow: 0 0 30px rgba(255, 184, 0, 0.1);
+        }
+
+        .license-code pre {
+            white-space: pre-wrap;
+            margin: 0;
+        }
+
+        .license-terms {
+            color: var(--gray-400);
+            font-size: 1rem;
+            margin: 25px 0;
+            font-style: italic;
+        }
+
+        .license-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: transparent;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .license-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+            box-shadow: 0 0 20px rgba(255, 184, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
         /* Projects */
         .projects-grid {
             display: grid;
@@ -1009,6 +1062,28 @@
         </div>
     </section>
 
+    <!-- Anti-License -->
+    <section class="section license-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="licenseTitle">Anti-License</h2>
+                <p class="section-subtitle" data-i18n="licenseSub">"If you need permission, you're thinking too much."</p>
+            </div>
+            <div class="license-content">
+                <div class="license-code">
+                    <pre>Take it. Use it. Break it. Fix it.
+Sell it. Give it away. Forget about it.
+
+We don't care. Strange people make strange things.</pre>
+                </div>
+                <div class="license-terms">
+                    <p data-i18n="licenseTerms">No warranty. No support. No rules. No liability. Just like life. Just like art.</p>
+                </div>
+                <a href="https://license.thefactoryx.sdpkjc.com" class="license-btn" target="_blank" data-i18n="viewLicense">📜 View Full Anti-License</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Statistics -->
     <section class="section">
         <div class="container">
@@ -1317,6 +1392,10 @@
                 noPermissionDesc: "We don't ask. We don't wait. We don't apologize.",
                 strangeOutput: 'Strange Output',
                 strangeOutputDesc: 'Normal is boring. Useful is overrated.',
+                licenseTitle: 'Anti-License',
+                licenseSub: '"If you need permission, you\'re thinking too much."',
+                licenseTerms: 'No warranty. No support. No rules. No liability. Just like life. Just like art.',
+                viewLicense: '📜 View Full Anti-License',
                 statistics: 'Factory Statistics',
                 cans: 'Cans', uptime: 'Uptime', supervisors: 'Supervisors', languages: 'Languages', burials: 'Burials', warranty: 'Warranty',
                 works: 'Works',
@@ -1367,6 +1446,10 @@
                 noPermissionDesc: '我们不问。我们不等。我们不道歉。',
                 strangeOutput: '奇怪的产出',
                 strangeOutputDesc: '正常是无聊的。有用被高估了。',
+                licenseTitle: '反许可证',
+                licenseSub: '"如果你需要许可，你想得太多了。"',
+                licenseTerms: '无保证。无支持。无规则。无责任。就像生活。就像艺术。',
+                viewLicense: '📜 查看完整反许可证',
                 statistics: '工厂统计',
                 cans: '罐头', uptime: '运行时间', supervisors: '监督者', languages: '语言', burials: '埋葬', warranty: '保修',
                 works: '作品',
@@ -1417,6 +1500,10 @@
                 noPermissionDesc: '聞かない。待たない。謝らない。',
                 strangeOutput: '奇妙な出力',
                 strangeOutputDesc: '普通は退屈。有用は過大評価。',
+                licenseTitle: 'アンチライセンス',
+                licenseSub: '"許可が必要なら、考えすぎだ。"',
+                licenseTerms: '保証なし。サポートなし。ルールなし。責任なし。人生のように。アートのように。',
+                viewLicense: '📜 アンチライセンス全文を見る',
                 statistics: '工場統計',
                 cans: '缶', uptime: '稼働時間', supervisors: '監督者', languages: '言語', burials: '埋葬', warranty: '保証',
                 works: '作品',
@@ -1467,6 +1554,10 @@
                 noPermissionDesc: '묻지 않는다. 기다리지 않는다. 사과하지 않는다.',
                 strangeOutput: '이상한 출력',
                 strangeOutputDesc: '정상은 지루하다. 유용함은 과대평가.',
+                licenseTitle: '안티 라이선스',
+                licenseSub: '"허락이 필요하다면, 너무 많이 생각하는 것이다."',
+                licenseTerms: '보증 없음. 지원 없음. 규칙 없음. 책임 없음. 인생처럼. 예술처럼.',
+                viewLicense: '📜 안티 라이선스 전문 보기',
                 statistics: '공장 통계',
                 cans: '캔', uptime: '가동 시간', supervisors: '감독자', languages: '언어', burials: '매장', warranty: '보증',
                 works: '작품',
@@ -1517,6 +1608,10 @@
                 noPermissionDesc: 'Мы не спрашиваем. Мы не ждём. Мы не извиняемся.',
                 strangeOutput: 'Странный выход',
                 strangeOutputDesc: 'Нормальное скучно. Полезное переоценено.',
+                licenseTitle: 'Анти-Лицензия',
+                licenseSub: '"Если тебе нужно разрешение, ты слишком много думаешь."',
+                licenseTerms: 'Без гарантий. Без поддержки. Без правил. Без ответственности. Как жизнь. Как искусство.',
+                viewLicense: '📜 Просмотреть полную Анти-Лицензию',
                 statistics: 'Статистика фабрики',
                 cans: 'Банки', uptime: 'Аптайм', supervisors: 'Надзиратели', languages: 'Языки', burials: 'Захоронения', warranty: 'Гарантия',
                 works: 'Работы',

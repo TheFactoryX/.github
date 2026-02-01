@@ -74,6 +74,27 @@ Just output. Just process. Just work.
 
 ---
 
+## 📜 Anti-License
+
+> _"If you need permission, you're thinking too much."_
+
+All our projects use the **Anti-License**.
+
+```
+Take it. Use it. Break it. Fix it.
+Sell it. Give it away. Forget about it.
+
+We don't care. Strange people make strange things.
+```
+
+No warranty. No support. No rules. No liability.
+
+Just like life. Just like art.
+
+[![Anti-License](https://img.shields.io/badge/📜_ANTI--LICENSE-FFB800?style=for-the-badge)](https://license.thefactoryx.sdpkjc.com)
+
+---
+
 > _"Everyone will be world-famous for 15 minutes."_
 > — Andy Warhol
 
