@@ -1,5 +1,11 @@
 # ⚙️ .github
 
+[![ANTI-LICENSE](https://img.shields.io/badge/ANTI--LICENSE-STEAL_THIS-000000?style=for-the-badge&labelColor=dc143c)](LICENSE)
+[![Machine Status](https://img.shields.io/github/actions/workflow/status/TheFactoryX/.github/update-projects.yml?style=flat-square&label=control)](https://github.com/TheFactoryX/.github/actions)
+[![GitHub Stars](https://img.shields.io/github/stars/TheFactoryX/.github?style=flat-square&logo=github)](https://github.com/TheFactoryX/.github/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/TheFactoryX/.github?style=flat-square)](https://github.com/TheFactoryX/.github/commits)
+[![TheFactoryX](https://img.shields.io/badge/TheFactoryX-black?style=flat-square&logo=github)](https://github.com/TheFactoryX)
+
 **The Control Room**
 
 ---
@@ -25,9 +31,22 @@ Automatic. Silent. Continuous.
 | Control Room | Code |
 |--------------|------|
 | Script | update-projects.yml |
+| Metrics | org-metrics.yml |
 | Display | profile/README.md |
-| Schedule | Daily |
+| Schedule | Daily / Every 6h |
 | Output | Organization profile |
+
+---
+
+## Organization Metrics
+
+![TheFactoryX Metrics](profile/metrics.svg)
+
+| Metric | Value |
+|--------|-------|
+| ![Followers](https://img.shields.io/github/followers/TheFactoryX?style=flat-square&label=followers&logo=github) | Organization followers |
+| ![Repos](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/orgs/TheFactoryX&query=public_repos&style=flat-square&label=repos&color=blue) | Total repositories |
+| ![Stars](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/orgs/TheFactoryX&query=public_repos&style=flat-square&label=total%20stars&color=yellow) | Across all machines |
 
 ---
 
@@ -65,6 +84,12 @@ elif [[ "$line" == *"your-project"* ]]; then
 ```
 
 The control room will find it. The display will update.
+
+---
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=TheFactoryX/.github&type=Date)](https://star-history.com/#TheFactoryX/.github&Date)
 
 ---
 
