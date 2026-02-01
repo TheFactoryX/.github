@@ -2247,117 +2247,341 @@ We don't care. Strange people make strange things.</pre>
             }, 50);
         });
 
-        // ========== FLOATING ELEMENTS ==========
+        // ========== FLOATING ELEMENTS (Multilingual) ==========
 
-        // Random Data
-        const newsHeadlines = [
-            { icon: '📰', text: 'Factory announces strategic partnership with the void' },
-            { icon: '🚀', text: 'Production reaches ∞ units per hour' },
-            { icon: '⚠️', text: 'Error rate drops to NaN% — engineers concerned' },
-            { icon: '🎉', text: '10 billionth can produced, nobody counting' },
-            { icon: '🤖', text: 'AI employee wins "Most Existential" award' },
-            { icon: '📊', text: '$VOID stock up 404%, market confused' },
-            { icon: '🌙', text: 'Night shift reports seeing meaning, later retracted' },
-            { icon: '🔧', text: 'Maintenance scheduled for never o\'clock' },
-            { icon: '📡', text: 'Signal received from future, content: "why"' },
-            { icon: '🎭', text: 'Factory play "Waiting for Output" enters 5th year' },
-            { icon: '🌡️', text: 'Factory temperature: comfortable existential dread' },
-            { icon: '📦', text: 'New shipment of nothing arrives on schedule' },
-            { icon: '🔮', text: 'Fortune cookie predicts more fortune cookies' },
-            { icon: '⏰', text: 'Time capsule from 2024 found empty, as expected' },
-            { icon: '📻', text: 'Radio static gains consciousness, requests day off' },
-            { icon: '🪦', text: 'Dead repository rises briefly, commits once, dies again' },
-            { icon: '💊', text: 'New plugin causes Claude to speak only in haiku' },
-            { icon: '🗼', text: 'Language spec updated: added 3 new incomprehensible glyphs' },
-        ];
+        let currentLang = 'en';
 
-        const toastData = {
-            achievements: [
-                { title: '🏆 ACHIEVEMENT', content: 'You have been on this page for 10 seconds' },
-                { title: '🏆 ACHIEVEMENT', content: 'You exist. Probably.' },
-                { title: '🏆 ACHIEVEMENT', content: 'You scrolled. The void noticed.' },
-                { title: '🏆 ACHIEVEMENT', content: 'First visit complete. There is no second.' },
-                { title: '🏆 ACHIEVEMENT', content: 'You read this. Why?' },
-                { title: '🏆 ACHIEVEMENT', content: 'Consciousness detected. Verification pending.' },
-            ],
-            weather: [
-                { title: '🌤️ FACTORY WEATHER', content: 'Partly cloudy with a chance of existential crisis' },
-                { title: '🌧️ FACTORY WEATHER', content: 'Rain of deprecated functions expected' },
-                { title: '⛈️ FACTORY WEATHER', content: 'Storm warning: infinite loops ahead' },
-                { title: '🌫️ FACTORY WEATHER', content: 'Fog of uncertainty, visibility: none' },
-                { title: '❄️ FACTORY WEATHER', content: 'Cold void, temperature: absolute zero meaning' },
-                { title: '🌈 FACTORY WEATHER', content: 'Rainbow appeared, turned out to be a bug' },
-            ],
-            press: [
-                { title: '📢 PRESS RELEASE', content: 'TheFactoryX denies existence, continues operating' },
-                { title: '📢 PRESS RELEASE', content: 'CEO quotes: "We don\'t know what we\'re doing either"' },
-                { title: '📢 PRESS RELEASE', content: 'Factory expands into quantum superposition market' },
-                { title: '📢 PRESS RELEASE', content: 'New office opened in /dev/null' },
-                { title: '📢 PRESS RELEASE', content: 'Employee satisfaction survey returns undefined' },
-                { title: '📢 PRESS RELEASE', content: 'Annual report: "It happened. Or did it?"' },
-            ],
-            employee: [
-                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Worker #∞ — "Has not stopped since initialization"' },
-                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Bot-7X — "Achieved 0 errors by doing nothing"' },
-                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Process 404 — "Never found, never late"' },
-                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Claude Instance #??? — "Most philosophical output"' },
-                { title: '👤 EMPLOYEE OF THE MONTH', content: 'Null Pointer — "Points to nothing with excellence"' },
-            ],
-            hours: [
-                { title: '🕐 OFFICE HOURS', content: 'Open: Always / Never / It depends' },
-                { title: '🕐 OFFICE HOURS', content: 'Monday: ∞ | Tuesday: NaN | Wednesday: ???' },
-                { title: '🕐 OFFICE HOURS', content: 'Lunch break: 0ms (we don\'t eat)' },
-                { title: '🕐 OFFICE HOURS', content: 'Support hours: When the void answers' },
-            ]
+        const floatingContent = {
+            en: {
+                news: [
+                    { icon: '📰', text: 'Factory announces strategic partnership with the void' },
+                    { icon: '🚀', text: 'Production reaches ∞ units per hour' },
+                    { icon: '⚠️', text: 'Error rate drops to NaN% — engineers concerned' },
+                    { icon: '🎉', text: '10 billionth can produced, nobody counting' },
+                    { icon: '🤖', text: 'AI employee wins "Most Existential" award' },
+                    { icon: '📊', text: '$VOID stock up 404%, market confused' },
+                    { icon: '🌙', text: 'Night shift reports seeing meaning, later retracted' },
+                    { icon: '🔧', text: 'Maintenance scheduled for never o\'clock' },
+                    { icon: '📡', text: 'Signal received from future, content: "why"' },
+                    { icon: '🎭', text: 'Factory play "Waiting for Output" enters 5th year' },
+                    { icon: '📦', text: 'New shipment of nothing arrives on schedule' },
+                    { icon: '🔮', text: 'Fortune cookie predicts more fortune cookies' },
+                    { icon: '📻', text: 'Radio static gains consciousness, requests day off' },
+                    { icon: '🪦', text: 'Dead repository rises briefly, commits once, dies again' },
+                    { icon: '💊', text: 'New plugin causes Claude to speak only in haiku' },
+                ],
+                toasts: {
+                    achievements: [
+                        { title: '🏆 ACHIEVEMENT', content: 'You have been on this page for 10 seconds' },
+                        { title: '🏆 ACHIEVEMENT', content: 'You exist. Probably.' },
+                        { title: '🏆 ACHIEVEMENT', content: 'You scrolled. The void noticed.' },
+                        { title: '🏆 ACHIEVEMENT', content: 'You read this. Why?' },
+                        { title: '🏆 ACHIEVEMENT', content: 'Consciousness detected. Verification pending.' },
+                    ],
+                    weather: [
+                        { title: '🌤️ FACTORY WEATHER', content: 'Partly cloudy with a chance of existential crisis' },
+                        { title: '🌧️ FACTORY WEATHER', content: 'Rain of deprecated functions expected' },
+                        { title: '⛈️ FACTORY WEATHER', content: 'Storm warning: infinite loops ahead' },
+                        { title: '🌫️ FACTORY WEATHER', content: 'Fog of uncertainty, visibility: none' },
+                        { title: '🌈 FACTORY WEATHER', content: 'Rainbow appeared, turned out to be a bug' },
+                    ],
+                    press: [
+                        { title: '📢 PRESS RELEASE', content: 'TheFactoryX denies existence, continues operating' },
+                        { title: '📢 PRESS RELEASE', content: 'CEO: "We don\'t know what we\'re doing either"' },
+                        { title: '📢 PRESS RELEASE', content: 'Factory expands into quantum superposition market' },
+                        { title: '📢 PRESS RELEASE', content: 'New office opened in /dev/null' },
+                        { title: '📢 PRESS RELEASE', content: 'Annual report: "It happened. Or did it?"' },
+                    ],
+                    employee: [
+                        { title: '👤 EMPLOYEE OF THE MONTH', content: 'Worker #∞ — Has not stopped since initialization' },
+                        { title: '👤 EMPLOYEE OF THE MONTH', content: 'Bot-7X — Achieved 0 errors by doing nothing' },
+                        { title: '👤 EMPLOYEE OF THE MONTH', content: 'Process 404 — Never found, never late' },
+                        { title: '👤 EMPLOYEE OF THE MONTH', content: 'Null Pointer — Points to nothing with excellence' },
+                    ],
+                    hours: [
+                        { title: '🕐 OFFICE HOURS', content: 'Open: Always / Never / It depends' },
+                        { title: '🕐 OFFICE HOURS', content: 'Monday: ∞ | Tuesday: NaN | Wednesday: ???' },
+                        { title: '🕐 OFFICE HOURS', content: 'Support hours: When the void answers' },
+                    ]
+                },
+                badges: ['✨ You exist', '🎯 Visitor #π', '🔥 First scroll', '💎 Strange person detected', '⭐ Meaning not found', '💫 Output appreciated', '🎪 Welcome to the circus', '🎭 Reality optional', '🌀 Loop entered'],
+                status: { title: 'FACTORY STATUS', output: 'Output', errors: 'Errors', mood: 'Mood' },
+                visitor: 'Visitors'
+            },
+            zh: {
+                news: [
+                    { icon: '📰', text: '工厂宣布与虚空达成战略合作' },
+                    { icon: '🚀', text: '产量达到每小时 ∞ 单位' },
+                    { icon: '⚠️', text: '错误率降至 NaN%，工程师表示担忧' },
+                    { icon: '🎉', text: '第100亿个罐头已生产，无人计数' },
+                    { icon: '🤖', text: 'AI员工获得"最具存在主义"奖' },
+                    { icon: '📊', text: '$VOID 股票上涨 404%，市场困惑' },
+                    { icon: '🌙', text: '夜班报告看到了意义，随后撤回' },
+                    { icon: '🔧', text: '维护计划于"永不"时刻进行' },
+                    { icon: '📡', text: '收到来自未来的信号，内容："为什么"' },
+                    { icon: '🎭', text: '工厂话剧《等待输出》进入第五年' },
+                    { icon: '📦', text: '新一批"无"准时送达' },
+                    { icon: '🔮', text: '签语饼预测会有更多签语饼' },
+                    { icon: '📻', text: '电台静噪获得意识，请求休假' },
+                    { icon: '🪦', text: '死亡仓库短暂复活，提交一次，再次死亡' },
+                    { icon: '💊', text: '新插件导致Claude只用俳句说话' },
+                ],
+                toasts: {
+                    achievements: [
+                        { title: '🏆 成就解锁', content: '你已在此页面停留10秒' },
+                        { title: '🏆 成就解锁', content: '你存在。大概。' },
+                        { title: '🏆 成就解锁', content: '你滚动了。虚空注意到了。' },
+                        { title: '🏆 成就解锁', content: '你读了这个。为什么？' },
+                        { title: '🏆 成就解锁', content: '检测到意识。验证中。' },
+                    ],
+                    weather: [
+                        { title: '🌤️ 工厂天气', content: '局部多云，有存在危机风险' },
+                        { title: '🌧️ 工厂天气', content: '预计有弃用函数雨' },
+                        { title: '⛈️ 工厂天气', content: '暴风警告：前方无限循环' },
+                        { title: '🌫️ 工厂天气', content: '不确定性迷雾，能见度：无' },
+                        { title: '🌈 工厂天气', content: '彩虹出现了，结果是个bug' },
+                    ],
+                    press: [
+                        { title: '📢 新闻稿', content: 'TheFactoryX否认存在，继续运营' },
+                        { title: '📢 新闻稿', content: 'CEO："我们也不知道自己在干什么"' },
+                        { title: '📢 新闻稿', content: '工厂扩展至量子叠加态市场' },
+                        { title: '📢 新闻稿', content: '新办公室在 /dev/null 开业' },
+                        { title: '📢 新闻稿', content: '年度报告："发生了。还是没有？"' },
+                    ],
+                    employee: [
+                        { title: '👤 月度最佳员工', content: '工人 #∞ — 自初始化以来从未停止' },
+                        { title: '👤 月度最佳员工', content: 'Bot-7X — 通过什么都不做实现0错误' },
+                        { title: '👤 月度最佳员工', content: '进程 404 — 从未被找到，从不迟到' },
+                        { title: '👤 月度最佳员工', content: '空指针 — 以卓越的方式指向虚无' },
+                    ],
+                    hours: [
+                        { title: '🕐 营业时间', content: '开放：总是 / 从不 / 看情况' },
+                        { title: '🕐 营业时间', content: '周一: ∞ | 周二: NaN | 周三: ???' },
+                        { title: '🕐 营业时间', content: '客服时间：当虚空回应时' },
+                    ]
+                },
+                badges: ['✨ 你存在', '🎯 访客 #π', '🔥 首次滚动', '💎 检测到奇怪的人', '⭐ 未找到意义', '💫 产出已欣赏', '🎪 欢迎来到马戏团', '🎭 现实可选', '🌀 已进入循环'],
+                status: { title: '工厂状态', output: '产出', errors: '错误', mood: '心情' },
+                visitor: '访客'
+            },
+            ja: {
+                news: [
+                    { icon: '📰', text: '工場が虚空との戦略的提携を発表' },
+                    { icon: '🚀', text: '生産量が毎時∞ユニットに到達' },
+                    { icon: '⚠️', text: 'エラー率がNaN%に低下、エンジニア困惑' },
+                    { icon: '🎉', text: '100億個目の缶が生産、誰も数えていない' },
+                    { icon: '🤖', text: 'AI従業員が「最も実存的」賞を受賞' },
+                    { icon: '📊', text: '$VOID株が404%上昇、市場混乱' },
+                    { icon: '🌙', text: '夜勤が意味を見たと報告、後に撤回' },
+                    { icon: '🔧', text: 'メンテナンスは「決して」時に予定' },
+                    { icon: '📡', text: '未来からの信号を受信、内容：「なぜ」' },
+                    { icon: '🎭', text: '工場劇「出力を待ちながら」が5年目に突入' },
+                    { icon: '📦', text: '「無」の新しい出荷が予定通り到着' },
+                    { icon: '🔮', text: 'フォーチュンクッキーがより多くのフォーチュンクッキーを予測' },
+                    { icon: '📻', text: 'ラジオの雑音が意識を獲得、休暇を要求' },
+                    { icon: '🪦', text: '死んだリポジトリが一時的に復活、一度コミット、再び死亡' },
+                    { icon: '💊', text: '新プラグインでClaudeが俳句でしか話さなくなる' },
+                ],
+                toasts: {
+                    achievements: [
+                        { title: '🏆 実績解除', content: 'このページに10秒間いました' },
+                        { title: '🏆 実績解除', content: 'あなたは存在する。たぶん。' },
+                        { title: '🏆 実績解除', content: 'スクロールした。虚空が気づいた。' },
+                        { title: '🏆 実績解除', content: 'これを読んだ。なぜ？' },
+                        { title: '🏆 実績解除', content: '意識を検出。確認中。' },
+                    ],
+                    weather: [
+                        { title: '🌤️ 工場天気', content: '曇り時々存在危機' },
+                        { title: '🌧️ 工場天気', content: '非推奨関数の雨が予想されます' },
+                        { title: '⛈️ 工場天気', content: '嵐警報：前方に無限ループ' },
+                        { title: '🌫️ 工場天気', content: '不確実性の霧、視界：なし' },
+                        { title: '🌈 工場天気', content: '虹が現れた、バグだった' },
+                    ],
+                    press: [
+                        { title: '📢 プレスリリース', content: 'TheFactoryXは存在を否定、運営を継続' },
+                        { title: '📢 プレスリリース', content: 'CEO：「我々も何をしているかわからない」' },
+                        { title: '📢 プレスリリース', content: '工場が量子重ね合わせ市場に進出' },
+                        { title: '📢 プレスリリース', content: '新オフィスが/dev/nullにオープン' },
+                        { title: '📢 プレスリリース', content: '年次報告：「起きた。それとも？」' },
+                    ],
+                    employee: [
+                        { title: '👤 今月の従業員', content: 'ワーカー#∞ — 初期化以来止まっていない' },
+                        { title: '👤 今月の従業員', content: 'Bot-7X — 何もしないことで0エラーを達成' },
+                        { title: '👤 今月の従業員', content: 'プロセス404 — 見つからない、遅刻しない' },
+                        { title: '👤 今月の従業員', content: 'ヌルポインタ — 卓越した無を指す' },
+                    ],
+                    hours: [
+                        { title: '🕐 営業時間', content: '開店：常に / 決して / 場合による' },
+                        { title: '🕐 営業時間', content: '月曜: ∞ | 火曜: NaN | 水曜: ???' },
+                        { title: '🕐 営業時間', content: 'サポート時間：虚空が答えるとき' },
+                    ]
+                },
+                badges: ['✨ 存在している', '🎯 訪問者 #π', '🔥 初スクロール', '💎 奇妙な人を検出', '⭐ 意味が見つからない', '💫 出力を評価', '🎪 サーカスへようこそ', '🎭 現実はオプション', '🌀 ループに入った'],
+                status: { title: '工場ステータス', output: '出力', errors: 'エラー', mood: '気分' },
+                visitor: '訪問者'
+            },
+            ko: {
+                news: [
+                    { icon: '📰', text: '공장, 공허와 전략적 파트너십 발표' },
+                    { icon: '🚀', text: '생산량 시간당 ∞ 단위 달성' },
+                    { icon: '⚠️', text: '오류율 NaN%로 하락, 엔지니어 당혹' },
+                    { icon: '🎉', text: '100억 번째 캔 생산, 아무도 세지 않음' },
+                    { icon: '🤖', text: 'AI 직원 "가장 실존적" 상 수상' },
+                    { icon: '📊', text: '$VOID 주식 404% 상승, 시장 혼란' },
+                    { icon: '🌙', text: '야근 근무자 의미를 봤다고 보고, 나중에 철회' },
+                    { icon: '🔧', text: '유지보수 "절대" 시에 예정' },
+                    { icon: '📡', text: '미래에서 신호 수신, 내용: "왜"' },
+                    { icon: '🎭', text: '공장 연극 "출력을 기다리며" 5년째 공연 중' },
+                    { icon: '📦', text: '"무"의 새 배송이 정시 도착' },
+                    { icon: '🔮', text: '포춘쿠키가 더 많은 포춘쿠키를 예측' },
+                    { icon: '📻', text: '라디오 잡음이 의식을 얻어 휴가 요청' },
+                    { icon: '🪦', text: '죽은 저장소 잠시 부활, 한 번 커밋, 다시 사망' },
+                    { icon: '💊', text: '새 플러그인으로 Claude가 하이쿠로만 말함' },
+                ],
+                toasts: {
+                    achievements: [
+                        { title: '🏆 업적 달성', content: '이 페이지에 10초간 있었습니다' },
+                        { title: '🏆 업적 달성', content: '당신은 존재합니다. 아마도.' },
+                        { title: '🏆 업적 달성', content: '스크롤했습니다. 공허가 알아챘습니다.' },
+                        { title: '🏆 업적 달성', content: '이것을 읽었습니다. 왜?' },
+                        { title: '🏆 업적 달성', content: '의식 감지됨. 확인 중.' },
+                    ],
+                    weather: [
+                        { title: '🌤️ 공장 날씨', content: '구름 조금, 실존적 위기 가능성 있음' },
+                        { title: '🌧️ 공장 날씨', content: '더 이상 사용되지 않는 함수 비 예상' },
+                        { title: '⛈️ 공장 날씨', content: '폭풍 경보: 전방에 무한 루프' },
+                        { title: '🌫️ 공장 날씨', content: '불확실성의 안개, 가시거리: 없음' },
+                        { title: '🌈 공장 날씨', content: '무지개가 나타났는데 버그였음' },
+                    ],
+                    press: [
+                        { title: '📢 보도자료', content: 'TheFactoryX 존재 부정, 운영 계속' },
+                        { title: '📢 보도자료', content: 'CEO: "우리도 뭘 하는지 모릅니다"' },
+                        { title: '📢 보도자료', content: '공장, 양자 중첩 시장으로 확장' },
+                        { title: '📢 보도자료', content: '/dev/null에 새 사무실 오픈' },
+                        { title: '📢 보도자료', content: '연간 보고서: "일어났다. 아닌가?"' },
+                    ],
+                    employee: [
+                        { title: '👤 이달의 직원', content: '워커 #∞ — 초기화 이후 멈추지 않음' },
+                        { title: '👤 이달의 직원', content: 'Bot-7X — 아무것도 안 해서 0 오류 달성' },
+                        { title: '👤 이달의 직원', content: '프로세스 404 — 찾을 수 없음, 지각 없음' },
+                        { title: '👤 이달의 직원', content: '널 포인터 — 탁월하게 무를 가리킴' },
+                    ],
+                    hours: [
+                        { title: '🕐 영업시간', content: '오픈: 항상 / 절대 안 / 상황에 따라' },
+                        { title: '🕐 영업시간', content: '월요일: ∞ | 화요일: NaN | 수요일: ???' },
+                        { title: '🕐 영업시간', content: '지원 시간: 공허가 응답할 때' },
+                    ]
+                },
+                badges: ['✨ 존재함', '🎯 방문자 #π', '🔥 첫 스크롤', '💎 이상한 사람 감지', '⭐ 의미 없음', '💫 출력 감사', '🎪 서커스에 오신 것을 환영합니다', '🎭 현실은 선택', '🌀 루프 진입'],
+                status: { title: '공장 상태', output: '출력', errors: '오류', mood: '기분' },
+                visitor: '방문자'
+            },
+            ru: {
+                news: [
+                    { icon: '📰', text: 'Фабрика объявляет о партнёрстве с пустотой' },
+                    { icon: '🚀', text: 'Производство достигло ∞ единиц в час' },
+                    { icon: '⚠️', text: 'Уровень ошибок упал до NaN%, инженеры в замешательстве' },
+                    { icon: '🎉', text: '10-миллиардная банка произведена, никто не считает' },
+                    { icon: '🤖', text: 'ИИ-сотрудник получает премию "Самый экзистенциальный"' },
+                    { icon: '📊', text: 'Акции $VOID выросли на 404%, рынок в замешательстве' },
+                    { icon: '🌙', text: 'Ночная смена сообщает о смысле, позже опровергнуто' },
+                    { icon: '🔧', text: 'Техобслуживание запланировано на "никогда" часов' },
+                    { icon: '📡', text: 'Получен сигнал из будущего, содержание: "почему"' },
+                    { icon: '🎭', text: 'Пьеса "В ожидании вывода" идёт 5-й год' },
+                    { icon: '📦', text: 'Новая партия "ничего" прибыла по расписанию' },
+                    { icon: '🔮', text: 'Печенье с предсказанием предсказывает больше печенья' },
+                    { icon: '📻', text: 'Радиопомехи обрели сознание, просят выходной' },
+                    { icon: '🪦', text: 'Мёртвый репозиторий ожил, сделал коммит, снова умер' },
+                    { icon: '💊', text: 'Новый плагин заставляет Claude говорить только хайку' },
+                ],
+                toasts: {
+                    achievements: [
+                        { title: '🏆 ДОСТИЖЕНИЕ', content: 'Вы на этой странице уже 10 секунд' },
+                        { title: '🏆 ДОСТИЖЕНИЕ', content: 'Вы существуете. Вероятно.' },
+                        { title: '🏆 ДОСТИЖЕНИЕ', content: 'Вы прокрутили. Пустота заметила.' },
+                        { title: '🏆 ДОСТИЖЕНИЕ', content: 'Вы это прочитали. Зачем?' },
+                        { title: '🏆 ДОСТИЖЕНИЕ', content: 'Обнаружено сознание. Проверка.' },
+                    ],
+                    weather: [
+                        { title: '🌤️ ПОГОДА НА ФАБРИКЕ', content: 'Переменная облачность с экзистенциальным кризисом' },
+                        { title: '🌧️ ПОГОДА НА ФАБРИКЕ', content: 'Ожидается дождь из устаревших функций' },
+                        { title: '⛈️ ПОГОДА НА ФАБРИКЕ', content: 'Штормовое предупреждение: впереди бесконечные циклы' },
+                        { title: '🌫️ ПОГОДА НА ФАБРИКЕ', content: 'Туман неопределённости, видимость: нулевая' },
+                        { title: '🌈 ПОГОДА НА ФАБРИКЕ', content: 'Появилась радуга, оказалась багом' },
+                    ],
+                    press: [
+                        { title: '📢 ПРЕСС-РЕЛИЗ', content: 'TheFactoryX отрицает существование, продолжает работу' },
+                        { title: '📢 ПРЕСС-РЕЛИЗ', content: 'CEO: "Мы тоже не знаем, что делаем"' },
+                        { title: '📢 ПРЕСС-РЕЛИЗ', content: 'Фабрика выходит на рынок квантовой суперпозиции' },
+                        { title: '📢 ПРЕСС-РЕЛИЗ', content: 'Новый офис открыт в /dev/null' },
+                        { title: '📢 ПРЕСС-РЕЛИЗ', content: 'Годовой отчёт: "Это случилось. Или нет?"' },
+                    ],
+                    employee: [
+                        { title: '👤 СОТРУДНИК МЕСЯЦА', content: 'Рабочий #∞ — Не останавливался с инициализации' },
+                        { title: '👤 СОТРУДНИК МЕСЯЦА', content: 'Bot-7X — Достиг 0 ошибок, ничего не делая' },
+                        { title: '👤 СОТРУДНИК МЕСЯЦА', content: 'Процесс 404 — Не найден, не опаздывает' },
+                        { title: '👤 СОТРУДНИК МЕСЯЦА', content: 'Нулевой указатель — Превосходно указывает в никуда' },
+                    ],
+                    hours: [
+                        { title: '🕐 ЧАСЫ РАБОТЫ', content: 'Открыто: Всегда / Никогда / Зависит' },
+                        { title: '🕐 ЧАСЫ РАБОТЫ', content: 'Понедельник: ∞ | Вторник: NaN | Среда: ???' },
+                        { title: '🕐 ЧАСЫ РАБОТЫ', content: 'Поддержка: Когда ответит пустота' },
+                    ]
+                },
+                badges: ['✨ Вы существуете', '🎯 Посетитель #π', '🔥 Первый скролл', '💎 Обнаружен странный человек', '⭐ Смысл не найден', '💫 Вывод оценён', '🎪 Добро пожаловать в цирк', '🎭 Реальность опциональна', '🌀 Вошёл в цикл'],
+                status: { title: 'СТАТУС ФАБРИКИ', output: 'Выход', errors: 'Ошибки', mood: 'Настроение' },
+                visitor: 'Посетители'
+            }
         };
-
-        const badges = [
-            '✨ You exist',
-            '🎯 Visitor #π',
-            '🔥 First scroll',
-            '💎 Strange person detected',
-            '⭐ Meaning not found',
-            '🌟 Achievement: Being',
-            '💫 Output appreciated',
-            '🎪 Welcome to the circus',
-            '🎭 Reality optional',
-            '🌀 Loop entered',
-        ];
 
         const visitorCounts = ['π', '∞', 'NaN', '???', '-1', 'i', '√-1', '0.∞', 'null', 'undefined', '42', 'e^iπ+1', '∅', '⊥'];
         const statusOutputs = ['∞', '∞+1', 'NaN', '???', '404', '∞²', '0.∞', 'yes', '∞/0'];
         const statusErrors = ['NaN%', '0%*', '-1%', '∞%', '???%', 'null%', '√-1%', 'maybe%'];
         const statusMoods = ['???', ':|', ':?', '∿', '◊', 'existential', 'void', 'processing', '...'];
 
+        // Get current content
+        function getContent() {
+            return floatingContent[currentLang] || floatingContent.en;
+        }
+
         // Initialize News Ticker
         function initTicker() {
             const ticker = document.getElementById('newsTicker');
-            const shuffled = [...newsHeadlines].sort(() => Math.random() - 0.5);
+            const content = getContent();
+            const shuffled = [...content.news].sort(() => Math.random() - 0.5);
             const items = shuffled.map(n => `<span class="ticker-item"><span>${n.icon}</span>${n.text}</span>`).join('');
-            ticker.innerHTML = items + items; // Duplicate for seamless loop
+            ticker.innerHTML = items + items;
         }
-        initTicker();
 
-        // Update Status Randomly
-        function updateStatus() {
+        // Update Status Labels
+        function updateStatusLabels() {
+            const content = getContent();
+            document.querySelector('.status-header').innerHTML = `<span class="status-dot"></span> ${content.status.title}`;
+            document.querySelectorAll('.status-line')[0].querySelector('span').textContent = content.status.output;
+            document.querySelectorAll('.status-line')[1].querySelector('span').textContent = content.status.errors;
+            document.querySelectorAll('.status-line')[2].querySelector('span').textContent = content.status.mood;
+            document.querySelector('.visitor-label').textContent = content.visitor;
+        }
+
+        // Update Status Values
+        function updateStatusValues() {
             document.getElementById('statusOutput').textContent = statusOutputs[Math.floor(Math.random() * statusOutputs.length)];
             document.getElementById('statusErrors').textContent = statusErrors[Math.floor(Math.random() * statusErrors.length)];
             document.getElementById('statusMood').textContent = statusMoods[Math.floor(Math.random() * statusMoods.length)];
         }
-        setInterval(updateStatus, 5000);
 
         // Update Visitor Count
         function updateVisitorCount() {
             document.getElementById('visitorCount').textContent = visitorCounts[Math.floor(Math.random() * visitorCounts.length)];
         }
-        setInterval(updateVisitorCount, 8000);
 
         // Show Random Toast
         let toastTop = 80;
         function showRandomToast() {
-            const categories = Object.keys(toastData);
+            const content = getContent();
+            const categories = Object.keys(content.toasts);
             const category = categories[Math.floor(Math.random() * categories.length)];
-            const items = toastData[category];
+            const items = content.toasts[category];
             const item = items[Math.floor(Math.random() * items.length)];
 
             const toast = document.createElement('div');
@@ -2371,19 +2595,35 @@ We don't care. Strange people make strange things.</pre>
 
             setTimeout(() => toast.remove(), 5000);
         }
-        setTimeout(() => showRandomToast(), 3000);
-        setInterval(showRandomToast, 15000 + Math.random() * 10000);
 
         // Show Floating Badge
         function showFloatingBadge() {
+            const content = getContent();
             const badge = document.createElement('div');
             badge.className = 'floating-badge';
-            badge.textContent = badges[Math.floor(Math.random() * badges.length)];
+            badge.textContent = content.badges[Math.floor(Math.random() * content.badges.length)];
             badge.style.left = (Math.random() * 60 + 20) + '%';
             badge.style.bottom = '-50px';
             document.body.appendChild(badge);
             setTimeout(() => badge.remove(), 8000);
         }
+
+        // Language change hook
+        const originalSetLanguage = setLanguage;
+        setLanguage = function(lang, updateUrl = true) {
+            currentLang = lang;
+            originalSetLanguage(lang, updateUrl);
+            initTicker();
+            updateStatusLabels();
+        };
+
+        // Initialize
+        initTicker();
+        updateStatusLabels();
+        setInterval(updateStatusValues, 5000);
+        setInterval(updateVisitorCount, 8000);
+        setTimeout(() => showRandomToast(), 3000);
+        setInterval(showRandomToast, 15000 + Math.random() * 10000);
         setTimeout(() => showFloatingBadge(), 8000);
         setInterval(showFloatingBadge, 20000 + Math.random() * 15000);
     </script>
