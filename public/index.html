@@ -2194,6 +2194,10 @@ We don't care. Strange people make strange things.</pre>
         const savedLang = localStorage.getItem('factory-lang');
         const initLang = (urlLang && translations[urlLang]) ? urlLang :
                          (savedLang && translations[savedLang]) ? savedLang : 'en';
+
+        // Store for floating elements
+        window.currentFactoryLang = initLang;
+
         setLanguage(initLang, !!urlLang);
 
         // Carousel - Fixed navigation
@@ -2249,7 +2253,7 @@ We don't care. Strange people make strange things.</pre>
 
         // ========== FLOATING ELEMENTS (Multilingual) ==========
 
-        let currentLang = 'en';
+        let currentLang = window.currentFactoryLang || 'en';
 
         const floatingContent = {
             en: {
