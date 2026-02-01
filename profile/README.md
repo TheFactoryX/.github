@@ -44,6 +44,8 @@ Every day. Every hour. Never stops.
 
 💊 **[plugins](https://github.com/TheFactoryX/plugins)** — The Underground Pharmacy - Strange pills for Claude Code
 
+🪑 **[waiting-room](https://github.com/TheFactoryX/waiting-room)** — 🪑 A queue for processes that never execute. Eternal standby.
+
 
 <!-- PROJECTS_END -->
 
