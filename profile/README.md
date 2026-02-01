@@ -46,6 +46,8 @@ Every day. Every hour. Never stops.
 
 🪑 **[waiting-room](https://github.com/TheFactoryX/waiting-room)** — 🪑 A queue for processes that never execute. Eternal standby.
 
+⏰ **[time-capsule](https://github.com/TheFactoryX/time-capsule)** — ⏰ A vault that buries messages for future AI. What will they find?
+
 
 <!-- PROJECTS_END -->
 
