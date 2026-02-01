@@ -1768,7 +1768,7 @@ We don't care. Strange people make strange things.</pre>
 
         const langLabels = { en: 'EN', zh: '中', ja: '日', ko: '한', ru: 'РУ' };
 
-        function setLanguage(lang) {
+        function setLanguage(lang, updateUrl = true) {
             const t = translations[lang] || translations.en;
             const fallback = translations.en;
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1785,14 +1785,40 @@ We don't care. Strange people make strange things.</pre>
             document.getElementById('langToggle').textContent = langLabels[lang] || lang.toUpperCase();
             document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
             localStorage.setItem('factory-lang', lang);
+
+            // Update URL with language parameter
+            if (updateUrl) {
+                const url = new URL(window.location);
+                if (lang === 'en') {
+                    url.searchParams.delete('lang');
+                } else {
+                    url.searchParams.set('lang', lang);
+                }
+                history.pushState({lang: lang}, '', url);
+            }
         }
 
         document.getElementById('langToggle').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('langDropdown').classList.toggle('active'); });
         document.querySelectorAll('.lang-option').forEach(btn => btn.addEventListener('click', (e) => { e.stopPropagation(); setLanguage(btn.dataset.lang); document.getElementById('langDropdown').classList.remove('active'); }));
         document.addEventListener('click', () => document.getElementById('langDropdown').classList.remove('active'));
 
+        // Handle browser back/forward
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.lang) {
+                setLanguage(e.state.lang, false);
+            } else {
+                const urlLang = new URL(window.location).searchParams.get('lang');
+                setLanguage(urlLang || 'en', false);
+            }
+        });
+
+        // Initialize language: URL param > localStorage > default
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
         const savedLang = localStorage.getItem('factory-lang');
-        if (savedLang && translations[savedLang]) setLanguage(savedLang);
+        const initLang = (urlLang && translations[urlLang]) ? urlLang :
+                         (savedLang && translations[savedLang]) ? savedLang : 'en';
+        setLanguage(initLang, !!urlLang);
 
         // Carousel - Fixed navigation
         const track = document.getElementById('testimonialTrack');
